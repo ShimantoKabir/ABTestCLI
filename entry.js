@@ -1,0 +1,1 @@
+const {join} = require("path");const base = join(__dirname, "src/brainlab/f5/BL001");module.exports={js:join(base,"main.ts"),css:join(base,"styles/main.scss")};

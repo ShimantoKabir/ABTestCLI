@@ -1,0 +1,48 @@
+const { resolve, join } = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const entry = require("./entry");
+
+module.exports = {
+  devtool: "inline-source-map",
+  devServer: {
+    historyApiFallback: true,
+    allowedHosts: "all",
+    host: "localhost",
+    liveReload: false,
+    open: true,
+    compress: true,
+    hot: false,
+    port: 3030,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "*",
+    },
+  },
+  entry: [entry.js, entry.css],
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: "ts-loader",
+        include: [resolve(__dirname, "src")],
+      },
+      {
+        test: /\.(s[ac]ss|css)$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  output: {
+    filename: "[name].js",
+    path: resolve(__dirname, "public"),
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+  ],
+};
