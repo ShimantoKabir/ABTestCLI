@@ -30,7 +30,7 @@ class TargetBuilder {
           .then(() => {
             fs.writeFile(
               entryFilePath,
-              this.getEntryContent(location),
+              this.getEntryContent(location, id, site, client, variation),
               (err) => {
                 if (err) {
                   console.log("ERROR=", err);
@@ -54,8 +54,14 @@ class TargetBuilder {
     }
   };
 
-  getEntryContent = (location: string): string => {
-    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");module.exports={js:join(base,"main.ts"),css:join(base,"styles/main.scss")};`;
+  getEntryContent = (
+    location: string,
+    id: string,
+    site: string,
+    client: string,
+    variation: string
+  ): string => {
+    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");module.exports={js:join(base,"main.ts"),css:join(base,"styles/main.scss")};module.exports.getRunningTestInfo=()=>{console.log("Running test info: ",JSON.stringify({id:'${id}',site:'${site}',client:'${client}',variation: '${variation}'}))};`;
     return entryContentStr;
   };
 }

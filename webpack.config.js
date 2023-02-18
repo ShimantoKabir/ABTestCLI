@@ -1,4 +1,4 @@
-const { resolve, join } = require("path");
+const { resolve } = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const entry = require("./entry");
 
