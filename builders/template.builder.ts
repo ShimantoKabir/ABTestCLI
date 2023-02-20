@@ -14,7 +14,10 @@ class TemplateBuilder {
 
       const { id, site, client, variation } = result;
 
-      const dir = path.resolve(__dirname, `../src/${client}/${site}/${id}/`);
+      const dir = path.resolve(
+        __dirname,
+        `../src/clients/${client}/${site}/${id}/`
+      );
 
       fse
         .ensureDir(dir)

@@ -1,8 +1,8 @@
 {
-  "name": "mine",
-  "version": "1.0.0",
+  "name": "ab-test-ts-cli",
+  "version": "1.0.1",
   "description": "This is TypeScript CLI to build A/B test.",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack-dev-server --mode=development",

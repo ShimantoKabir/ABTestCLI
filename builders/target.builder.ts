@@ -22,7 +22,7 @@ class TargetBuilder {
           `id:${id}, site:${site}, client:${client}, variation:${variation}`
         );
 
-        const location = `src/${client}/${site}/${id}`;
+        const location = `src/clients/${client}/${site}/${id}`;
         const entryFilePath = path.resolve(__dirname, `../entry.js`);
 
         fse
@@ -61,7 +61,7 @@ class TargetBuilder {
     client: string,
     variation: string
   ): string => {
-    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");module.exports={js:join(base,"main.ts"),css:join(base,"styles/main.scss")};module.exports.getRunningTestInfo=()=>{console.log("Running test info: ",JSON.stringify({id:'${id}',site:'${site}',client:'${client}',variation: '${variation}'}))};`;
+    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss")};module.exports.getRunningTestInfo=()=>{console.log("Running test info: ",JSON.stringify({id:'${id}',site:'${site}',client:'${client}',variation: '${variation}'}))};`;
     return entryContentStr;
   };
 }

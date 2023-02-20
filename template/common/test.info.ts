@@ -1,6 +1,6 @@
 export enum TestInfo {
-  ID = "BL024",
+  ID = "BL001",
+  SITE = "f5",
+  CLIENT = "brainlab",
   VARIATION = "1",
-  CLIENT = "BrainlabsUSA",
-  SITE = "baliblinds",
 }
