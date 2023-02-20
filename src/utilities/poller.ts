@@ -8,7 +8,7 @@ export class Poller {
   private conditionsLength: number = 0;
 
   poll = (
-    conditions: Function[] | string[],
+    conditions: (Function | string)[],
     callback: Function,
     userOptions?: UserOptions
   ) => {
