@@ -1,0 +1,65 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    div#request-consultation-form{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    &-1{
+        .#{$id}__hero{
+            display: flex;
+            justify-content: center;
+
+            .hero-mobile{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: column;
+                padding: 15px 0;
+
+                >img{
+                    width: 90%;
+                }
+
+                >p{
+                    margin-top: 10px;
+                }
+            }
+
+            .hero-desktop{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 1280px;
+
+                .banner-text{
+                    width: 53%;
+                }
+
+                .banner-img{
+                    width: 47%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                }
+            }
+
+            @media only screen and (max-width: 1023px) {
+                .hero-desktop{
+                    display: none;
+                }
+            }
+
+            @media only screen and (min-width: 1024px) {
+                .hero-mobile{
+                    display: none;
+                }
+            }
+        }
+    }
+}
