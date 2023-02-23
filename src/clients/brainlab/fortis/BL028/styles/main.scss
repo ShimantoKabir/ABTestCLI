@@ -1,0 +1,32 @@
+@import './common';
+
+.#{$id}{
+    &-1{
+        .#{$id}__contact-container{
+            .headline{
+                >h5{
+                    margin: 0;
+                    padding-bottom: 10px;
+                }
+            }
+
+            .text-content{
+                margin-bottom: 10px;
+
+                >ul{
+                    >li{
+                        font-size: 13px;
+                        line-height: 25px;
+                    }
+                }
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            div.modal-header>p {
+              font-size: 1.250rem !important;
+              font-weight: 700 !important;
+            }
+        }
+    }
+}
