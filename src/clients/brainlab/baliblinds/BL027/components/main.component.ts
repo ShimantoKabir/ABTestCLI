@@ -8,7 +8,7 @@ export class MainComponent {
   private optionModes: OptionModel[] = [];
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.2");
   }
 
   init = (): void => {
@@ -29,5 +29,13 @@ export class MainComponent {
 
     const swappableMobileTabComponent = new SwappableMobileTabComponent();
     swappableMobileTabComponent.render(this.optionModes);
+
+    window.addEventListener(
+      "resize",
+      () => {
+        swappableMobileTabComponent.showOnlyOnMobile(window.innerWidth);
+      },
+      true
+    );
   };
 }

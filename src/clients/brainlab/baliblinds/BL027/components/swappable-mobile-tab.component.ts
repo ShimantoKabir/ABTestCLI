@@ -18,4 +18,15 @@ export class SwappableMobileTabComponent {
       .querySelector(this.tabSectionSelector)
       ?.insertAdjacentHTML("beforeend", this.getHtml(optionModes));
   };
+
+  showOnlyOnMobile = (width: number) => {
+    const tabElm = document.querySelector(
+      "div." + TestInfo.ID + "__swappable-mobile-tab"
+    );
+    if (width >= 768) {
+      tabElm?.classList.add(TestInfo.ID + "__hide");
+    } else {
+      tabElm?.classList.remove(TestInfo.ID + "__hide");
+    }
+  };
 }
