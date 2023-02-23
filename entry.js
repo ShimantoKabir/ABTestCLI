@@ -1,1 +1,16 @@
-const {join} = require("path");const base = join(__dirname, "src/clients/brainlab/fortis/BL028");module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss")};module.exports.getRunningTestInfo=()=>{console.log("Running test info: ",JSON.stringify({id:'BL028',site:'fortis',client:'brainlab',variation: '1'}))};
+const { join } = require("path");
+const base = join(__dirname, "src/clients/brainlab/fortis/BL028");
+const testInfo = {
+  id: "BL028",
+  site: "fortis",
+  client: "brainlab",
+  variation: "1",
+};
+module.exports = {
+  js: join(base, "index.ts"),
+  css: join(base, "styles/main.scss"),
+  testInfo: testInfo,
+};
+module.exports.logActiveTestInfo = () => {
+  console.log("Running test info: ", JSON.stringify(testInfo));
+};

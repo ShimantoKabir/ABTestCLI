@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --mode=development",
     "create": "ts-node builders/template.builder.ts",
     "target": "ts-node builders/target.builder.ts",
-    "info": "npx run-func entry.js getRunningTestInfo"
+    "info": "npx run-func entry.js logActiveTestInfo"
   },
   "author": "MD. Abdullah Al Shahariar Kabir",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "@types/prompt": "^1.1.5",
     "css-loader": "^6.7.3",
     "fs-extra": "^11.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "prompt": "^1.3.0",
     "run-func": "^3.0.0",

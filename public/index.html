@@ -36,6 +36,10 @@
                 animation: focus-in-expand 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             }
 
+            .test-info>ul>li {
+                text-align: left;
+            }
+
             @keyframes focus-in-expand {
                 0% {
                     letter-spacing: -0.5em;
@@ -50,6 +54,19 @@
             }
         </style>
         <main>
+            <div class="test-info">
+                <h4>Active test info</h4>
+                <ul>
+                    <li>id = <%= htmlWebpackPlugin.options.id %>
+                    </li>
+                    <li>site = <%= htmlWebpackPlugin.options.site %>
+                    </li>
+                    <li>client = <%= htmlWebpackPlugin.options.client %>
+                    </li>
+                    <li>variation = <%= htmlWebpackPlugin.options.variation %>
+                    </li>
+                </ul>
+            </div>
             <h1>Echologyx A/B test TS build tool successfully initiated...</h1>
             <div class="echologyx">
                 <span>Please copy and paste the code from script.loader.js in your userjs extension to get start.</span>

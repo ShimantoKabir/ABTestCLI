@@ -61,7 +61,7 @@ class TargetBuilder {
     client: string,
     variation: string
   ): string => {
-    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss")};module.exports.getRunningTestInfo=()=>{console.log("Running test info: ",JSON.stringify({id:'${id}',site:'${site}',client:'${client}',variation: '${variation}'}))};`;
+    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");const testInfo={id:'${id}',site:'${site}',client:'${client}',variation:'${variation}'};module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss"),testInfo: testInfo};module.exports.logActiveTestInfo=()=>{console.log("Running test info: ",JSON.stringify(testInfo))};`;
     return entryContentStr;
   };
 }
