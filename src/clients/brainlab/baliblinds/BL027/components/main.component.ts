@@ -1,10 +1,13 @@
 import { Initializer } from "../../../../../utilities/initializer";
 import { TestInfo } from "../common/test.info";
 import { OptionModel } from "../modes/option.model";
+import { Fixer } from "../utils/fixer";
 import { SwappableMobileTabComponent } from "./swappable-mobile-tab.component";
+import { SwatchOrderActionComponent } from "./swatch-order-action.component";
 
 export class MainComponent {
   private readonly mobileTabSelector: string = "div.mobile-tabs-selector";
+  private readonly swatchOrderSelector: string = "div.swatch-ordering-actions";
   private optionModes: OptionModel[] = [];
 
   constructor() {
@@ -24,12 +27,20 @@ export class MainComponent {
     });
 
     document
+      .querySelector(this.swatchOrderSelector)
+      ?.classList.add(TestInfo.ID + "__hide");
+
+    document
       .querySelector(this.mobileTabSelector)
       ?.classList.add(TestInfo.ID + "__hide");
+
+    const swatchOrderActionComponent = new SwatchOrderActionComponent();
+    swatchOrderActionComponent.render();
 
     const swappableMobileTabComponent = new SwappableMobileTabComponent();
     swappableMobileTabComponent.render(this.optionModes);
 
+    swappableMobileTabComponent.showOnlyOnMobile(window.innerWidth);
     window.addEventListener(
       "resize",
       () => {
@@ -37,5 +48,7 @@ export class MainComponent {
       },
       true
     );
+
+    Fixer.fixStickyHeaderConflictWithMenu();
   };
 }

@@ -5,12 +5,8 @@ const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
   window.navigator.userAgent
 );
 
-const isMobileDevice = (): boolean => {
-  return window.innerWidth < 768;
-};
-
 if (!ieChecks) {
   const main = new MainComponent();
   const poller = new Poller();
-  poller.poll(["body", "div.mobile-tabs-selector", isMobileDevice], main.init);
+  poller.poll(["body", "div.mobile-tabs-selector"], main.init);
 }

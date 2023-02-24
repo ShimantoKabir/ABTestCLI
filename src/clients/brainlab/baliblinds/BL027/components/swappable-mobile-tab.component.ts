@@ -23,7 +23,7 @@ export class SwappableMobileTabComponent {
     const tabElm = document.querySelector(
       "div." + TestInfo.ID + "__swappable-mobile-tab"
     );
-    if (width >= 768) {
+    if (width >= 992) {
       tabElm?.classList.add(TestInfo.ID + "__hide");
     } else {
       tabElm?.classList.remove(TestInfo.ID + "__hide");
