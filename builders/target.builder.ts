@@ -24,6 +24,10 @@ class TargetBuilder {
 
         const location = `src/clients/${client}/${site}/${id}`;
         const entryFilePath = path.resolve(__dirname, `../entry.js`);
+        const testInfoFilePath = path.resolve(
+          __dirname,
+          "../" + location + "/common/test.info.ts"
+        );
 
         fse
           .ensureFile(entryFilePath)
@@ -31,6 +35,25 @@ class TargetBuilder {
             fs.writeFile(
               entryFilePath,
               this.getEntryContent(location, id, site, client, variation),
+              (err) => {
+                if (err) {
+                  console.log("ERROR=", err);
+                  return "Something went wrong...!";
+                }
+              }
+            );
+          })
+          .catch((err) => {
+            console.log("ERROR=", err);
+            return "Something went wrong...!";
+          });
+
+        fse
+          .ensureFile(testInfoFilePath)
+          .then(() => {
+            fs.writeFile(
+              testInfoFilePath,
+              this.getTestInfoContent(id, site, client, variation),
               (err) => {
                 if (err) {
                   console.log("ERROR=", err);
@@ -63,6 +86,15 @@ class TargetBuilder {
   ): string => {
     const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");const testInfo={id:'${id}',site:'${site}',client:'${client}',variation:'${variation}'};module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss"),testInfo: testInfo};module.exports.logActiveTestInfo=()=>{console.log("Running test info: ",JSON.stringify(testInfo))};`;
     return entryContentStr;
+  };
+
+  getTestInfoContent = (
+    id: string,
+    site: string,
+    client: string,
+    variation: string
+  ): string => {
+    return `export enum TestInfo {ID = '${id}', SITE = '${site}', CLIENT = '${client}', VARIATION = '${variation}'}`;
   };
 }
 

@@ -2,5 +2,5 @@ export enum TestInfo {
   ID = "BL029",
   SITE = "f5",
   CLIENT = "brainlab",
-  VARIATION = "2",
+  VARIATION = "1",
 }
