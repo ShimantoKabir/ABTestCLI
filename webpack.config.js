@@ -50,7 +50,7 @@ module.exports = {
       site: entry.testInfo.site,
       client: entry.testInfo.client,
       variation: entry.testInfo.variation,
-      template: resolve(__dirname, "public/index.html"),
+      template: resolve(__dirname, "index.html"),
       filename: "index.html",
     }),
   ],
