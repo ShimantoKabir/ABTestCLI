@@ -4,6 +4,16 @@ import { CartModel } from "../models/cart.model";
 
 export class BlogItemComponent {
   static render = (cardModel: CartModel, onlyLink: boolean): string => {
+    let showBlogTitle: boolean = false;
+
+    if (TestInfo.VARIATION.toString() === "2" && onlyLink == true) {
+      showBlogTitle = true;
+    }
+
+    if (TestInfo.VARIATION.toString() === "1") {
+      showBlogTitle = true;
+    }
+
     const htmlStr = `
     <div class="${TestInfo.ID}__blog-item-component ${
       cardModel.href === "#dummy" && TestInfo.ID + "__hidden"
@@ -11,7 +21,7 @@ export class BlogItemComponent {
       <div class="blog-img ${onlyLink && TestInfo.ID + "__hide"}" >
         <img src="${cardModel.imgSrc}" alt="blog-img" />
       </div>
-      <div class="blog-title ${onlyLink && TestInfo.ID + "__hide"}" > 
+      <div class="blog-title ${showBlogTitle && TestInfo.ID + "__hide"}" > 
         <a href="${cardModel.href}" >${cardModel.title}</a>
       </div>
       <div class="blog-link" >

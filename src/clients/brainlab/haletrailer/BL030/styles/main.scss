@@ -1,0 +1,80 @@
+@import './common';
+
+.#{$id}{
+    &__banner {
+        display: none !important;
+    }
+
+    .#{$id}__banner-container{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        padding: 20px;
+
+        .banner-wrap{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .banner-text{
+                width: 50%;
+    
+                >h1{
+                    color: #fff;
+                    font-weight: 900;
+                    font-size: 3.25rem;
+                    font-family: "Barlow Condensed",sans-serif !important;
+                }
+            }
+    
+            .banner-form{
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+    
+                .form-container{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    background: rgba(255,255,255,.5);
+                    border-radius: .5em;
+                    padding: 2em 2em;
+                    width: 450px;
+
+                    >h2{
+                        color: #00319B;
+                        font-weight: 700;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1199px) {
+        .#{$id}__banner-container{
+          display: none;
+        }
+
+        &__banner {
+            display: block !important;
+        }
+    }
+
+    @media only screen and (min-width: 1300px) {
+        .#{$id}__banner-container{
+            width: 1196px;
+        }
+    }
+
+    @media only screen and (min-width: 1500px) {
+        .#{$id}__banner-container{
+            width: 1440px;
+        }
+    }
+}

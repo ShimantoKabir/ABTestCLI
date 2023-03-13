@@ -1,6 +1,6 @@
 $id: 'BL029';
 
-@mixin social-component {
+@mixin social-component($marginLeft) {
     .#{$id}__social-component{
         width: 100%;
         margin-bottom: 30px;
@@ -17,7 +17,7 @@ $id: 'BL029';
             }
 
             >li:first-child{
-                margin-left: 0;
+                margin-left: $marginLeft;
             }
         }
     }

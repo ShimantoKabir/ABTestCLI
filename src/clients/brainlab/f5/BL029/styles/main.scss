@@ -156,6 +156,7 @@
                         }
 
                         .blog-link{
+                            margin-top: 15px;
 
                             >a{
                                 font-style: normal;
@@ -308,13 +309,13 @@
                             }
 
                             .blog-title{
-                                margin-top: 15px;
-                                margin-bottom: 15px;
+                                margin-top: 10px;
+                                margin-bottom: 10px;
     
                                 >a{
                                     font-style: normal;
                                     font-weight: 500;
-                                    font-size: 17px;
+                                    font-size: 14px;
                                     line-height: 16px;
                                     letter-spacing: 1.2px;
                                     color: #222222;
@@ -357,7 +358,7 @@
             padding: 20px;
             flex-direction: column;
 
-            @include social-component;
+            @include social-component(0px);
 
             .published-article-blog-footer{
                 width: 100%;
@@ -423,7 +424,7 @@
             padding-right: 0;
             flex-direction: column;
 
-            @include social-component;
+            @include social-component(10px);
 
             .published-article-blog-footer{
                 width: 100%;
