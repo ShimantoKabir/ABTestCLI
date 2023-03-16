@@ -1,9 +1,12 @@
 import { Initializer } from "../../../../../utilities/initializer";
+import { Poller } from "../../../../../utilities/poller";
 import { selector } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { BannerTextComponent } from "./banner-text.component";
 
 export class MainComponent {
+  disclaimerSelector = "div.mktoHtmlText";
+
   init = (): void => {
     Initializer.init(TestInfo, "0.0.1");
 
@@ -25,5 +28,12 @@ export class MainComponent {
         .querySelector(selector.desktopBannerSelector)
         ?.insertAdjacentElement("beforeend", clonedForm as Element);
     }
+
+    const poller = new Poller();
+    poller.poll([this.disclaimerSelector], () => {
+      document.querySelectorAll(this.disclaimerSelector)?.forEach((elm) => {
+        elm.removeAttribute("style");
+      });
+    });
   };
 }
