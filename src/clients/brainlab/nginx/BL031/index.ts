@@ -15,6 +15,7 @@ if (!ieChecks) {
       selector.desktopBannerSelector,
       selector.headingTextSelector,
       selector.fromSelector,
+      "form#mktoForm_10929",
       selector.heroBannerSelector,
     ],
     main.init

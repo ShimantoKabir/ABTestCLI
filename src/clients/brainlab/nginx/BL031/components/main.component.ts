@@ -8,7 +8,7 @@ export class MainComponent {
   disclaimerSelector = "div.mktoHtmlText";
 
   init = (): void => {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.3");
 
     document
       .querySelector(selector.heroBannerSelector)
