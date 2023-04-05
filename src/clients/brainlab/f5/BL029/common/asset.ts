@@ -10,9 +10,9 @@ export const linkedinSvgLink: string =
 export const shareSvgLink: string =
   "https://www.f5.com/etc.clientlibs/base/clientlibs/base-resources/resources/icons/social/addthis_share.svg";
 export const publisherLink: string =
-  "https://www.f5.com/authors/dave-morrissey.thumb.png";
+  "https://www.f5.com/authors/ian-dinno.thumb.png";
 export const publishedDate = "Feb 08, 2023";
-export const publisherName = "DAVE MORRISSEY";
+export const publisherName = "IAN DINNO";
 
 export const articles: string[] = [
   "The recent <a class='blue-text' href='https://www.t-mobile.com/news/business/customer-information'>data breach disclosure by T-Mobile</a> highlights the challenges of the burgeoning “wild west” of application security—APIs. An individual (or group) was able to collect the personal data of over 30 million customers via use (or abuse) of an API, siphoning off information daily for over a month before detection.",
@@ -30,82 +30,82 @@ export const articles: string[] = [
 
 export const blogs: CartModel[] = [
   {
-    href: "#",
+    href: "https://www.f5.com/company/blog/secure-multi-cloud-networking",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
+      "https://medianet.com/cro/f5/bl029/related-blogs/1_blog-multicloud-illustration.png",
+    linkText: "Hybrid, Multi-cloud - Why F5 Invests",
+    title: "BLOG",
+  },
+  {
+    href: "https://www.f5.com/company/blog/mastering-api-architecture-api-fundamentals",
+    imgSrc:
+      "https://medianet.com/cro/f5/bl029/related-blogs/2_blog-mastering-api-fundamentals.png",
+    linkText: "Mastering API Architecture: API Fundamentals",
+    title: "BLOG",
+  },
+  {
+    href: "https://www.f5.com/company/blog/taking-bad-bots-head-on-with-f5-and-aws",
+    imgSrc:
+      "https://medianet.com/cro/f5/bl029/related-blogs/3_taking-bad-bots-head-on.png",
+    linkText: "Taking Bad Bots Head On with F5 and AWS",
+    title: "BLOG",
+  },
+  {
+    href: "https://www.f5.com/company/blog/mitigating-architectural-risk",
+    imgSrc:
+      "https://medianet.com/cro/f5/bl029/related-blogs/4_mitigating-architectural-risk.png",
+    linkText: "Mitigating Architectural<br> Risk",
+    title: "BLOG",
+  },
+  {
+    href: "https://www.f5.com/company/blog/f5-distributed-cloud-services-stands-up-to-l7-ddos-attacks",
+    imgSrc:
+      "https://medianet.com/cro/f5/bl029/related-blogs/5_xc-stands-up-to-emerging-ddos-attacks.png",
     linkText:
-      "F5 Celebrates Channel Ecosystem With Recognition of Key North America Partners",
-    title: "BLOG",
-  },
-  {
-    href: "#",
-    imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText:
-      "Kara Sprague, Executive Vice President and Chief Product Officer at F5 – Q&A",
-    title: "BLOG",
-  },
-  {
-    href: "#",
-    imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "Rise of the Bots (Dan Woods Q&A Part 2)",
-    title: "BLOG",
-  },
-  {
-    href: "#",
-    imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "Rise of the Bots (Dan Woods Q&A Part 2)",
-    title: "BLOG",
-  },
-  {
-    href: "#",
-    imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "Rise of the Bots (Dan Woods Q&A Part 2)",
+      "F5 Distributed Cloud Services Stands Up to Emerging L7 DDoS Attacks",
     title: "BLOG",
   },
 ];
 
 export const securities: CartModel[] = [
   {
-    href: "#",
+    href: "https://www.f5.com/solutions/use-cases/multi-cloud-networking",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "Mitigating Architectural Risk",
-    title: "BLOG",
+      "https://medianet.com/cro/f5/bl029/additional-resources/1_multi-cloud-networking.png",
+    linkText: "Build Anywhere with Comprehensive Multi-Cloud Networking",
+    title: "Use Case",
   },
   {
-    href: "#",
+    href: "https://www.f5.com/resources/reports/state-of-application-strategy-report",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "Don’t Get Sacked by Cyberattacks This Super Bowl",
-    title: "BLOG",
+      "https://medianet.com/cro/f5/bl029/additional-resources/2_soas-2023-illo-option-cover.png",
+    linkText: "2023 State of Application Strategy<br> Report",
+    title: "Report",
   },
   {
-    href: "#",
+    href: "https://www.f5.com/solutions/forrester-report-api-security-threats-and-solutions-b",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "The Top 10, Top 10 Predictions for 2023",
-    title: "BLOG",
+      "https://medianet.com/cro/f5/bl029/additional-resources/3_F5-apis-forrester-report-gated.png",
+    linkText: "API Security in the hybrid multi cloud<br> world",
+    title: "Forester Report",
   },
 ];
 
 export const aboutLinks: CartModel[] = [
   {
-    href: "#",
+    href: "https://www.f5.com/solutions/waap-buyers-guide-ebook",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "Meet F5’s Powerful Next-Generation F5OS Platforms",
-    title: "BLOG",
+      "https://medianet.com/cro/f5/bl029/additional-resources/4_waap-buying-guide.png",
+    linkText: "WAAP Buying Guide: Security as a Digital Differentiator",
+    title: "eBook",
   },
   {
-    href: "#",
+    href: "https://community.f5.com/t5/technical-articles/f5-hybrid-security-architectures-one-waf-engine-total/ta-p/307248",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/global-assets/resources-featurettes/dist-cloud-blog-feature_730x508.png",
-    linkText: "F5 Announces General Availability of NGINXaaS for Azure",
-    title: "BLOG",
+      "https://medianet.com/cro/f5/bl029/additional-resources/5_hybrid-security-architectures-one-waf-engine.png",
+    linkText:
+      "F5 Hybrid Security Architectures: One WAF Engine, Total Flexibility",
+    title: "Article",
   },
   {
     href: "#dummy",
@@ -125,3 +125,23 @@ export const rightArrow = `
 
 export const bannerHeadingText =
   "Lessons Learned (So Far) from the T-Mobile Breach";
+
+export const selectors = {
+  bannerSelector: "div#platter1878393716",
+  hiddenSectionSelector: "div#platter-287410563",
+};
+
+export const socialPopUp = {
+  facebook: {
+    url: "https://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=ra-5095d30f38626622&source=tbx-300&lng=en&s=facebook&url=https%3A%2F%2Fwww.f5.com%2Fcompany%2Fblog%2Fthe-future-is-platform-engineering&title=The%20Future%20Is%20Platform%20Engineering&ate=AT-ra-5095d30f38626622/-/-/64272068af9b790a/2&frommenu=1&ips=1&uid=6427199ca63bf0b9&description=Engineering%20platforms%20offer%20self-serve%20access%20to%20secure%2C%20validated%2C%20and%20reusable%20tools%20and%20workflows%20designed%20specifically%20for%20the%20development%20teams%20who%20will%20use%20them%2C%20increasing%20productivity%20while%20providing%20operational%20guardrails%20for%20security%20and%20stability.&uud=1&ct=1&tt=0&captcha_provider=recaptcha2&pro=1",
+    name: "Facebook",
+  },
+  twitter: {
+    url: "https://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=ra-5095d30f38626622&source=men-300&lng=en&s=twitter&url=https%3A%2F%2Fwww.f5.com%2Fcompany%2Fblog%2Fthe-future-is-platform-engineering&title=The%20Future%20Is%20Platform%20Engineering&ate=AT-ra-5095d30f38626622/-/-/64272068af9b790a/4&frommenu=1&ips=1&uid=6427199ca63bf0b9&description=Engineering%20platforms%20offer%20self-serve%20access%20to%20secure%2C%20validated%2C%20and%20reusable%20tools%20and%20workflows%20designed%20specifically%20for%20the%20development%20teams%20who%20will%20use%20them%2C%20increasing%20productivity%20while%20providing%20operational%20guardrails%20for%20security%20and%20stability.&uud=1&ct=1&tt=0&captcha_provider=recaptcha2&pro=1",
+    name: "Twitter",
+  },
+  linkedin: {
+    url: "https://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=ra-5095d30f38626622&source=men-300&lng=en&s=linkedin&url=https%3A%2F%2Fwww.f5.com%2Fcompany%2Fblog%2Fthe-future-is-platform-engineering&title=The%20Future%20Is%20Platform%20Engineering&ate=AT-ra-5095d30f38626622/-/-/64272068af9b790a/5&frommenu=1&ips=1&uid=6427199ca63bf0b9&description=Engineering%20platforms%20offer%20self-serve%20access%20to%20secure%2C%20validated%2C%20and%20reusable%20tools%20and%20workflows%20designed%20specifically%20for%20the%20development%20teams%20who%20will%20use%20them%2C%20increasing%20productivity%20while%20providing%20operational%20guardrails%20for%20security%20and%20stability.&uud=1&ct=1&tt=0&captcha_provider=recaptcha2&pro=1",
+    name: "Linkedin",
+  },
+};

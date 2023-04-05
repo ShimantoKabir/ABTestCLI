@@ -1,13 +1,13 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { bannerHeadingText } from "../common/asset";
+import { bannerHeadingText, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { VOneComponent } from "../variations/v-one.component";
 import { VTwoComponent } from "../variations/v-two.component";
 import { SocialComponent } from "./social.component";
 
 export class MainComponent {
-  hiddenSectionSelector = "div#platter-863662410";
-  bannerSelector = "div#platter-1783213541";
+  hiddenSectionSelector = selectors.hiddenSectionSelector;
+  bannerSelector = selectors.bannerSelector;
 
   init = (): void => {
     Initializer.init(TestInfo, "0.0.1");

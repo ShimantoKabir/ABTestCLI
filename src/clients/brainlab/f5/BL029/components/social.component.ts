@@ -1,3 +1,4 @@
+import { socialPopUp } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 
 export class SocialComponent {
@@ -34,28 +35,32 @@ export class SocialComponent {
     document
       .querySelector("a." + TestInfo.ID + "__facebook")
       ?.addEventListener("click", () => {
-        const mainFacebookElm = document.querySelector<HTMLAnchorElement>(
-          "a.addthis_button_facebook.at300b"
-        );
-        mainFacebookElm && mainFacebookElm.click();
+        // const mainFacebookElm = document.querySelector<HTMLAnchorElement>(
+        //   "a.addthis_button_facebook.at300b"
+        // );
+        // mainFacebookElm && mainFacebookElm.click();
+        this.popUp(socialPopUp.facebook.url, socialPopUp.facebook.name);
       });
 
     document
       .querySelector("a." + TestInfo.ID + "__twitter")
       ?.addEventListener("click", () => {
-        const mainFacebookElm = document.querySelector<HTMLAnchorElement>(
-          "a.addthis_button_twitter.at300b"
-        );
-        mainFacebookElm && mainFacebookElm.click();
+        // const mainFacebookElm = document.querySelector<HTMLAnchorElement>(
+        //   "a.addthis_button_twitter.at300b"
+        // );
+        // mainFacebookElm && mainFacebookElm.click();
+
+        this.popUp(socialPopUp.twitter.url, socialPopUp.twitter.name);
       });
 
     document
       .querySelector("a." + TestInfo.ID + "__linkedin")
       ?.addEventListener("click", () => {
-        const mainFacebookElm = document.querySelector<HTMLAnchorElement>(
-          "a.addthis_button_linkedin.at300b"
-        );
-        mainFacebookElm && mainFacebookElm.click();
+        // const mainFacebookElm = document.querySelector<HTMLAnchorElement>(
+        //   "a.addthis_button_linkedin.at300b"
+        // );
+        // mainFacebookElm && mainFacebookElm.click();
+        this.popUp(socialPopUp.linkedin.url, socialPopUp.linkedin.name);
       });
 
     document
@@ -66,5 +71,17 @@ export class SocialComponent {
         );
         mainFacebookElm && mainFacebookElm.click();
       });
+  };
+
+  static popUp = (url: string, windowName: string) => {
+    const newWindow: Window | null = window.open(
+      url,
+      windowName,
+      "height=500,width=500"
+    );
+    if (newWindow) {
+      newWindow.focus();
+    }
+    return false;
   };
 }

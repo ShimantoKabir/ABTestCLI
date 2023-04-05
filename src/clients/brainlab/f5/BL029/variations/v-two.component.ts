@@ -1,4 +1,4 @@
-import { aboutLinks, blogs, securities } from "../common/asset";
+import { aboutLinks, blogs, securities, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { ArticleComponent } from "../components/article.component";
 import { BlogComponent } from "../components/blog.component";
@@ -6,7 +6,7 @@ import { PublisherComponent } from "../components/publisher.component";
 import { SocialComponent } from "../components/social.component";
 
 export class VTwoComponent {
-  hiddenSectionSelector = "div#platter-863662410";
+  hiddenSectionSelector = selectors.hiddenSectionSelector;
   getHtml = () => {
     const html = `
     <div class="${TestInfo.ID}__main-component" >
@@ -21,14 +21,10 @@ export class VTwoComponent {
           </div>
           <div class="${TestInfo.ID}__footer" >
             <div class="footer footer-left" >
-              ${BlogComponent.render(
-                "More about API Security",
-                securities,
-                false
-              )}
+              ${BlogComponent.render("Additional Resources", securities, false)}
             </div>
             <div class="footer footer-right" >
-              ${BlogComponent.render("More about F5", aboutLinks, false)}
+              ${BlogComponent.render("Additional Resources", aboutLinks, false)}
             </div>
           </div>
       </div>
