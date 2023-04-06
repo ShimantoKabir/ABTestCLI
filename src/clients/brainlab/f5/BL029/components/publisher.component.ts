@@ -1,4 +1,9 @@
-import { publishedDate, publisherLink, publisherName } from "../common/asset";
+import {
+  publishedDate,
+  publisherImgLink,
+  publisherName,
+  publisherLink,
+} from "../common/asset";
 import { TestInfo } from "../common/test.info";
 
 export class PublisherComponent {
@@ -7,10 +12,10 @@ export class PublisherComponent {
     <div class="${TestInfo.ID}__published-component" >
         <div class="publisher-info" >
             <div class="publisher-img" >
-                <img src="${publisherLink}" alt="publisher" >
+                <img src="${publisherImgLink}" alt="publisher" >
             </div>
             <div class="publisher-name" >
-                <a href="#" >${publisherName}</a>
+                <a href="${publisherLink}" >${publisherName}</a>
             </div>
         </div>
         <div class="published-date" >
