@@ -1,0 +1,151 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    .base-page{
+        position: relative;
+
+        >div:last-child{
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 560px;
+
+            @media only screen and (min-width: 1366px) {
+                left: 55%;
+            }
+
+            @media only screen and (max-width: 1365px) {
+                width: 100%;
+                top: 245px;
+            }
+
+            .form-layout-block{
+                margin: 0 !important;
+                padding: 20px 40px;
+
+                >div.enhanced-form{
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0 !important;
+                    margin: 0 !important;
+
+                    .layout-container{
+                        margin: 0 !important;
+                        padding: 0 !important;
+
+                        section#__field_{
+                            margin: 0 !important;
+                            padding: 0 !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        >div:nth-child(3){
+            @media only screen and (max-width: 1365px) {
+                margin-top: 937px;
+            }
+        }
+    } 
+
+    .base-page-hero-bg{
+        @media only screen and (min-width: 1365px) {
+            left: 30%;
+        }
+
+        @media only screen and (min-width: 1566px) {
+            left: 38%;
+        }
+    }
+
+    .base-page-hero-content-mask{
+        grid-column: 1/6;
+    }
+
+    .base-page-hero-content{
+        @media only screen and (min-width: 1366px) {
+            min-height: 745px;
+        }
+
+        @media only screen and (max-width: 1365px) {
+            flex-direction: column;
+        }
+    }
+
+    p.enhanced-form-content-title{
+        font-size: 27px;
+        padding-top: 5px;
+        padding-bottom: 15px;
+
+        @media only screen and (max-width: 1365px) {
+            font-size: 30px;
+            padding-top: 20px;    
+            padding-bottom: 20px;
+        }
+    }
+
+    section#__field_>div.FormTextbox{
+        width: 230px;
+
+        @media only screen and (max-width: 1365px) {
+            width: 100%;
+        }
+    }
+
+    section#__field_>div.FormSelection{
+        width: 230px;
+
+        @media only screen and (max-width: 1365px) {
+            width: 100%;
+        }
+    }
+
+    section#__field_>div.FormTextbox--Textarea{
+        width: 100%;
+    }
+
+    .EPiServerForms .Form__MainBody section input{
+        height: 60px;
+    }
+
+    .EPiServerForms .Form__MainBody section select{
+        height: 60px;
+    }
+
+    .EPiServerForms .Form__MainBody section .FormTextbox--Textarea textarea {
+        height: 90px;
+    }
+
+    .EPiServerForms .Form__MainBody section .FormTextbox label {
+        top: 18px;
+    }
+
+    .EPiServerForms .Form__MainBody section .FormSelection:after {
+        top: 28px;
+    }
+
+    .EPiServerForms .Form__MainBody section .FormSelection label{
+        top: 18px;
+    }
+
+    div.base-page-content>div.promo-callout>div.flex>div:first-child{
+        margin-top: -180px;
+
+        @media only screen and (max-width: 1366px) {
+            margin-top: unset;
+        }
+    }
+
+    div.base-page-content>div.promo-callout>div.flex>div:last-child{
+        margin-top: 180px;
+
+        @media only screen and (max-width: 1366px) {
+            margin-top: unset;
+        }
+    }
+}

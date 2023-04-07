@@ -1,0 +1,185 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    div.enhanced-form-content{
+        display: none;
+    }
+
+    .section-homepage{
+        .section-homepage-content{
+            padding: 0;
+            margin: 0;
+            box-shadow: unset;
+            border-radius: 0;
+            background: unset;
+
+            .section-homepage-content-intro{
+                padding: 0;
+                margin: 0;
+                width: 50%;
+                border-radius: 0;
+                box-shadow: unset;
+
+                h1{ 
+                    font-size: 30px;
+                    line-height: normal;
+                    text-align: start;
+                    margin-top: 70px;
+
+                    @media only screen and (max-width: 992px) {
+                        >br{
+                            display: none;
+                        }
+
+                        text-align: center;
+                        margin-top: 25px;
+                    }
+
+                    @media only screen and (min-width: 992px) {
+                        >br{
+                            display: block;
+                        }
+
+                        text-align: start;
+                    }
+                }
+
+                p{
+                    margin: 0;
+                    font-weight: normal;
+                    text-align: start;
+
+                    @media only screen and (max-width: 992px) {
+                        margin: auto;
+                        text-align: center;
+                    }
+
+                    @media only screen and (min-width: 992px) {
+                        margin: 0;
+                        text-align: start;
+                    }
+                }
+
+                a[href="#page-form"]{
+                    display: none;
+                }
+
+                @media only screen and (max-width: 992px) {
+                    width: 100%;
+                }
+
+                @media only screen and (min-width: 992px) {
+                    margin-left: 5%;
+                }
+
+                @media only screen and (min-width: 1200px) {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .w-full{
+            >div:first-child{
+                position: relative;
+
+                >section:first-child{
+                    padding-top: 300px;
+
+                    @media only screen and (max-width:  375px) {
+                        padding-top: 1065px;
+                    }
+
+                    @media only screen and (min-width:  375px) {
+                        padding-top: 995px;
+                    }
+
+                    @media only screen and (min-width:  475px) {
+                        padding-top: 920px;
+                    }
+
+                    @media only screen and (min-width:  768px) {
+                        padding-top: 950px;
+                    }
+
+                    @media only screen and (min-width:  992px) {
+                        padding-top: 300px;
+                    }
+                }
+
+                >section:last-child{
+                    position: absolute;
+                    padding: 20px 20px 0 20px;
+                    background-color: #fff;
+                    box-shadow: 0 5px 20px rgba(0,0,0,.10196);
+                    border-radius: 10px;
+                    z-index: 1;
+
+                    .section-container{
+                        width: 485px;
+                        padding: 0 !important;
+
+                        .enhanced-form{
+                            grid-template-columns: unset;
+                            padding: 0 !important;
+
+                            .layout-container{
+                                grid-column: unset;
+                            }
+                        }
+
+                        @media only screen and (max-width: 992px) {
+                            width: 100%;
+                        }
+                    }
+
+                    @media only screen and (max-width: 992px) {
+                        left: 0;
+                        top: 25px;
+                        box-shadow: unset;
+                        width: 100%;
+                    }
+
+                    @media only screen and (min-width: 992px) {
+                        top: -490px;
+                        left: 45%;      
+                    }
+
+                    @media only screen and (min-width: 1200px) {
+                        top: -450px;
+                        left: 55%;
+                    }
+                }
+            }
+        }
+    }
+
+    h2.Form__Title{
+        margin-bottom: 25px;
+        margin-top: 10px;
+        font-size: 25px;
+    }
+
+    section#__field_>div.FormTextbox{
+        width: 230px;
+
+        @media only screen and (max-width: 992px) {
+            width: 100%;
+        }
+    }
+
+    section#__field_>div.FormSelection{
+        width: 230px;
+
+        @media only screen and (max-width: 992px) {
+            width: 100%;
+        }
+    }
+
+    section#__field_>div.FormTextbox--Textarea{
+        width: 100%;
+    }
+}
