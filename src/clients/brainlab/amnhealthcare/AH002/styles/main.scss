@@ -1,0 +1,54 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    h1.hero-text{
+        display: none;
+    }
+
+    div.imagebackground-page-headers-content{
+        display: none;
+    }
+
+    .imagebackground-page-wrapper{
+        flex-direction: row-reverse;
+
+        .#{$id}__hero-apply-component{
+            margin-top: 10%;
+            width: 85%;
+        }
+
+        @media only screen and (max-width: 768px) {
+            flex-direction: column;
+        } 
+
+        @media only screen and (min-width: 768px) {
+            max-width: 100% !important;
+        }
+
+        @media only screen and (min-width: 1365px) {
+            max-width: 1328px !important;
+        }
+    }
+
+    p.promo-eyebrow{
+        font-size: 30px;
+        margin-top: 20px;
+        margin-left: 5px;
+        color: rgba(34,87,184,1);
+
+        @media only screen and (max-width: 768px) {
+            text-align: center;
+            font-size: 25px;
+        } 
+    }
+
+    div.rich-text>p:first-child{
+        @media only screen and (max-width: 768px) {
+            text-align: center;
+        }
+    }
+}

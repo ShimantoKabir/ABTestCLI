@@ -1,0 +1,57 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    body{
+        overflow-x: unset;
+        overflow-y: unset;
+    }
+
+    .#{$id}__menu-component{
+        border: 1px solid #a5c2c5;
+        border-left: none;
+        border-right: none;
+        overflow-x: auto;
+
+        .menu-wrap{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .menu-item{
+                text-align: center;
+                padding: 15px;
+
+                >a{
+                    font-family: 'Arial';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+
+                    &:hover{
+                        background-color: transparent;
+                    }
+                }
+
+                @media only screen and (min-width: 955px) {
+                    width: 190px;
+                }
+            }
+
+            @media only screen and (max-width: 768px) {
+                width: 768px;
+            }
+        } 
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .#{$id}__menu-component::-webkit-scrollbar{
+        display: none;
+    }
+}

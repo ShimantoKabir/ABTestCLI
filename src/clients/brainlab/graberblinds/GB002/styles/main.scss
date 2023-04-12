@@ -1,0 +1,98 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    main#main-content > div > div:nth-child(5) > div{
+        margin-top: 20px !important;
+    }
+
+    .#{$id}__about-product-desktop-component{
+        >div:first-child{
+            margin-top: 40px;
+        }
+
+        >div:last-child{
+            margin-bottom: 0 !important;
+        }
+
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    .#{$id}__about-product-mobile-component{
+
+        >div:first-child{
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
+
+        >div:last-child{
+            margin-bottom: 0 !important;
+        }
+
+        .slideshow-container{
+            max-width: 750px;
+            position: relative;
+            margin: auto;
+            padding: 20px;
+
+            .my-slide{
+                display: none;
+                border-bottom: none;
+                max-width: 100%;
+            }
+
+            .fade {
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+              
+            @keyframes fade {
+                from {opacity: .4} 
+                to {opacity: 1}
+            }
+        }
+
+        .slider-control{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .dots-container{
+                margin-left: 15px;
+                margin-right: 15px;
+
+                .dot {
+                    cursor: pointer;
+                    height: 15px;
+                    width: 15px;
+                    margin: 0 2px;
+                    background-color: #bbb;
+                    border-radius: 50%;
+                    display: inline-block;
+                    transition: background-color 0.6s ease;
+                }
+                  
+                .active, .dot:hover {
+                    background-color: #427c85;
+                }
+            }
+
+            button.slick-arrow{
+                display: none !important;
+            }
+        
+            ul.slick-dots{
+                display: none !important;
+            }
+        }
+
+        @media only screen and (min-width: 768px) {
+            display: none;
+        }
+    }
+}
