@@ -9,5 +9,5 @@ const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
 if (!ieChecks) {
   const main = new MainComponent();
   const poller = new Poller();
-  poller.poll(["body", selectors.shadeSelector, "div.motorization"], main.init);
+  poller.poll(["body", selectors.newsletter], main.init);
 }

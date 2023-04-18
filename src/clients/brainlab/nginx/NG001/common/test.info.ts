@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'NG001', SITE = 'nginx', CLIENT = 'brainlab', VARIATION = '1'}
