@@ -1,0 +1,24 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    ul.category-product-list{
+
+        >li{
+            display: flex;
+
+            >input{
+                position: unset;
+                margin-right: 10px;
+                accent-color: #4E616B;
+            }
+        }
+
+        li.hidden{
+            display: none !important;
+        }
+    }
+}

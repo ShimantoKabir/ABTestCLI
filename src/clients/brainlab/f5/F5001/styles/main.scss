@@ -5,37 +5,16 @@
         display: none !important;
     }
 
-    div#platter396527510{
-        display: none;
-    }
-
     &__hidden {
         visibility: hidden;
     }
 
-    .blue-text{
-        color: #0E6EB9
-    }
-
-    .indigo-text{
-        color: #491b62;
-        text-decoration: underline;
-    }
-
-    .indigo-text:hover{
-        text-decoration: none;
-    }
-
-    .article-headline{
-        font-size: 1.7rem;
-    }
-
-    .black-text{
-        border-bottom: 1px solid #222222;
-    }
-
     &__block{
         display: block !important;
+    }
+
+    div#platter396527510{
+        display: none;
     }
 
     .#{$id}__app-portfolio{
@@ -156,14 +135,6 @@
                             padding: 0;
                             margin: 0;
                         }
-                        
-                        >p{
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 18px;
-                            line-height: 27px;
-                            color: #222222;
-                        }
                     }
                 }
 
@@ -177,12 +148,6 @@
             .#{$id}__blog-component{
                 width: 30%;
                 margin-left: 50px;
-                
-                .blog-heading{
-                    >h4{
-
-                    }
-                }
                 
                 .blogs{
                     margin-top: 20px;       

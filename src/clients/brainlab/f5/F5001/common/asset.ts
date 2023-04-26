@@ -16,10 +16,24 @@ export const publisherLink = "https://www.f5.com/authors/kara-sprague";
 
 export const blogs: CartModel[] = [
   {
+    href: "https://www.f5.com/company/blog/state-of-app-strategy-2023-security-at-your-service-literally",
+    imgSrc:
+      "https://www.f5.com/content/dam/f5-com/page-assets-en/home-en/solutions/cybersecurity/040423/thought-leadership-lori-macvittie_950x534.jpg",
+    linkText: "App strategy at your service: literally",
+    title: "BLOG",
+  },
+  {
+    href: "https://www.f5.com/company/blog/7-cybersecurity-myths-harming-your-business",
+    imgSrc:
+      "https://www.f5.com/content/dam/f5-com/page-assets-en/home-en/solutions/cybersecurity/vb/dan-woods-blog-debunk-myths_950x534.jpg",
+    linkText: "Debunk 7 (more) cybersecurity myths",
+    title: "BLOG",
+  },
+  {
     href: "https://www.f5.com/company/blog/secure-multi-cloud-networking",
     imgSrc:
       "https://medianet.com/cro/f5/bl029/related-blogs/1_blog-multicloud-illustration.png",
-    linkText: "Hybrid, Multi-cloud - Why F5 Invests",
+    linkText: "Secure Multi-Cloud Networking is key",
     title: "BLOG",
   },
   {
@@ -30,36 +44,21 @@ export const blogs: CartModel[] = [
     title: "BLOG",
   },
   {
-    href: "https://www.f5.com/company/blog/taking-bad-bots-head-on-with-f5-and-aws",
-    imgSrc:
-      "https://medianet.com/cro/f5/bl029/related-blogs/3_taking-bad-bots-head-on.png",
-    linkText: "Taking Bad Bots Head On with F5 and AWS",
-    title: "BLOG",
-  },
-  {
-    href: "https://www.f5.com/company/blog/mitigating-architectural-risk",
+    href: "https://www.f5.com/company/blog/what-hybrid-it-means-for-app-and-api-security",
     imgSrc:
       "https://medianet.com/cro/f5/bl029/related-blogs/4_mitigating-architectural-risk.png",
-    linkText: "Mitigating Architectural<br> Risk",
-    title: "BLOG",
-  },
-  {
-    href: "https://www.f5.com/company/blog/f5-distributed-cloud-services-stands-up-to-l7-ddos-attacks",
-    imgSrc:
-      "https://medianet.com/cro/f5/bl029/related-blogs/5_xc-stands-up-to-emerging-ddos-attacks.png",
-    linkText:
-      "F5 Distributed Cloud Services Stands Up to Emerging L7 DDoS Attacks",
+    linkText: "What hybrid IT means for app and API security",
     title: "BLOG",
   },
 ];
 
 export const securities: CartModel[] = [
   {
-    href: "https://www.f5.com/solutions/use-cases/multi-cloud-networking",
+    href: "https://www.f5.com/go/solution/hybrid-multi-cloud-security",
     imgSrc:
-      "https://medianet.com/cro/f5/bl029/additional-resources/1_multi-cloud-networking.png",
-    linkText: "Build Anywhere with Comprehensive Multi-Cloud Networking",
-    title: "Use Case",
+      "https://medianet.com/cro/f5/bl029/additional-resources/4_waap-buying-guide.png",
+    linkText: "App security in a hybrid and multi-cloud world",
+    title: "Solution",
   },
   {
     href: "https://www.f5.com/resources/reports/state-of-application-strategy-report",
@@ -69,29 +68,29 @@ export const securities: CartModel[] = [
     title: "Report",
   },
   {
-    href: "https://www.f5.com/solutions/forrester-report-api-security-threats-and-solutions-b",
-    imgSrc:
-      "https://medianet.com/cro/f5/bl029/additional-resources/3_F5-apis-forrester-report-gated.png",
-    linkText: "API Security in the hybrid multi cloud<br> world",
-    title: "Forester Report",
-  },
-];
-
-export const aboutLinks: CartModel[] = [
-  {
-    href: "https://www.f5.com/solutions/waap-buyers-guide-ebook",
-    imgSrc:
-      "https://medianet.com/cro/f5/bl029/additional-resources/4_waap-buying-guide.png",
-    linkText: "WAAP Buying Guide: Security as a Digital Differentiator",
-    title: "eBook",
-  },
-  {
     href: "https://community.f5.com/t5/technical-articles/f5-hybrid-security-architectures-one-waf-engine-total/ta-p/307248",
     imgSrc:
       "https://medianet.com/cro/f5/bl029/additional-resources/5_hybrid-security-architectures-one-waf-engine.png",
     linkText:
       "F5 Hybrid Security Architectures: One WAF Engine, Total Flexibility",
     title: "Article",
+  },
+];
+
+export const aboutLinks: CartModel[] = [
+  {
+    href: "https://www.f5.com/go/report/gartner-application-security-hype-cycle",
+    imgSrc:
+      "https://www.f5.com/content/dam/www/go/en/solution/hybrid-and-multi-cloud-security/gartner-hype-cycle-report-og_1200x675.png",
+    linkText: "2022 Gartner® Hype Cycle™ for Application Security",
+    title: "Report",
+  },
+  {
+    href: "https://www.f5.com/company/events/webinars/api-security-challenges-and-best-practices",
+    imgSrc:
+      "https://www.f5.com/content/dam/www/go/en/solution/hybrid-and-multi-cloud-security/forrester-api-security-webinar_og_1200x675.png",
+    linkText: "Forrester: API Security in the Hybrid, Multi-Cloud World",
+    title: "Webinar",
   },
   {
     href: "#dummy",
