@@ -1,0 +1,49 @@
+@import './common';
+
+.#{$id}{
+    .#{$id}__message-component{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .message-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .icon{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 5px;
+            }
+
+            .text{
+                >p{
+                    margin: 0 !important;
+                    font-weight: normal;
+                    line-height: 1.4;
+                    font-size: 1.375rem;
+                }
+            }
+        }
+    }
+
+    &-1{
+        .#{$id}__message-component{
+            background-color: #DFEBF8;
+            color: #001B32;
+        }
+    }
+
+    &-2{
+        .#{$id}__message-component{
+            background-color: #F5B41A;
+            color: #ffffff;
+        }
+    }
+}
