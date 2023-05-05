@@ -1,0 +1,64 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+    div.page-content>div:nth-child(2){
+        display: none;
+    }
+
+    .swiper-pagination-bullet-active {
+        opacity: var(--swiper-pagination-bullet-opacity, 1);
+        background: var(--swiper-pagination-color,var(--swiper-theme-color));
+        background-color: rgb(53, 53, 53);
+    }
+
+    .truck-heading{
+        margin-top: 25px;
+    }
+
+    .swiper-container{
+        position: relative;
+        padding: 50px 0 50px 0;
+
+        .#{$id}__swiper{
+            width: 80%;
+
+            .swiper-pagination{
+                bottom: 0;
+            }
+            
+            .swiper-wrapper{
+                .#{$id}__image-item{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: unset;
+
+                    .image-wrapper{
+                        >img{
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .swiper-button-prev{
+            left: 5%;   
+
+            &::after{
+                color: rgb(53, 53, 53);
+            }
+        }
+
+        .swiper-button-next{
+            right: 5%;
+
+            &::after{
+                color: rgb(53, 53, 53);
+            }
+        }
+    }
+}
