@@ -1,6 +1,6 @@
 const initSwiper = (container: string) => {
   // @ts-ignore
-  window.slider = new window.Swiper(`${container}`, {
+  const slider = new window.Swiper(`${container}`, {
     breakpoints: {
       420: {
         slidesPerView: 2,
@@ -39,6 +39,8 @@ const initSwiper = (container: string) => {
       cols: 3,
     },
   });
+
+  slider.on("touchMove", function () {});
 };
 
 export default initSwiper;

@@ -16,17 +16,10 @@ export const publisherLink = "https://www.f5.com/authors/kara-sprague";
 
 export const blogs: CartModel[] = [
   {
-    href: "https://www.f5.com/company/blog/state-of-app-strategy-2023-security-at-your-service-literally",
+    href: "https://www.f5.com/company/blog/what-hybrid-it-means-for-app-and-api-security",
     imgSrc:
-      "https://www.f5.com/content/dam/f5-com/page-assets-en/home-en/solutions/cybersecurity/040423/thought-leadership-lori-macvittie_950x534.jpg",
-    linkText: "App strategy at your service: literally",
-    title: "BLOG",
-  },
-  {
-    href: "https://www.f5.com/company/blog/7-cybersecurity-myths-harming-your-business",
-    imgSrc:
-      "https://www.f5.com/content/dam/f5-com/page-assets-en/home-en/solutions/cybersecurity/vb/dan-woods-blog-debunk-myths_950x534.jpg",
-    linkText: "Debunk 7 (more) cybersecurity myths",
+      "https://medianet.com/cro/f5/bl029/related-blogs/4_mitigating-architectural-risk.png",
+    linkText: "What hybrid IT means for app and API security",
     title: "BLOG",
   },
   {
@@ -44,10 +37,10 @@ export const blogs: CartModel[] = [
     title: "BLOG",
   },
   {
-    href: "https://www.f5.com/company/blog/what-hybrid-it-means-for-app-and-api-security",
+    href: "https://www.f5.com/company/blog/state-of-app-strategy-2023-security-at-your-service-literally",
     imgSrc:
-      "https://medianet.com/cro/f5/bl029/related-blogs/4_mitigating-architectural-risk.png",
-    linkText: "What hybrid IT means for app and API security",
+      "https://www.f5.com/content/dam/f5-com/page-assets-en/home-en/solutions/cybersecurity/040423/thought-leadership-lori-macvittie_950x534.jpg",
+    linkText: "App strategy at your service: literally",
     title: "BLOG",
   },
 ];

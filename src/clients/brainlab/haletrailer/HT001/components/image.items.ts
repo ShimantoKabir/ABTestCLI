@@ -12,8 +12,8 @@ const imageItems = () => {
             .map((imageData) => imageItem(imageData.href, imageData.alt))
             .join("\n")}
         </div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-pagination"></div>
       <div class="swiper-button-next"></div>
     </div>
   `;

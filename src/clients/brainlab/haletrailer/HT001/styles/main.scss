@@ -15,7 +15,7 @@
     }
 
     .truck-heading{
-        margin-top: 25px;
+        margin-top: 0;
     }
 
     .swiper-container{
@@ -24,6 +24,7 @@
 
         .#{$id}__swiper{
             width: 80%;
+            height: 170px;
 
             .swiper-pagination{
                 bottom: 0;
@@ -51,6 +52,10 @@
             &::after{
                 color: rgb(53, 53, 53);
             }
+
+            @media only screen and (max-width: 768px) {
+                left: 0;
+            }
         }
 
         .swiper-button-next{
@@ -58,6 +63,10 @@
 
             &::after{
                 color: rgb(53, 53, 53);
+            }
+
+            @media only screen and (max-width: 768px) {
+                right: 0;
             }
         }
     }

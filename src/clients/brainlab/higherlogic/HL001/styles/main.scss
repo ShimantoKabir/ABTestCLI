@@ -1,0 +1,7 @@
+@import './common';
+
+.#{$id}{
+    &__active-panel {
+        display: block !important;
+    }
+}
