@@ -135,11 +135,7 @@ export const rightArrow = `
 </svg>
 `;
 
-export const bannerHeadingText =
-  "Lessons Learned (So Far) from the T-Mobile Breach";
-
 export const selectors = {
-  bannerSelector: "div#platter1878393716",
   hiddenSectionSelector: "div#platter-287410563",
 };
 
