@@ -6,7 +6,7 @@ import { SocialComponent } from "./social.component";
 
 export class MainComponent {
   init = (): void => {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.3");
 
     if (TestInfo.VARIATION.toString() === "1") {
       const v1 = new VOneComponent();

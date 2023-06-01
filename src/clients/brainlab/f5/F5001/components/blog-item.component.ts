@@ -24,7 +24,7 @@ export class BlogItemComponent {
       cardModel.href === "#dummy" && TestInfo.ID + "__hidden"
     }" >
       <div class="blog-img ${onlyLink && TestInfo.ID + "__hide"}" >
-        <img src="${cardModel.imgSrc}" alt="blog-img" />
+        <img src="${!onlyLink && cardModel.imgSrc}" alt="blog-img" />
       </div>
       <div class="blog-title ${showBlogTitle && TestInfo.ID + "__hide"}" > 
         <a href="${cardModel.href}" >${cardModel.title}</a>

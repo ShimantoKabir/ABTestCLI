@@ -18,6 +18,6 @@ export const messages = {
         <path d="M21.5 17.3585V25.9835L26.9861 29.3722" stroke="white" stroke-width="3" stroke-linecap="round"/>
     </svg>
     `,
-    text: "Classes starting on May 30! Contact us today to reserve your seat!",
+    text: "Classes starting on July 10! Contact us today to reserve your seat!",
   },
 };
