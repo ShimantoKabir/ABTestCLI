@@ -1,0 +1,76 @@
+@import './common';
+
+.#{$id}{
+    &-1{
+        .#{$id}__suggestion-component{
+            margin-bottom: 50px;
+
+            .component-heading{
+                margin-top: 50px;
+                margin-bottom: 50px;
+                margin-left: 10px;
+                margin-right: 10px;
+
+                >h2{
+                    color: #00319b;
+                    text-align: center;
+                    font-family: "Barlow Condensed",sans-serif;
+                }
+
+                @media only screen and (max-width: 992px) { 
+                    margin-bottom: 0;
+                }
+            }
+
+            .component-suggestion{
+                display: flex;
+                justify-content: baseline;
+                align-items: center;
+
+                .#{$id}__suggestion-item-container{
+                    margin: 20px;
+
+                    .suggestion-link{
+                        width: 100%;
+                        text-align: center;
+                        margin-top: 20px;
+                        font-weight: bold;
+                        font-size: 1.25em;
+
+                        >a{ 
+                            text-decoration: underline;
+                            font-family: "Barlow Condensed",sans-serif;
+                            color: #000000;
+                        }
+
+                        >a:hover{
+                            color: #000000;
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                @media only screen and (max-width: 992px) {
+                    flex-direction: column;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+
+            @media only screen and (max-width: 992px) { 
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            @media only screen and (min-width: 993px) { 
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            @media only screen and (min-width: 1081px) { 
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+        }
+    }
+}
