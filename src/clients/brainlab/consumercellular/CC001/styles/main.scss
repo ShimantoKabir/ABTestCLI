@@ -1,0 +1,152 @@
+@import './common';
+
+.#{$id}{
+
+    .show{
+        display: block !important;
+    }
+
+    &-1{
+        div.css-ijjppb > div.line-selection-component.flex-content {
+            width: 70%;
+            max-width: 40rem;
+            margin: 0 auto;
+            padding: 50px 0;
+    
+            .phone-selection-wrapper{
+    
+                .phone-selections{
+                    display: -webkit-flex;
+                    display: flex;
+                    -webkit-justify-content: space-around;
+                    justify-content: space-around;
+                    margin: 0 2.5rem;   
+    
+                    .phone-selector{
+                        font-size: 1.8rem;
+                        background-color: transparent;
+                        outline: none;
+                        border: none;
+                        position: relative;
+                        box-sizing: border-box;
+    
+                        >input{
+                            visibility: hidden;
+                            position: absolute;
+                        }
+
+                        div.circle-selected{
+                            color: #f26631;
+                            z-index: 1;
+                            position: relative;
+                        }
+
+                        div.circle{
+                            color: #d1d3d4;
+                            z-index: 1;
+                            position: relative;
+                        }
+
+                        div.circle-four{
+                            color: #d1d3d4;
+                            cursor: pointer;
+                        }
+
+                        div.fa{
+                            display: inline-block;
+                            font: normal normal normal 14px/1 FontAwesome;
+                            font-size: inherit;
+                            text-rendering: auto;
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale;
+                        }
+
+                        div.bullet{
+                            cursor: pointer;
+                        }
+
+                        >div.line{
+                            background-color: #d1d3d4;
+                            margin: .5rem auto;
+                            position: absolute;
+                            height: .3rem;
+                            width: 10rem;
+                            top: .6rem;
+                            left: .2rem;
+                        }   
+
+                        div.line-selected{
+                            background-color: #f26631;
+                            margin: .5rem auto;
+                            position: absolute;
+                            height: .3rem;
+                            width: 10rem;
+                            top: .6rem;
+                            left: .2rem;
+                        }
+
+                        div.four-lines{
+                            display: none;
+                            position: absolute;
+                            background-color: #fff;
+                            border: .3rem solid #f26631;
+                            border-radius: .5rem;
+                            width: 18rem;
+                            height: 5rem;
+                            padding: .7rem;
+                            top: -6rem;
+                            right: -8.3rem;
+                            z-index: 1;
+                            text-align: center;
+                            color: #001e45;
+
+                            p.four-lines-text{
+                                font-style: italic;
+                                font-weight: 500;
+                                margin: 0;
+                                font-size: 1.0rem;
+                            }
+
+                            p.four-lines-number{
+                                font-weight: 700;
+                                margin: 0;
+                                font-size: 1.0rem;
+                            }
+
+                            p.four-lines-number::after{
+                                content: "";
+                                position: absolute;
+                                top: 4.7rem;
+                                left: 50%;
+                                margin-left: -1.3rem;
+                                width: 0;
+                                height: 0;
+                                border-top: 1rem solid #f26631;
+                                border-left: 1rem solid transparent;
+                                border-right: 1rem solid transparent;
+                            }
+                        }
+
+                        p.line-text{
+                            font-size: .8em;
+                            text-transform: uppercase;
+                            text-align: center;
+                        }
+
+                        p.line-text-selected{
+                            font-weight: bold;
+                        }
+
+                        &:last-child:hover{
+                            cursor: pointer;
+
+                            >div.four-lines{
+                                display: block !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
