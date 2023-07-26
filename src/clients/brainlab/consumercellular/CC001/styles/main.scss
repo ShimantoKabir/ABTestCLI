@@ -148,5 +148,44 @@
                 }
             }
         }
+
+        div.css-w9ctd9{
+            grid-template-columns: repeat(2, minmax(0px, 1fr));
+
+            div.css-mybjz6{
+                cursor: pointer;
+                transition: all .1s ease-in-out;
+
+                &:hover{
+                    background-color: #fce0d5;
+                    border-color: #f26631;
+                    transform: scale(1.02);
+                    box-shadow: 0 .7rem 1rem -1rem rgba(0,0,0,.75);
+
+                    div.css-1veiikd{
+                        background-color: #fff;
+                    }
+
+                    div.css-zfxwzg{
+                        background-color: #f26631;
+                    }
+                }
+            }
+
+            div.plan-selected{
+                background-color: #fce0d5;
+                border-color: #f26631;
+                transform: scale(1.02);
+                box-shadow: 0 .7rem 1rem -1rem rgba(0,0,0,.75);
+
+                div.css-1veiikd{
+                    background-color: #fff;
+                }
+
+                div.css-zfxwzg{
+                    background-color: #f26631;
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 import { selectors } from "../common/asset";
+import { PlanComponent } from "./plan.component";
 
 export class LineComponent {
   render = (): string => {
@@ -40,7 +41,7 @@ export class LineComponent {
     return htmlString.trim();
   };
 
-  onBulletClick = () => {
+  addBulletClickEvent = () => {
     const bullets: null | NodeListOf<Element> = document.querySelectorAll(
       selectors.bullet
     );
@@ -102,6 +103,8 @@ export class LineComponent {
               text.classList.remove("line-text-selected");
             }
           }
+
+          PlanComponent.changePlanData(bulletNumber);
         }
       });
     });

@@ -2,6 +2,7 @@ import { Initializer } from "../../../../../utilities/initializer";
 import { selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { LineComponent } from "./line.component";
+import { PlanComponent } from "./plan.component";
 
 export class MainComponent {
   init = (): void => {
@@ -15,7 +16,20 @@ export class MainComponent {
       const lineComponent = new LineComponent();
       existPlanSection.insertAdjacentHTML("afterend", lineComponent.render());
 
-      lineComponent.onBulletClick();
+      lineComponent.addBulletClickEvent();
     }
+
+    const planContainer: null | HTMLDivElement = document.querySelector(
+      selectors.planContainer
+    );
+
+    if (planContainer) {
+      planContainer.insertAdjacentHTML(
+        "afterbegin",
+        (planContainer.firstChild as Element).outerHTML
+      );
+    }
+
+    PlanComponent.addPLanClickEvent();
   };
 }
