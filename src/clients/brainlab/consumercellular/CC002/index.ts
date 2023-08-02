@@ -40,7 +40,8 @@ const runTest = () => {
       if (
         mutation.target.href ===
         "https://consumercellular.com/shopping/checkout" ||
-        mutation.target.classList.contains("affix")
+        mutation.target.classList.contains("affix") || 
+        mutation.target.classList.contains("price-detail")
       ) {
         startOperation();
         break;
