@@ -15,7 +15,7 @@ function runTest() {
 function slideSelfCall() {
   // @ts-ignore
   plusSlides(1);
-  setTimeout(slideSelfCall, 8000);
+  setTimeout(slideSelfCall, 10000);
   console.log("self-called");
 }
 
