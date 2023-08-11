@@ -18,7 +18,9 @@ export class PlanComponent {
       selectors.plan
     );
 
-    if (plans) {
+    if (plans && plans.length > 0) {
+      plans[0].classList.add("plan-selected");
+
       plans.forEach((plan) => {
         plan.addEventListener("click", () => {
           for (let index = 0; index < plans.length; index++) {

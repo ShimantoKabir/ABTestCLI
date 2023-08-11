@@ -1,0 +1,17 @@
+@import './common';
+
+.#{$id}{
+    .hide-component{
+        display: none !important;
+    }
+
+    @media screen and (max-width: 960px) {
+        div.grecaptcha-badge{
+            display: none !important;
+        }
+
+        div#usntA40Toggle{
+            display: none !important;
+        }
+    }
+}

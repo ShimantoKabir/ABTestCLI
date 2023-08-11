@@ -6,6 +6,11 @@ export class MainComponent {
   init = (): void => {
     Initializer.init(TestInfo, "0.0.1");
     const firstSlideComponent = new FirstSlideComponent();
-    firstSlideComponent.render();
+
+    if (TestInfo.VARIATION.toString() === "1") {
+      firstSlideComponent.renderV1();
+    } else if (TestInfo.VARIATION.toString() === "2") {
+      firstSlideComponent.renderV2();
+    }
   };
 }

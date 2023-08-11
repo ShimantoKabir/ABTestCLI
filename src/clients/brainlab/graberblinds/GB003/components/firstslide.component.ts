@@ -10,25 +10,25 @@ export class FirstSlideComponent {
         </div>
         <div class="component-main" >
           <div class="top-window-doors" >
-            <a href="${windowAndDoorLink}" alt="window-and-door" >
+            <a class="wd-link" href="${windowAndDoorLink}" alt="window-and-door" >
               <img src="${images.standardWindow}" alt="standard-window" >
               <p>Standard Window</p>
             </a>
-            <a href="${windowAndDoorLink}" alt="window-and-door" >
+            <a class="wd-link" href="${windowAndDoorLink}" alt="window-and-door" >
               <img src="${images.bayWindow}" alt="bay-window" >
               <p>Bay Window</p>
             </a>
-            <a href="${windowAndDoorLink}" alt="window-and-door" >
+            <a class="wd-link" href="${windowAndDoorLink}" alt="window-and-door" >
               <img src="${images.specialtyWindow}" alt="specialty-window" >
               <p>Specialty Window</p>
             </a>
           </div>
           <div class="bottom-window-doors" >
-            <a href="${windowAndDoorLink}" alt="window-and-door" >
+            <a class="wd-link" href="${windowAndDoorLink}" alt="window-and-door" >
               <img src="${images.slidingDoor}" alt="sliding-door" >
               <p>Sliding Door</p>
             </a>
-            <a href="${windowAndDoorLink}" alt="window-and-door" >
+            <a class="wd-link" href="${windowAndDoorLink}" alt="window-and-door" >
               <img src="${images.frenchDoor}" alt="french-door" >
               <p>French Door</p>
             </a>
@@ -44,13 +44,26 @@ export class FirstSlideComponent {
   };
   addClickListener = (): void => {};
 
-  render = (): void => {
+  renderV1 = (): void => {
     const firstSlide: null | HTMLDivElement = document.querySelector(
       selectors.firstSlide
     );
 
     if (firstSlide) {
       firstSlide.insertAdjacentHTML("afterbegin", this.getHtmlString());
+    }
+  };
+
+  renderV2 = (): void => {
+    const productAdvisor: null | HTMLDivElement = document.querySelector(
+      selectors.productAdvisor
+    );
+
+    if (productAdvisor) {
+      productAdvisor.insertAdjacentHTML(
+        "beforebegin",
+        `<div class="shape-product-advisor" >${this.getHtmlString()}</div>`
+      );
     }
   };
 }

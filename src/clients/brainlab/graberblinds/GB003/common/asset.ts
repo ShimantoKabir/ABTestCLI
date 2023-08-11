@@ -1,5 +1,6 @@
 export const selectors = {
   firstSlide: "div#slick-slide00",
+  productAdvisor: "div.graber-product-advisor-promo",
 };
 
 export const windowAndDoorLink =

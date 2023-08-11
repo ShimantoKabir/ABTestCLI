@@ -8,7 +8,9 @@ const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
 
 if (!ieChecks) {
   const main = new MainComponent();
-  console.log("hi");
   const poller = new Poller();
-  poller.poll(["body", selectors.firstSlide], main.init);
+  poller.poll(
+    ["body", selectors.firstSlide, selectors.productAdvisor],
+    main.init
+  );
 }

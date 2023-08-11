@@ -3,6 +3,7 @@ import { selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { LineComponent } from "./line.component";
 import { PlanComponent } from "./plan.component";
+import { RedirectButtonComponent } from "./redirect-button.component";
 
 export class MainComponent {
   init = (): void => {
@@ -28,8 +29,19 @@ export class MainComponent {
         "afterbegin",
         (planContainer.firstChild as Element).outerHTML
       );
+
+      const planInternetTexts: null | NodeListOf<HTMLParagraphElement> =
+        document.querySelectorAll("p.css-13qu9nj");
+
+      if (planInternetTexts && planInternetTexts.length > 3) {
+        planInternetTexts[1].textContent = "25";
+      }
     }
 
     PlanComponent.addPLanClickEvent();
+
+    const redirectButtonComponent = new RedirectButtonComponent();
+    redirectButtonComponent.render();
+    redirectButtonComponent.addRedirectEvent();
   };
 }

@@ -1,16 +1,43 @@
 @import './common';
 
 .#{$id}{
-    div#slick-slide00{
-        background-color: #e5e6e6;
-
-        >div.horizontal{
+    &-2{
+        div.graber-product-advisor-promo{
             display: none;
         }
     }
 
-    div.first-slide-component{
+    &-1{
+        div#slick-slide00{
+            background-color: #e5e6e6;
+    
+            >div.horizontal{
+                display: none;
+            }
+        }
+    }
 
+    div.shape-product-advisor{
+        padding-bottom: 40px;
+        background-color: #E4EBED;
+        padding-top: 5px;
+
+        @media only screen and (max-width: 767px) {
+            max-width: 520px;
+            margin: 0 auto;
+
+            div.first-slide-component{
+                margin-top: 25px;
+
+                div.component-footer{
+                    margin-top: 45px;
+                }
+            }
+        }
+    }
+
+    div.first-slide-component{
+    
         div.component-head{
             width: 100%;
             text-align: center;
@@ -104,4 +131,6 @@
             }
         }
     }
+
+    
 }

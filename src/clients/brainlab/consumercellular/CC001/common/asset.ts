@@ -5,7 +5,19 @@ export const selectors = {
   planContainer: "div.css-w9ctd9",
   plan: "div.css-mybjz6",
   price: "p.css-13qu9nj",
+  viewPlanLink: "a.css-93vlq5",
+  phoneSelector: "div.phone-selector",
+  circle: "div.circle",
+  comboPlan:
+    "section.most-plans>div:nth-child(3)>div.plan-selection-wrapper>button",
+  buttonShop: "button.btn-shop",
+  modalCloseButton: "div.added-to-cart-modal button.cci-shopping-modal-close",
+  modal: "div.added-to-cart-modal",
+  shoppingPageContainer: "div#shopping-page-container",
+  placeHolderImg: "img.placeholder-image",
 };
+
+export const modalStatusKey: string = "add-device-model-open";
 
 export const planInfo: any = {
   "0": [
