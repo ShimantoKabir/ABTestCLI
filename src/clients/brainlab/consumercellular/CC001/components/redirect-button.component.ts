@@ -72,6 +72,9 @@ export class RedirectButtonComponent {
       });
     }
 
+    selectedBulletNumber =
+      selectedBulletNumber === 3 ? 2 : selectedBulletNumber;
+
     return selectedBulletNumber;
   };
 }

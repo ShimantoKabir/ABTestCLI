@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'FR002', SITE = 'fortis', CLIENT = 'brainlab', VARIATION = '1'}
