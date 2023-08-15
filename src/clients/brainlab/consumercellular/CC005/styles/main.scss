@@ -4,11 +4,11 @@
     .hide-component{
         display: none !important;
     }
-
+    
     @media screen and (max-width: 960px) {
-        div.grecaptcha-badge{
-            display: none !important;
-        }
+        // div.grecaptcha-badge{
+        //     display: none !important;
+        // }
 
         div#usntA40Toggle{
             display: none !important;
@@ -16,6 +16,13 @@
 
         iframe#launcher{
             display: none !important;
+        }
+
+        div.submit-section>div.shopping-due-today-display-wrapper>div.base-due-today-wrapper{
+            margin-top: 15px;
+            padding-top: 20px;
+            padding-bottom: 1px;
+            margin-bottom: 10px;
         }
     }
 }
