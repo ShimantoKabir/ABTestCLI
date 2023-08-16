@@ -11,10 +11,15 @@ const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
 const runTest = () => {
   const buttonComponent = new ButtonComponent();
   buttonComponent.render();
+  buttonComponent.addNewCartButton();
+  buttonComponent.closeModal();
 };
 
 if (!ieChecks) {
   Initializer.init(TestInfo, "0.0.1");
   const poller = new Poller();
-  poller.poll(["body", selectors.modelFooter], runTest);
+  poller.poll(
+    ["body", selectors.modelFooter, selectors.existMobileCartButton],
+    runTest
+  );
 }

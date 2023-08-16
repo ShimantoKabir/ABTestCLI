@@ -35,4 +35,26 @@
             color: #fff;
         }
     }
+
+    @media screen and (max-width: 719px) {
+        div.cci-modal-body>div.row>a:first-child{
+            display: none !important;
+        }
+
+        div#mobile-bill-breakdown button.old-btn-shop{
+            height: 0;
+            width: 0;
+            opacity: 0;
+        }
+
+        div#shopping-app>div.shop-loader{
+            display: none !important;
+        }
+    }
+
+    @media screen and (min-width: 720px) {
+        div#mobile-bill-breakdown button.new-cart-button{
+            display: none !important;
+        }
+    }
 }

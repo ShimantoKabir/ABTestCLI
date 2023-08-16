@@ -1,0 +1,91 @@
+@import './common';
+
+.#{$id}{
+    &__hide {
+        display: none !important;
+    }
+
+    div.mktoHtmlText.mktoHasWidth > h3{
+        font-size: 1.50rem  ;
+    }
+    
+    div#container-209391788{
+        >div:first-child{
+            display: none;
+        }
+    }
+
+    div.star-component{
+        max-width: 1140px;
+        display: flex;
+        margin: 0 auto;
+
+        >div.crocodile-section{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+
+            >img{
+                max-width: 450px !important;
+                max-height: 500px !important;
+
+                @media only screen and (max-width: 420px) {
+                    max-width: 320px !important;
+                }   
+            }
+        }
+
+        >div.star-section{
+            flex: 1;
+            max-width: 500px;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            div.star-section-wrap{
+                >div.headline{
+                    >h3{
+                        font-size: 25px;
+    
+                        @media only screen and (max-width: 991px) {
+                            max-width: 400px;
+                        }
+                    }
+                }
+    
+                div.star-list{
+                    >div.star-with-comment{
+                        margin-top: 35px !important;
+    
+                        >h2{
+                            margin-top: 10px !important;
+                            margin-bottom: 10px !important;
+                        }
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 991px) {
+                margin-top: 50px;
+            }
+        }
+
+        @media only screen and (max-width: 991px) {
+            flex-direction: column;     
+            justify-content: center;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        @media only screen and (min-width: 992px) {
+            margin-top: 100px;
+        }
+
+        @media only screen and (min-width: 1200px) {
+            margin-top: 0;
+        }
+    }
+}
