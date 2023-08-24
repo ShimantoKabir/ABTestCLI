@@ -1,0 +1,33 @@
+@import './common';
+
+.#{$id}{
+    div#atom309393897>p>a{
+        background-color: #0e6eb9;
+        border-color: #0e6eb9;
+        color: #fff;
+
+        &:hover{
+            border-color: #0e6eb9;
+            background-color: #fff;
+            color: #0e6eb9;
+        }
+    }
+
+    div#platter151290093 p.btn-cta{
+        padding: 10px 20px;
+    }
+
+    div.c29-columns__card-wrapper_variant-narrow-3{
+        @media only screen and (max-width: 767px) {
+            grid: auto-flow/repeat(1,var(--adjusted-grid-width));
+        }
+
+        @media only screen and (min-width: 768px) {
+            grid: auto-flow/repeat(2,var(--adjusted-grid-width));
+        }
+
+        @media only screen and (min-width: 1200px) {
+            grid: auto-flow/repeat(3,var(--adjusted-grid-width));
+        }
+    }
+}

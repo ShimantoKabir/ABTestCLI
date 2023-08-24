@@ -59,12 +59,19 @@ export class LineSelectionManager {
       selectors.buttonShop
     );
 
+    const continueButton: null | HTMLButtonElement = document.querySelector(
+      selectors.continueButton
+    );
+
     if (
       addToCartButton &&
       addToCartButton.getAttribute("disabled") !== "disabled"
     ) {
       addToCartButton.click();
       this.closeModal();
+    } else if (continueButton) {
+      localStorage.setItem("add-device-model-open", "true");
+      continueButton.click();
     } else {
       setTimeout(this.clickAddToCartButton, 25);
     }

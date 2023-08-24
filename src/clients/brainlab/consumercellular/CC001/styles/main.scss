@@ -6,6 +6,12 @@
         display: block !important;
     }
 
+    h3.line-heading{
+        font-size: 1.7rem;
+        margin: 0 20px;
+        font-weight: 600;
+    }
+
     &-1{
         div.css-ijjppb > div.line-selection-component.flex-content {
             width: 70%;
@@ -181,6 +187,10 @@
 
                     div.css-zfxwzg{
                         background-color: #f26631;
+                    }
+
+                    span.css-1s1rdcm{
+                        color: #fff;
                     }
                 }
             }

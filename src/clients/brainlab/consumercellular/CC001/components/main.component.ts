@@ -13,9 +13,20 @@ export class MainComponent {
       selectors.existPlanSection
     );
 
-    if (existPlanSection) {
+    const chakraHeading: null | HTMLHeadingElement = document.querySelector(
+      selectors.chakraHeading
+    );
+
+    if (existPlanSection && chakraHeading) {
+      chakraHeading.insertAdjacentHTML(
+        "afterend",
+        "<h3 class='line-heading' >How many phone lines would you like?<h3>"
+      );
       const lineComponent = new LineComponent();
-      existPlanSection.insertAdjacentHTML("afterend", lineComponent.render());
+      existPlanSection.insertAdjacentHTML(
+        "beforebegin",
+        lineComponent.render()
+      );
 
       lineComponent.addBulletClickEvent();
     }

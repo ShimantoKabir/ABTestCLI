@@ -1,5 +1,6 @@
 import { Initializer } from "../../../../utilities/initializer";
 import { Poller } from "../../../../utilities/poller";
+import { TaxAccordion } from "./common/tax-accordion";
 import { TestInfo } from "./common/test.info";
 import { TestObserver } from "./observer/test.observer";
 
@@ -23,6 +24,10 @@ const orderDueTodayFullSelector: string = `${orderPriceModuleLabel}${dueCommonSe
 const orderDueMonthlyFullSelector: string = `${orderPriceModuleLabel}${dueCommonSelector}${dueTailMonthlySelector}`;
 const bottomPriceModuleSelector: string =
   "div.submit-section>div.shopping-due-today-display-wrapper";
+const topTaxSelector: string =
+  "div.nav-header div.hide-phone-up>div.base-tax-breakdown-component";
+const bottomTaxSelector: string =
+  "div.submit-section div.hide-phone-up>div.base-tax-breakdown-component";
 
 const updatePriceOnBottomPriceModule = () => {
   const navDueTodayPrice: null | HTMLDivElement = document.querySelector(
@@ -41,17 +46,30 @@ const updatePriceOnBottomPriceModule = () => {
     orderDueMonthlyFullSelector
   );
 
+  const topTax: null | HTMLDivElement = document.querySelector(topTaxSelector);
+  const bottomTax: null | HTMLDivElement =
+    document.querySelector(bottomTaxSelector);
+
   if (
     navDueTodayPrice &&
     navDueMonthlyPrice &&
     orderDueTodayPrice &&
-    orderDueMonthlyPrice
+    orderDueMonthlyPrice &&
+    topTax &&
+    bottomTax
   ) {
     const updateTodayDue = navDueTodayPrice.textContent;
     const updateMonthlyDue = navDueMonthlyPrice.textContent;
 
     orderDueTodayPrice.textContent = updateTodayDue;
     orderDueMonthlyPrice.textContent = updateMonthlyDue;
+
+    const topTaxHtml: string = topTax.innerHTML;
+    bottomTax.innerHTML = "";
+    bottomTax.insertAdjacentHTML("beforeend", topTaxHtml);
+
+    const taxAccordion = new TaxAccordion();
+    taxAccordion.addListener();
   }
 };
 
@@ -82,6 +100,15 @@ const runTest = () => {
           "beforebegin",
           priceModuleClone as Element
         );
+
+        placeOrderButton.addEventListener("touchend", () => {
+          console.log("m-box-triggered");
+          // @ts-ignore
+          adobe.target.trackEvent({ mbox: "place-order" });
+        });
+
+        const taxAccordion = new TaxAccordion();
+        taxAccordion.addListener();
       }
     }
 
@@ -109,7 +136,7 @@ const runTest = () => {
 };
 
 if (!ieChecks) {
-  Initializer.init(TestInfo, "0.0.1");
+  Initializer.init(TestInfo, "0.0.2");
   const poller = new Poller();
   poller.poll(["body", priceModuleSelector], runTest);
 }

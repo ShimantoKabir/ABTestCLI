@@ -1,5 +1,5 @@
 export const selectors = {
-  existPlanSection: "h3.css-1kq534c",
+  existPlanSection: "div.css-ldo4d5",
   bullet: "div.bullet",
   phoneSelectorArea: "div.phone-selector-area",
   planContainer: "div.css-w9ctd9",
@@ -15,6 +15,8 @@ export const selectors = {
   modal: "div.added-to-cart-modal",
   shoppingPageContainer: "div#shopping-page-container",
   placeHolderImg: "img.placeholder-image",
+  continueButton: "aside.sidebar a[href='/shopping']",
+  chakraHeading: "h3.css-5joft8",
 };
 
 export const modalStatusKey: string = "add-device-model-open";
