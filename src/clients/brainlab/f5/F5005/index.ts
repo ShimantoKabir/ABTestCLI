@@ -13,7 +13,6 @@ const runTest = () => {
   );
 
   if (buyingButton) {
-    console.log("buying-button=", buyingButton);
     buyingButton.textContent = "";
     buyingButton.setAttribute("href", buyingButtonHref);
     buyingButton.insertAdjacentHTML("beforeend", buyingButtonHTML);
