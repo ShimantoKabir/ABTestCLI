@@ -2,7 +2,7 @@ export const selectors = {
   existPlanSection: "div.css-ldo4d5",
   bullet: "div.bullet",
   phoneSelectorArea: "div.phone-selector-area",
-  planContainer: "div.css-w9ctd9",
+  planContainer: "div.css-1f2odt2",
   plan: "div.css-mybjz6",
   price: "p.css-13qu9nj",
   viewPlanLink: "a.css-93vlq5",
@@ -17,6 +17,8 @@ export const selectors = {
   placeHolderImg: "img.placeholder-image",
   continueButton: "aside.sidebar a[href='/shopping']",
   chakraHeading: "h3.css-5joft8",
+  phoneNumber: "a.css-opyw1p",
+  mainAppPhoneNumber: "ul.header-top-menu>li:first-child>a",
 };
 
 export const modalStatusKey: string = "add-device-model-open";
