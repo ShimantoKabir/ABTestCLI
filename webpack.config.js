@@ -49,6 +49,7 @@ module.exports = {
       id: entry.testInfo.id,
       site: entry.testInfo.site,
       client: entry.testInfo.client,
+      target: entry.testInfo.target,
       variation: entry.testInfo.variation,
       template: resolve(__dirname, "index.html"),
       filename: "index.html",

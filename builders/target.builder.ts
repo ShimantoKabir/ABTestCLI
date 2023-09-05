@@ -29,12 +29,22 @@ class TargetBuilder {
           "../" + location + "/common/test.info.ts"
         );
 
+        const testInfo = require(testInfoFilePath);
+        const target = testInfo.TestInfo.TARGET;
+
         fse
           .ensureFile(entryFilePath)
           .then(() => {
             fs.writeFile(
               entryFilePath,
-              this.getEntryContent(location, id, site, client, variation),
+              this.getEntryContent(
+                location,
+                id,
+                site,
+                client,
+                target,
+                variation
+              ),
               (err) => {
                 if (err) {
                   console.log("ERROR=", err);
@@ -53,7 +63,7 @@ class TargetBuilder {
           .then(() => {
             fs.writeFile(
               testInfoFilePath,
-              this.getTestInfoContent(id, site, client, variation),
+              this.getTestInfoContent(id, site, client, target, variation),
               (err) => {
                 if (err) {
                   console.log("ERROR=", err);
@@ -82,9 +92,10 @@ class TargetBuilder {
     id: string,
     site: string,
     client: string,
+    target: string,
     variation: string
   ): string => {
-    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");const testInfo={id:'${id}',site:'${site}',client:'${client}',variation:'${variation}'};module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss"),testInfo: testInfo};module.exports.logActiveTestInfo=()=>{console.log("Running test info: ",JSON.stringify(testInfo))};`;
+    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");const testInfo={id:'${id}',site:'${site}',client:'${client}',target:'${target}',variation:'${variation}'};module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss"),testInfo: testInfo};module.exports.logActiveTestInfo=()=>{console.log("Running test info: ",JSON.stringify(testInfo))};`;
     return entryContentStr;
   };
 
@@ -92,9 +103,10 @@ class TargetBuilder {
     id: string,
     site: string,
     client: string,
+    target: string,
     variation: string
   ): string => {
-    return `export enum TestInfo {ID = '${id}', SITE = '${site}', CLIENT = '${client}', VARIATION = '${variation}'}`;
+    return `export enum TestInfo {ID = '${id}', SITE = '${site}', CLIENT = '${client}', TARGET = '${target}', VARIATION = '${variation}'}`;
   };
 }
 
