@@ -1,7 +1,53 @@
 @import './common';
 
 .#{$id}{
-    &__hide {
-        display: none !important;
+    div.thank-you-buttons{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        align-items: center;   
+        
+        >a{
+            font-family: "Etica","Arial","Helvetica Neue","Helvetica",sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 11px;
+            line-height: 1.25;
+            letter-spacing: 1px;
+            color: #231f20;
+            text-transform: uppercase;
+            text-decoration: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 12px 13px;
+            min-width: 120px;
+            display: inline-block;
+            text-decoration: none;
+            border: none;
+            border-width: 1px;
+            border-style: solid;
+            color: #fff;
+            background-color: #4a7d87;
+            border-color: #4a7d87;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+            position: relative;
+            cursor: pointer;
+            float: left;
+            clear: both;
+        }
+
+        >a:last-child{
+            margin-left: 30px;
+
+            @media only screen and (max-width: 460px) {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 460px) {
+            flex-direction: column;
+        }
     }
 }

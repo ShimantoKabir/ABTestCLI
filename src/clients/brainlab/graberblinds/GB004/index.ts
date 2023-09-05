@@ -1,4 +1,5 @@
-// import { Poller } from "../../../../utilities/poller";
+import { Poller } from "../../../../utilities/poller";
+import { selectors } from "./common/asset";
 import { MainComponent } from "./components/main.component";
 
 const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
@@ -7,6 +8,6 @@ const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
 
 if (!ieChecks) {
   const main = new MainComponent();
-  // const poller = new Poller();
-  // poller.poll(["body"], main.init);
+  const poller = new Poller();
+  poller.poll(["body", selectors.formConfirmation], main.init);
 }
