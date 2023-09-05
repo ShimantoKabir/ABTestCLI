@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'CC001-REVIEW-ORDER-GOAL', SITE = 'consumercellular', CLIENT = 'brainlab', VARIATION = '1'}
