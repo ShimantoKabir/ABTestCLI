@@ -11,9 +11,11 @@ export const buttons: ButtonModel[] = [
   {
     href: "https://www.graberblinds.com/free-swatches/",
     text: "GET FREE SWATCHES",
+    className: "thank-you-swatch",
   },
   {
     href: "https://www.graberblinds.com/visualization/",
     text: "VISUALIZE YOUR SPACE",
+    className: "thank-you-visualize",
   },
 ];
