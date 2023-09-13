@@ -1,11 +1,26 @@
-// import { Initializer } from "../../../../../utilities/initializer";
+import { Initializer } from "../../../../../utilities/initializer";
+import { selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
-import { DummyComponent } from "./dummy.component";
+import { BoxShadowComponent } from "./box-shadow.component";
+import { SocialComponent } from "./social.component";
 
 export class MainComponent {
+  constructor() {
+    Initializer.init(TestInfo, "0.0.1");
+  }
+
   init = (): void => {
-    // Initializer.init(TestInfo, "0.0.1");
-    const dummyComponent = new DummyComponent();
-    dummyComponent.render();
+    const stickyContainer: HTMLDivElement | null = document.querySelector(
+      selectors.stickyContainer
+    );
+
+    if (!stickyContainer) {
+      return;
+    }
+
+    const socialComponent = new SocialComponent();
+    socialComponent.render(stickyContainer);
+
+    BoxShadowComponent.addBoxShadow(stickyContainer);
   };
 }
