@@ -7,14 +7,14 @@ class TemplateBuilder {
   build = (): void => {
     prompt.start();
     prompt.get(
-      ["id", "site", "client", "target", "variation"],
+      ["id", "site", "title", "client", "target", "variation"],
       (error, result) => {
         if (error) {
           this.onError(error);
           return 1;
         }
 
-        const { id, site, client, target, variation } = result;
+        const { id, site, title, client, target, variation } = result;
 
         const dir = path.resolve(
           __dirname,
@@ -31,7 +31,7 @@ class TemplateBuilder {
           .then((exists) => {
             fs.writeFile(
               `${dir}/common/test.info.ts`,
-              this.getTestInfo(id, site, client, target, variation),
+              this.getTestInfo(id, site, title, client, target, variation),
               (err) => {
                 if (err) {
                   if (err) this.onError(err);
@@ -62,11 +62,12 @@ class TemplateBuilder {
   getTestInfo = (
     id: string | RevalidatorSchema,
     site: string | RevalidatorSchema,
+    title: string | RevalidatorSchema,
     client: string | RevalidatorSchema,
     target: string | RevalidatorSchema,
     variation: string | RevalidatorSchema
   ): string => {
-    const testInfoStr = `export enum TestInfo {ID = '${id}', SITE = '${site}', CLIENT = '${client}', TARGET = '${target}', VARIATION = '${variation}'}
+    const testInfoStr = `export enum TestInfo {ID = '${id}', SITE = '${site}', TITLE = '${title}', CLIENT = '${client}', TARGET = '${target}', VARIATION = '${variation}'}
     `;
     return testInfoStr;
   };

@@ -31,6 +31,7 @@ class TargetBuilder {
 
         const testInfo = require(testInfoFilePath);
         const target = testInfo.TestInfo.TARGET;
+        const title = testInfo.TestInfo.TITLE;
 
         fse
           .ensureFile(entryFilePath)
@@ -41,6 +42,7 @@ class TargetBuilder {
                 location,
                 id,
                 site,
+                title,
                 client,
                 target,
                 variation
@@ -63,7 +65,14 @@ class TargetBuilder {
           .then(() => {
             fs.writeFile(
               testInfoFilePath,
-              this.getTestInfoContent(id, site, client, target, variation),
+              this.getTestInfoContent(
+                id,
+                site,
+                title,
+                client,
+                target,
+                variation
+              ),
               (err) => {
                 if (err) {
                   console.log("ERROR=", err);
@@ -91,22 +100,24 @@ class TargetBuilder {
     location: string,
     id: string,
     site: string,
+    title: string,
     client: string,
     target: string,
     variation: string
   ): string => {
-    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");const testInfo={id:'${id}',site:'${site}',client:'${client}',target:'${target}',variation:'${variation}'};module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss"),testInfo: testInfo};module.exports.logActiveTestInfo=()=>{console.log("Running test info: ",JSON.stringify(testInfo))};`;
+    const entryContentStr = `const {join} = require("path");const base = join(__dirname, "${location}");const testInfo={id:'${id}',site:'${site}',title:'${title}',client:'${client}',target:'${target}',variation:'${variation}'};module.exports={js:join(base,"index.ts"),css:join(base,"styles/main.scss"),testInfo: testInfo};module.exports.logActiveTestInfo=()=>{console.log("Running test info: ",JSON.stringify(testInfo))};`;
     return entryContentStr;
   };
 
   getTestInfoContent = (
     id: string,
     site: string,
+    title: string,
     client: string,
     target: string,
     variation: string
   ): string => {
-    return `export enum TestInfo {ID = '${id}', SITE = '${site}', CLIENT = '${client}', TARGET = '${target}', VARIATION = '${variation}'}`;
+    return `export enum TestInfo {ID = '${id}', SITE = '${site}', TITLE = '${title}', CLIENT = '${client}', TARGET = '${target}', VARIATION = '${variation}'}`;
   };
 }
 

@@ -48,6 +48,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       id: entry.testInfo.id,
       site: entry.testInfo.site,
+      title: entry.testInfo.title,
       client: entry.testInfo.client,
       target: entry.testInfo.target,
       variation: entry.testInfo.variation,
