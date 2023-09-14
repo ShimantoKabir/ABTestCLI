@@ -28,6 +28,6 @@ export class SocialComponent {
   };
 
   render = (stickyContainer: HTMLDivElement) => {
-    stickyContainer.insertAdjacentHTML("beforeend", this.getHtml());
+    stickyContainer.insertAdjacentHTML("afterend", this.getHtml());
   };
 }

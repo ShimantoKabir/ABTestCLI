@@ -21,6 +21,6 @@ export class MainComponent {
     const socialComponent = new SocialComponent();
     socialComponent.render(stickyContainer);
 
-    BoxShadowComponent.addBoxShadow(stickyContainer);
+    BoxShadowComponent.addBoxShadow();
   };
 }

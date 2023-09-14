@@ -1,7 +1,7 @@
 import { TestInfo } from "../common/test.info";
 
 export class BoxShadowComponent {
-  static addBoxShadow = (stickyContainer: HTMLDivElement) => {
+  static addBoxShadow = () => {
     if (TestInfo.VARIATION.toString() !== "1") {
       return;
     }
@@ -26,6 +26,6 @@ export class BoxShadowComponent {
       { rootMargin: "-1px 0px 0px 0px", threshold: [0, 1] }
     );
 
-    observer.observe(stickyContainer);
+    observer.observe(socialContactContainer);
   };
 }
