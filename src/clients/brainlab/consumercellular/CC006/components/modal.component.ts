@@ -16,11 +16,11 @@ export class ModalComponent {
                                     <span aria-label="Check mark indicates selection has been made."
                                         class="fa fa-check-circle white-bg circle-icon green"></span>
                                     <span class="modal-title">Successfully Added To Cart</span>
-                                    <div class="row">
-                                        <a href="/shopping/choose/device" class="btn btn-default next-step-button btn-shop">Add A Device</a>
+                                    <div class="row add-device">
+                                        <button href="/shopping/choose/device" class="btn btn-default next-step-button btn-shop">Add A Device</button>
                                     </div>
                                     <div class="row your-device">
-                                        <a href="/shopping/details/sim">Bring Your Own device</a>
+                                        <button href="/shopping/details/sim">Bring Your Own device</button>
                                     </div>
                                 </div>
                             </div>
@@ -36,16 +36,77 @@ export class ModalComponent {
   render = () => {
     const body: null | HTMLBodyElement = document.querySelector("body");
 
-    if (body) {
-      body.insertAdjacentHTML("beforeend", this.getHtml());
-      localStorage.removeItem(modalStatusKey);
+    if (!body) {
+      return;
+    }
 
-      const modalCloseButton: null | HTMLButtonElement = document.querySelector(
-        selectors.modalCloseButton
-      );
+    body.insertAdjacentHTML("beforeend", this.getHtml());
+    localStorage.removeItem(modalStatusKey);
 
-      modalCloseButton?.addEventListener("click", () => {
-        document.querySelector(selectors.modal)?.remove();
+    const modalCloseButton: null | HTMLButtonElement = document.querySelector(
+      selectors.modalCloseButton
+    );
+
+    const modal: null | HTMLButtonElement = document.querySelector(
+      selectors.modal
+    );
+
+    const addDevice: null | HTMLButtonElement = document.querySelector(
+      selectors.addDevice
+    );
+
+    const yourDevice: null | HTMLButtonElement = document.querySelector(
+      selectors.yourDevice
+    );
+
+    const addDeviceDirect: null | HTMLButtonElement = document.querySelector(
+      selectors.addDeviceDirect
+    );
+
+    const yourDeviceDirect: null | HTMLAnchorElement = document.querySelector(
+      selectors.yourDeviceDirect
+    );
+
+    const shoppingBar: null | HTMLAnchorElement = document.querySelector(
+      selectors.shoppingBar
+    );
+
+    if (
+      modalCloseButton &&
+      modal &&
+      addDevice &&
+      yourDevice &&
+      addDeviceDirect &&
+      yourDeviceDirect &&
+      shoppingBar
+    ) {
+      modalCloseButton.addEventListener("click", () => {
+        modal.remove();
+      });
+
+      addDevice.addEventListener("click", () => {
+        console.log("add-a-device");
+        // @ts-ignore
+        adobe.target.trackEvent({
+          mbox: "add-a-device",
+        });
+
+        modal.remove();
+        addDeviceDirect.click();
+      });
+
+      console.log("your-device-redirect=", yourDeviceDirect);
+
+      yourDevice.addEventListener("click", () => {
+        console.log("bring-your-device");
+        // @ts-ignore
+        adobe.target.trackEvent({
+          mbox: "bring-your-device",
+        });
+
+        modal.remove();
+        yourDeviceDirect.click();
+        shoppingBar.click();
       });
     }
   };

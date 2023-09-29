@@ -26,7 +26,7 @@
         > div.your-device {
           margin-top: 10px;
 
-          > a {
+          > button {
             padding: 5px 10px;
             border: 2px solid #f26631;
             text-decoration: none;
@@ -34,6 +34,8 @@
             font-weight: 800;
             text-transform: uppercase;
             font-size: 1.6rem;
+            color: #f26631;
+            background-color: #fff;
           }
         }
       }
