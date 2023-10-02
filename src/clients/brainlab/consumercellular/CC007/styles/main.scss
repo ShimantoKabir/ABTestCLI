@@ -1,0 +1,28 @@
+@import "./common";
+
+.#{$id} {
+  div.header-top.checkout-new-header {
+    > div.container {
+      padding: 0 !important;
+      > nav {
+        > ul.header-top-menu.list-inline {
+          > li:first-child {
+            > div {
+              display: none !important;
+            }
+          }
+
+          > li:last-child {
+            > a:first-child {
+              display: none !important;
+            }
+
+            > a:last-child::before {
+              display: none !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
