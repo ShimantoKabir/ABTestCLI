@@ -1,6 +1,6 @@
 export const selectors = {
   shoppingPageContainer: "div#shopping-page-container",
-  headerTop: "div.header-top",
+  navHeader: "div.nav-header",
 };
 
 export const pageData = {

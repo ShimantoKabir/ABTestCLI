@@ -30,15 +30,15 @@ export class MainComponent {
     const isCheckoutPage: boolean =
       window.location.pathname === "/shopping/checkout" ? true : false;
 
-    const headerTop: null | HTMLDivElement = document.querySelector(
-      selectors.headerTop
+    const navHeader: null | HTMLDivElement = document.querySelector(
+      selectors.navHeader
     );
 
-    if (!headerTop) {
+    if (!navHeader) {
       return;
     }
 
-    const isNewHeaderDesignAdded: boolean = headerTop.classList.contains(
+    const isNewHeaderDesignAdded: boolean = navHeader.classList.contains(
       "checkout-new-header"
     );
 
@@ -49,7 +49,7 @@ export class MainComponent {
           ", isNewHeaderDesignAdded=" +
           isNewHeaderDesignAdded
       );
-      headerTop.classList.add("checkout-new-header");
+      navHeader.classList.add("checkout-new-header");
     } else if (!isCheckoutPage && isNewHeaderDesignAdded) {
       console.log(
         "isCheckoutPage=" +
@@ -57,7 +57,7 @@ export class MainComponent {
           ", isNewHeaderDesignAdded=" +
           isNewHeaderDesignAdded
       );
-      headerTop.classList.remove("checkout-new-header");
+      navHeader.classList.remove("checkout-new-header");
     }
   };
 
@@ -65,7 +65,9 @@ export class MainComponent {
     const testObserver = new TestObserver(selectors.shoppingPageContainer);
 
     const callback = (mutationList: MutationRecord[]) => {
-      this.mangeHeader();
+      if (TestInfo.VARIATION.toString() === "1") {
+        this.mangeHeader();
+      }
 
       for (let index = 0; index < mutationList.length; index++) {
         const element = mutationList[index].target as Element;
