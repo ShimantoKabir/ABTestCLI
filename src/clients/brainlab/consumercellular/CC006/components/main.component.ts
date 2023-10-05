@@ -5,36 +5,30 @@ import { TestObserver } from "../observer/test.observer";
 import { ModalComponent } from "./modal.component";
 
 export class MainComponent {
+  isReviewOrderBeforeEventAdded: boolean = false;
+
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.4");
   }
 
-  addShopButtonsListener = (isReviewOrder: boolean) => {
-    const shopButtons: null | NodeListOf<Element> = document.querySelectorAll(
-      `${selectors.addToCartButton}, ${selectors.continueButton}, ${selectors.updateButton}, ${selectors.reviewOrder}`
+  addListenerForShoppingPage = () => {
+    const reviewOrder: null | Element = document.querySelector(
+      selectors.reviewOrder
     );
 
-    if (shopButtons && shopButtons.length > 0) {
-      shopButtons.forEach((btn: Element) => {
-        btn.addEventListener("touchstart", () => {
-          localStorage.setItem(modalStatusKey, "true");
-
-          if (isReviewOrder) {
-            console.log("review-order");
-            // @ts-ignore
-            adobe.target.trackEvent({
-              mbox: "review-order",
-            });
-          } else {
-            console.log("add-to-cart-or-continue-or-update");
-            // @ts-ignore
-            adobe.target.trackEvent({
-              mbox: "add-to-cart-or-continue-or-update",
-            });
-          }
-        });
-      });
+    if (!reviewOrder) {
+      return;
     }
+
+    reviewOrder.addEventListener("touchstart", () => {
+      if (reviewOrder.getAttribute("disabled") !== "disabled") {
+        console.log("review-order");
+        // @ts-ignore
+        adobe.target.trackEvent({
+          mbox: "review-order",
+        });
+      }
+    });
   };
 
   addListenerForOverviewPage = () => {
@@ -82,22 +76,16 @@ export class MainComponent {
 
     const callback = (mutationList: MutationRecord[]) => {
       for (let index = 0; index < mutationList.length; index++) {
-        const elm = mutationList[index].target as Element;
-        const previousSibling: Element = mutationList[index]
-          .previousSibling as Element;
+        const mutationRecord: MutationRecord = mutationList[index];
+
+        const target = mutationRecord.target as Element;
+        const previousSibling: Element =
+          mutationRecord.previousSibling as Element;
 
         if (
-          elm.classList.contains("slide-enter-to") &&
-          elm.classList.contains("hide-phone-up") &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping/choose/plan"
-        ) {
-          this.addShopButtonsListener(false);
-          break;
-        }
-
-        if (
-          elm.classList.contains("plan-summary-component") &&
+          target &&
+          target.classList &&
+          target.classList.contains("plan-summary-component") &&
           localStorage.getItem(modalStatusKey) === "true" &&
           window.innerWidth < 720 &&
           window.location.pathname === "/shopping"
@@ -109,25 +97,40 @@ export class MainComponent {
           }
         }
 
-        if (elm.classList.contains("base-dollar-display-component")) {
-          this.addShopButtonsListener(false);
-          break;
-        }
-
+        // shopping page - review order - before
         if (
-          elm.classList.contains("main-content") &&
+          target &&
+          target.classList &&
+          target.classList.contains("main-content") &&
           previousSibling &&
           previousSibling.classList &&
           previousSibling.classList.contains("input-component-frame")
         ) {
-          this.addShopButtonsListener(true);
+          this.addListenerForShoppingPage();
+          break;
+        }
+
+        // shopping page - review order - after
+        if (
+          target &&
+          target.id &&
+          target.id === "save-cart-zip-code" &&
+          mutationRecord.attributeName &&
+          mutationRecord.attributeName === "data-previous-value"
+        ) {
+          if (!this.isReviewOrderBeforeEventAdded) {
+            this.addListenerForShoppingPage();
+            this.isReviewOrderBeforeEventAdded = true;
+          }
           break;
         }
 
         // overview page - add to cart
         // mobile
         if (
-          elm.classList.contains("device-details") &&
+          target &&
+          target.classList &&
+          target.classList.contains("device-details") &&
           previousSibling &&
           previousSibling.classList &&
           previousSibling.classList.contains("reserve-device-modal")
@@ -138,7 +141,9 @@ export class MainComponent {
         // bring your device configure - add to cart
         // mobile
         if (
-          elm.classList.contains("accessory-grid-wrapper") &&
+          target &&
+          target.classList &&
+          target.classList.contains("accessory-grid-wrapper") &&
           previousSibling &&
           previousSibling.classList &&
           previousSibling.classList.contains("no-results")

@@ -95,8 +95,6 @@ export class ModalComponent {
         addDeviceDirect.click();
       });
 
-      console.log("your-device-redirect=", yourDeviceDirect);
-
       yourDevice.addEventListener("click", () => {
         console.log("bring-your-device");
         // @ts-ignore
