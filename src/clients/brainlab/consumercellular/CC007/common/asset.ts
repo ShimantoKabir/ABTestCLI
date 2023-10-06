@@ -10,10 +10,4 @@ export const pageData = {
     desktopPlaceOrderButtonSelector: "div.on-desktop>button",
     mBoxName: "checkout-page-place-order",
   },
-  shoppingPage: {
-    desktopCtaSelector: "div.btn-checkout>a.btn-shop",
-    mBoxName: "shopping-page-review-order",
-    desktopTargetClass: "checkout-column",
-    desktopSiblingClass: "checkout-column",
-  },
 };

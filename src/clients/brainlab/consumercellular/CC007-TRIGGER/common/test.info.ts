@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'CC007-TRIGGER', SITE = 'consumercellular', TITLE = '9.4D - Remove NAV on Checkout Page - TRIGGER', CLIENT = 'brainlab', TARGET = 'https://www.consumercellular.com/shopping/choose/plan', VARIATION = 'shop'}

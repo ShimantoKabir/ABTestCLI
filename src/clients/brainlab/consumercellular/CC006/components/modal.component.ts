@@ -1,4 +1,4 @@
-import { modalStatusKey, selectors } from "../common/asset";
+import { modalStatusKey, pageData, selectors } from "../common/asset";
 
 export class ModalComponent {
   getHtml = (): string => {
@@ -85,10 +85,13 @@ export class ModalComponent {
       });
 
       addDevice.addEventListener("click", () => {
-        console.log("add-a-device");
+        console.log(
+          "add-a-device-mbox-name=",
+          pageData.shoppingPage.modalAddADeviceMboxName
+        );
         // @ts-ignore
         adobe.target.trackEvent({
-          mbox: "add-a-device",
+          mbox: pageData.shoppingPage.modalAddADeviceMboxName,
         });
 
         modal.remove();
@@ -96,10 +99,13 @@ export class ModalComponent {
       });
 
       yourDevice.addEventListener("click", () => {
-        console.log("bring-your-device");
+        console.log(
+          "bring-your-device-mbox-name=",
+          pageData.shoppingPage.modalBringYourDeviceMboxName
+        );
         // @ts-ignore
         adobe.target.trackEvent({
-          mbox: "bring-your-device",
+          mbox: pageData.shoppingPage.modalBringYourDeviceMboxName,
         });
 
         modal.remove();

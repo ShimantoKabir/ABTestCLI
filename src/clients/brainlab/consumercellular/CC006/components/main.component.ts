@@ -1,72 +1,63 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { modalStatusKey, selectors } from "../common/asset";
+import {
+  mobileMaxWidth,
+  modalStatusKey,
+  pageData,
+  selectors,
+} from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { TestObserver } from "../observer/test.observer";
 import { ModalComponent } from "./modal.component";
 
 export class MainComponent {
-  isReviewOrderBeforeEventAdded: boolean = false;
+  isReviewOrderEventAdded: boolean = false;
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.4");
+    Initializer.init(TestInfo, "0.0.15");
+    localStorage.setItem(modalStatusKey, "true");
   }
 
-  addListenerForShoppingPage = () => {
-    const reviewOrder: null | Element = document.querySelector(
-      selectors.reviewOrder
-    );
-
-    if (!reviewOrder) {
-      return;
-    }
-
-    reviewOrder.addEventListener("touchstart", () => {
-      if (reviewOrder.getAttribute("disabled") !== "disabled") {
-        console.log("review-order");
-        // @ts-ignore
-        adobe.target.trackEvent({
-          mbox: "review-order",
-        });
-      }
+  trackEvent = (mboxName: string) => {
+    console.log("mboxName=", mboxName);
+    // @ts-ignore
+    adobe.target.trackEvent({
+      mbox: mboxName,
     });
   };
 
-  addListenerForOverviewPage = () => {
-    const addToCart: null | Element = document.querySelector(
-      selectors.overviewAddToCart
-    );
+  addListener = (page: any) => {
+    const cta: null | Element = document.querySelector(page.selector);
 
-    if (!addToCart) {
+    if (!cta) {
       return;
     }
 
-    addToCart.addEventListener("touchstart", () => {
-      if (!addToCart.classList.contains("disabled")) {
-        console.log("overview-add-to-cart");
-        // @ts-ignore
-        adobe.target.trackEvent({
-          mbox: "overview-add-to-cart",
-        });
+    cta.addEventListener("touchstart", () => {
+      const disabledAttribute: null | string = cta.getAttribute("disabled");
+      const isContainDisabledClass = cta.classList.contains("disabled");
+
+      if (
+        page.pathName === pageData.shoppingPage.pathName &&
+        !disabledAttribute
+      ) {
+        this.trackEvent(page.mboxName);
+        return;
       }
-    });
-  };
 
-  addListenerForBringYourDeviceConfigure = () => {
-    const addToCart: null | Element = document.querySelector(
-      selectors.bringYourDeviceConfigureAddToCart
-    );
+      if (
+        !isContainDisabledClass &&
+        page.pathName === pageData.overviewPage.pathName
+      ) {
+        this.trackEvent(page.mboxName);
+        return;
+      }
 
-    if (!addToCart) {
-      return;
-    }
-
-    addToCart.addEventListener("touchstart", () => {
-      if (!addToCart.classList.contains("disabled")) {
-        console.log("bring-your-device-add-to-cart");
-        // @ts-ignore
-        adobe.target.trackEvent({
-          mbox: "bring-your-device-add-to-cart",
-        });
+      if (
+        !isContainDisabledClass &&
+        page.pathName === pageData.configurePage.pathName
+      ) {
+        this.trackEvent(page.mboxName);
+        return;
       }
     });
   };
@@ -75,6 +66,8 @@ export class MainComponent {
     const testObserver = new TestObserver(selectors.shoppingPageContainer);
 
     const callback = (mutationList: MutationRecord[]) => {
+      this.isReviewOrderEventAdded = false;
+
       for (let index = 0; index < mutationList.length; index++) {
         const mutationRecord: MutationRecord = mutationList[index];
 
@@ -85,10 +78,10 @@ export class MainComponent {
         if (
           target &&
           target.classList &&
-          target.classList.contains("plan-summary-component") &&
+          target.classList.contains(pageData.shoppingPage.targetClassName) &&
           localStorage.getItem(modalStatusKey) === "true" &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping"
+          window.innerWidth < mobileMaxWidth &&
+          window.location.pathname === pageData.shoppingPage.pathName
         ) {
           if (TestInfo.VARIATION.toString() === "1") {
             const modalComponent = new ModalComponent();
@@ -97,58 +90,66 @@ export class MainComponent {
           }
         }
 
-        // shopping page - review order - before
         if (
           target &&
           target.classList &&
-          target.classList.contains("main-content") &&
+          target.classList.contains(
+            pageData.shoppingPage.preReviewOrderTargetClassName
+          ) &&
           previousSibling &&
           previousSibling.classList &&
-          previousSibling.classList.contains("input-component-frame")
+          previousSibling.classList.contains(
+            pageData.shoppingPage.preReviewOrderSiblingClassName
+          )
         ) {
-          this.addListenerForShoppingPage();
-          break;
-        }
-
-        // shopping page - review order - after
-        if (
-          target &&
-          target.id &&
-          target.id === "save-cart-zip-code" &&
-          mutationRecord.attributeName &&
-          mutationRecord.attributeName === "data-previous-value"
-        ) {
-          if (!this.isReviewOrderBeforeEventAdded) {
-            this.addListenerForShoppingPage();
-            this.isReviewOrderBeforeEventAdded = true;
+          if (!this.isReviewOrderEventAdded) {
+            this.addListener(pageData.shoppingPage);
+            this.isReviewOrderEventAdded = true;
           }
           break;
         }
 
-        // overview page - add to cart
-        // mobile
         if (
           target &&
-          target.classList &&
-          target.classList.contains("device-details") &&
-          previousSibling &&
-          previousSibling.classList &&
-          previousSibling.classList.contains("reserve-device-modal")
+          target.id &&
+          target.id === pageData.shoppingPage.postReviewOrderId &&
+          mutationRecord.attributeName &&
+          mutationRecord.attributeName ===
+            pageData.shoppingPage.postReviewOrderAttribute
         ) {
-          this.addListenerForOverviewPage();
+          if (!this.isReviewOrderEventAdded) {
+            this.addListener(pageData.shoppingPage);
+            this.isReviewOrderEventAdded = true;
+          }
+          break;
         }
 
-        // bring your device configure - add to cart
-        // mobile
         if (
           target &&
           target.classList &&
-          target.classList.contains("accessory-grid-wrapper") &&
+          target.classList.contains(pageData.overviewPage.targetClassName) &&
           previousSibling &&
           previousSibling.classList &&
-          previousSibling.classList.contains("no-results")
+          previousSibling.classList.contains(
+            pageData.overviewPage.siblingClassName
+          ) &&
+          window.location.pathname !== "/shopping/details/sim/details"
         ) {
-          this.addListenerForBringYourDeviceConfigure();
+          this.addListener(pageData.overviewPage);
+        }
+
+        if (
+          target &&
+          target.classList &&
+          target.classList.contains(pageData.configurePage.targetClassName) &&
+          previousSibling &&
+          previousSibling.classList &&
+          previousSibling.classList.contains(
+            pageData.configurePage.siblingClassName
+          ) &&
+          window.location.pathname.indexOf("configure") !== -1
+        ) {
+          this.addListener(pageData.configurePage);
         }
       }
     };

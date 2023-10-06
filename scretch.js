@@ -1,18 +1,20 @@
 function addListener(pageData) {
-  const cta = document.querySelector(pageData.planPage.selector);
+  const cta = document.querySelector(pageData.shoppingPage.desktopCtaSelector);
   if (!cta) {
     return;
   }
 
   cta.addEventListener("click", () => {
-    console.log("mbox=", pageData.planPage.mBoxName);
     adobe.target.getOffer({
-      mbox: pageData.planPage.mBoxName,
+      mbox: pageData.shoppingPage.mBoxName,
       success: function (offers) {
         adobe.target.applyOffer({
-          mbox: pageData.planPage.mBoxName,
+          mbox: pageData.shoppingPage.mBoxName,
           offer: offers,
         });
+        console &&
+          console.log &&
+          console.log("mbox=", pageData.shoppingPage.mBoxName);
       },
       error: function (status, error) {
         if (console && console.log) {
@@ -28,12 +30,11 @@ function runTest() {
   console.log("ADOBE-TARGET-TEST-INIT");
   let isListenerAdded = false;
   const pageData = {
-    planPage: {
-      selector: "div.hide-phone-down button.btn-shop",
-      mBoxName: "test-trigger-mbox",
-      targetClassList: ["bill-breakdown", "hide-phone-down"],
-      firstChildClass: "bill-box-wrapper",
-      lastChildClass: "disclaimer",
+    shoppingPage: {
+      desktopCtaSelector: "div.btn-checkout>a.btn-shop",
+      mobilePostTargetId: "save-cart-zip-code",
+      mobilePostAttributeName: "data-previous-value",
+      mBoxName: "9.4D-trigger",
     },
   };
 
@@ -42,23 +43,20 @@ function runTest() {
 
   const callback = (mutationList, observer) => {
     for (let index = 0; index < mutationList.length; index++) {
-      const target = mutationList[index].target;
+      const mutationRecord = mutationList[index];
+      const target = mutationRecord.target;
 
       if (
-        target.classList &&
-        target.classList.contains(pageData.planPage.targetClassList[0]) &&
-        target.classList.contains(pageData.planPage.targetClassList[1]) &&
-        target.firstChild &&
-        target.firstChild.classList &&
-        target.firstChild.classList.contains(
-          pageData.planPage.firstChildClass
-        ) &&
-        target.lastChild &&
-        target.lastChild.classList &&
-        target.lastChild.classList.contains(pageData.planPage.lastChildClass)
+        window.innerWidth > 720 &&
+        target &&
+        target.id &&
+        target.id === pageData.shoppingPage.mobilePostTargetId &&
+        mutationRecord.attributeName &&
+        mutationRecord.attributeName ===
+          pageData.shoppingPage.mobilePostAttributeName
       ) {
         if (!isListenerAdded) {
-          addListener(pageData);
+          addListener("click");
           isListenerAdded = true;
         }
         break;

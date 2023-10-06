@@ -78,7 +78,7 @@ export class MainComponent {
 
         if (
           element &&
-          element.lastChild &&
+          lastChild &&
           lastChild.classList &&
           lastChild.classList.contains(
             pageData.checkoutPage.desktopTargetLastChildClass
@@ -93,23 +93,6 @@ export class MainComponent {
             pageData.checkoutPage.desktopPlaceOrderButtonSelector,
             "click",
             pageData.checkoutPage.mBoxName
-          );
-        }
-
-        if (
-          element.classList.contains(
-            pageData.shoppingPage.desktopTargetClass
-          ) &&
-          previousSibling &&
-          previousSibling.classList &&
-          previousSibling.classList.contains(
-            pageData.shoppingPage.desktopSiblingClass
-          )
-        ) {
-          this.addListener(
-            pageData.shoppingPage.desktopCtaSelector,
-            "click",
-            pageData.shoppingPage.mBoxName
           );
         }
       }

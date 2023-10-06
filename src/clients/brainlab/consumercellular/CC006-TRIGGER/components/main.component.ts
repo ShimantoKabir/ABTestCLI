@@ -1,6 +1,7 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { modalStatusKey, selectors, triggerMboxName } from "../common/asset";
+import { mobileMaxWidth, planPage, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
+import { AdobeTarget } from "../common/trigger";
 import { TestObserver } from "../observer/test.observer";
 
 export class MainComponent {
@@ -9,38 +10,18 @@ export class MainComponent {
   isUpdateEventAdded: boolean = false;
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.4");
+    Initializer.init(TestInfo, "0.0.10");
   }
 
-  addShopButtonsListener = (selector: string, eventName: string) => {
-    const cta: null | Element = document.querySelector(selector);
+  addShopButtonsListener = (page: any) => {
+    const cta: null | Element = document.querySelector(page.selector);
 
     if (!cta) {
       return;
     }
 
-    cta.addEventListener(eventName, () => {
-      console.log(triggerMboxName + "-triggered");
-      localStorage.setItem(modalStatusKey, "true");
-      // @ts-ignore
-      adobe.target.getOffer({
-        mbox: triggerMboxName,
-        // @ts-ignore
-        success: function (offers) {
-          // @ts-ignore
-          adobe.target.applyOffer({
-            mbox: triggerMboxName,
-            offer: offers,
-          });
-        },
-        // @ts-ignore
-        error: function (status, error) {
-          if (console && console.log) {
-            console.log("status=" + status + ", error=", error);
-          }
-        },
-        timeout: 5000,
-      });
+    cta.addEventListener(page.eventName, () => {
+      AdobeTarget.trigger(page.mboxName);
     });
   };
 
@@ -56,16 +37,13 @@ export class MainComponent {
         if (
           target &&
           target.classList &&
-          target.classList.contains("slide-enter-to") &&
-          target.classList.contains("hide-phone-up") &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping/choose/plan"
+          target.classList.contains(planPage.addToCart.targetClassList[0]) &&
+          target.classList.contains(planPage.addToCart.targetClassList[1]) &&
+          window.innerWidth < mobileMaxWidth &&
+          window.location.pathname === planPage.pathName
         ) {
           if (!this.isAddToCartEventAdded) {
-            this.addShopButtonsListener(
-              selectors.addToCartButton,
-              "touchstart"
-            );
+            this.addShopButtonsListener(planPage.addToCart);
             this.isAddToCartEventAdded = true;
           }
           break;
@@ -75,12 +53,12 @@ export class MainComponent {
         if (
           target &&
           target.classList &&
-          target.classList.contains("base-dollar-display-component") &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping/choose/plan"
+          target.classList.contains(planPage.continue.targetClassName) &&
+          window.innerWidth < mobileMaxWidth &&
+          window.location.pathname === planPage.pathName
         ) {
           if (!this.isContinueEventAdded) {
-            this.addShopButtonsListener(selectors.continueButton, "touchstart");
+            this.addShopButtonsListener(planPage.continue);
             this.isContinueEventAdded = true;
           }
           break;
@@ -91,15 +69,15 @@ export class MainComponent {
         if (
           target &&
           target.id &&
-          target.id === "mobile-bill-breakdown" &&
+          target.id === planPage.continue.targetId &&
           lastChild &&
           lastChild.classList &&
-          lastChild.classList.contains("disclaimer") &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping/choose/plan"
+          lastChild.classList.contains(planPage.continue.lastChildClassName) &&
+          window.innerWidth < mobileMaxWidth &&
+          window.location.pathname === planPage.pathName
         ) {
           if (!this.isContinueEventAdded) {
-            this.addShopButtonsListener(selectors.continueButton, "touchstart");
+            this.addShopButtonsListener(planPage.continue);
             this.isContinueEventAdded = true;
           }
           break;
@@ -107,17 +85,18 @@ export class MainComponent {
 
         // update - 1
         if (
-          (mutationRecord.attributeName === "aria-hidden" ||
-            mutationRecord.attributeName === "data-slick-index") &&
-          mutationRecord.type === "attributes" &&
+          (mutationRecord.attributeName === planPage.update.attributeNames[0] ||
+            mutationRecord.attributeName ===
+              planPage.update.attributeNames[1]) &&
+          mutationRecord.type === planPage.update.attributeType &&
           target &&
           target.classList &&
-          target.classList.contains("slick-active") &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping/choose/plan"
+          target.classList.contains(planPage.update.targetClassNames[0]) &&
+          window.innerWidth < mobileMaxWidth &&
+          window.location.pathname === planPage.pathName
         ) {
           if (!this.isUpdateEventAdded) {
-            this.addShopButtonsListener(selectors.updateButton, "touchstart");
+            this.addShopButtonsListener(planPage.update);
             this.isUpdateEventAdded = true;
           }
           break;
@@ -129,15 +108,17 @@ export class MainComponent {
         if (
           target &&
           target.classList &&
-          target.classList.contains("base-dollar-display-component") &&
+          target.classList.contains(planPage.update.targetClassNames[1]) &&
           nextElementSibling &&
           nextElementSibling.classList &&
-          nextElementSibling.classList.contains("monthly-total-time") &&
-          window.innerWidth < 720 &&
-          window.location.pathname === "/shopping/choose/plan"
+          nextElementSibling.classList.contains(
+            planPage.update.nextSiblingClassName
+          ) &&
+          window.innerWidth < mobileMaxWidth &&
+          window.location.pathname === planPage.pathName
         ) {
           if (!this.isUpdateEventAdded) {
-            this.addShopButtonsListener(selectors.updateButton, "touchstart");
+            this.addShopButtonsListener(planPage.update);
             this.isUpdateEventAdded = true;
           }
           break;
