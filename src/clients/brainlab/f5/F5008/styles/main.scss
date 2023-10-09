@@ -1,0 +1,23 @@
+@import "./common";
+
+.#{$id} {
+  div.swiper-container-horizontal > ul > li:last-child > a {
+    background-color: #0e6eb9;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #0e6eb9;
+    color: #ffffff;
+  }
+  div.swiper-container-horizontal > ul > li:last-child > a:hover {
+    background-color: #2785cd;
+  }
+  .u07__nav .container ul li.active {
+    font-weight: initial; // reset boldness.
+
+    -webkit-text-stroke: 0.5px currentColor; // use style that doesn’t trigger a reflow
+  }
+
+  .u07__nav .container ul li.active span {
+    border: none !important;
+  }
+}
