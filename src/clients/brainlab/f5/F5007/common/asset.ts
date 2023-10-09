@@ -5,8 +5,12 @@ export const scriptLink: string =
 
 export const selectors = {
   complexSection: "div#container-1120804637",
+  infrastructureSection: "div#container1646962529",
+  modalCloseIcon: "div.form-close-icon",
   privacyPolicy:
     "form#mktoForm_22195>div:nth-child(8)  div.mktoHtmlText.mktoHasWidth",
+  formComponentContainer: "div.form-component-container",
+  formSubmitButton: "form#mktoForm_22195 div.mktoButtonRow>span>button",
 };
 
 export const mktoForms2 = {
@@ -14,6 +18,15 @@ export const mktoForms2 = {
   munchkinId: "653-SMC-783",
   formId: 22195,
 };
+
+export const mboxNames = {
+  tenPercentScroll: "10-percent-scroll",
+  twentyPercentScroll: "20-percent-scroll",
+  formSubmittedSuccessfully: "form-submitted-successfully",
+};
+
+export const isFormSubmittedStorageKey: string =
+  "is-form-successfully-submitted";
 
 const icons: Icon[] = [
   {

@@ -1,4 +1,5 @@
 import { formInfos, mktoForms2, selectors } from "../common/asset";
+import { TestInfo } from "../common/test.info";
 import { Icon } from "../models/icon";
 import { IconStepComponent } from "./icon-step.component";
 
@@ -41,14 +42,25 @@ export class FormComponent {
   };
 
   render = () => {
-    const complexSection: null | HTMLDivElement = document.querySelector(
-      selectors.complexSection
-    );
+    if (TestInfo.VARIATION.toString() === "2") {
+      const complexSection: null | HTMLDivElement = document.querySelector(
+        selectors.complexSection
+      );
 
-    if (!complexSection) {
+      if (!complexSection) {
+        return;
+      }
+
+      complexSection.insertAdjacentHTML("afterend", this.getHtml());
       return;
     }
 
-    complexSection.insertAdjacentHTML("afterend", this.getHtml());
+    const body: null | HTMLBodyElement = document.querySelector("body");
+
+    if (!body) {
+      return;
+    }
+
+    body.insertAdjacentHTML("beforeend", this.getHtml());
   };
 }

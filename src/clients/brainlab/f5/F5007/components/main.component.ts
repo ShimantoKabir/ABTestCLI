@@ -1,5 +1,11 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { mktoForms2, scriptLink, selectors } from "../common/asset";
+import {
+  isFormSubmittedStorageKey,
+  mboxNames,
+  mktoForms2,
+  scriptLink,
+  selectors,
+} from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { Loader } from "../loaders/loader";
 import { FormFooterComponent } from "./form-footer.component";
@@ -34,7 +40,71 @@ export class MainComponent {
               FormFooterComponent.render()
             );
           }
+
+          form.onSuccess((values: any, followUpUrl: any) => {
+            location.href = TestInfo.TARGET.toString();
+            console.log(mboxNames.formSubmittedSuccessfully);
+            // localStorage.setItem(isFormSubmittedStorageKey, "true");
+            // @ts-ignore
+            adobe.target.trackEvent({
+              mbox: mboxNames.formSubmittedSuccessfully,
+            });
+            return false;
+          });
         });
       });
+
+    this.setObserver();
+  };
+
+  setObserver = () => {
+    const infrastructureSection: null | HTMLDivElement = document.querySelector(
+      selectors.infrastructureSection
+    );
+
+    const modalCloseIcon: null | HTMLDivElement = document.querySelector(
+      selectors.modalCloseIcon
+    );
+
+    const formComponentContainer: null | HTMLDivElement =
+      document.querySelector(selectors.formComponentContainer);
+
+    if (!infrastructureSection || !modalCloseIcon || !formComponentContainer) {
+      return;
+    }
+
+    modalCloseIcon.addEventListener("click", () => {
+      formComponentContainer.classList.remove("show-form-component-container");
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // && localStorage.getItem(isFormSubmittedStorageKey) !== "true"
+        if (
+          !formComponentContainer.classList.contains(
+            "show-form-component-container"
+          ) &&
+          entry.isIntersecting &&
+          TestInfo.VARIATION.toString() === "1" &&
+          entry.boundingClientRect.top > 0
+        ) {
+          formComponentContainer.classList.add("show-form-component-container");
+        }
+
+        if (entry.isIntersecting && entry.boundingClientRect.top > 0) {
+          console.log("scrolled=", mboxNames.tenPercentScroll);
+          // @ts-ignore
+          adobe.target.trackEvent({ mbox: mboxNames.tenPercentScroll });
+        }
+
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          console.log("scrolled=", mboxNames.twentyPercentScroll);
+          // @ts-ignore
+          adobe.target.trackEvent({ mbox: mboxNames.twentyPercentScroll });
+        }
+      });
+    });
+
+    observer.observe(infrastructureSection);
   };
 }
