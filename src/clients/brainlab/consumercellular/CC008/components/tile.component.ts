@@ -54,6 +54,7 @@ export class TileComponent {
     if (shopPhones && shopPhones.length > 0) {
       shopPhones.forEach((phone: HTMLDivElement) => {
         phone.addEventListener("click", () => {
+          console.log("shop-phone-and-device=", mboxNames.shopPhone);
           // @ts-ignore
           adobe.target.trackEvent({ mbox: mboxNames.shopPhone });
           addDeviceDirect.click();
@@ -67,6 +68,7 @@ export class TileComponent {
     if (yourPhones && yourPhones.length > 0) {
       yourPhones.forEach((phone: HTMLDivElement) => {
         phone.addEventListener("click", () => {
+          console.log("bring-your-device=", mboxNames.shopPhone);
           // @ts-ignore
           adobe.target.trackEvent({ mbox: mboxNames.yourPhone });
           yourDeviceDirect.click();

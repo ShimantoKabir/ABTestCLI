@@ -1,9 +1,11 @@
 @import "./common";
 
 .#{$id} {
-  div.placeholder-device-tile {
-    > div.tile-body {
-      display: none;
+  &-1 {
+    div.placeholder-device-tile {
+      > div.tile-body {
+        display: none;
+      }
     }
   }
 

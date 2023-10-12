@@ -5,6 +5,8 @@ export const selectors = {
   yourDeviceDirect: "ul.mobile-menu-list>li:nth-child(6)>a",
   shopPhone: "shop-phone",
   yourPhone: "your-phone",
+  tileFooter: "div.placeholder-device-tile>div.tile-body>div.tile-footer",
+  tileFooterLink: "div.placeholder-device-tile>div.tile-body>div.tile-footer>a",
 };
 
 export const mboxNames = {

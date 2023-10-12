@@ -1,5 +1,5 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { pageData, selectors } from "../common/asset";
+import { mboxNames, pageData, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { TestObserver } from "../observer/test.observer";
 import { TileComponent } from "./tile.component";
@@ -9,9 +9,35 @@ export class MainComponent {
     Initializer.init(TestInfo, "0.0.1");
   }
 
+  addControlGoalListener = (selector: string) => {
+    const elements: null | NodeListOf<Element> =
+      document.querySelectorAll(selector);
+
+    if (!elements || elements.length === 0) {
+      return;
+    }
+
+    elements.forEach((element: Element) => {
+      element.addEventListener("click", () => {
+        console.log("shop-phone-and-device=", mboxNames.shopPhone);
+        // @ts-ignore
+        adobe.target.trackEvent({ mbox: mboxNames.shopPhone });
+      });
+    });
+  };
+
+  addControlGoal = () => {
+    // this.addControlGoalListener(selectors.tileFooter);
+    this.addControlGoalListener(selectors.tileFooterLink);
+  };
+
   addNewTile = () => {
-    const tile = new TileComponent();
-    tile.render();
+    if (TestInfo.VARIATION.toString() === "1") {
+      const tile = new TileComponent();
+      tile.render();
+    } else {
+      this.addControlGoal();
+    }
   };
 
   init = (): void => {
