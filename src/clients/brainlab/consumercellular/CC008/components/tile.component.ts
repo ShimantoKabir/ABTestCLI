@@ -1,4 +1,5 @@
 import { mboxNames, selectors } from "../common/asset";
+import { TileHeaderComponent } from "./tile-header.component";
 
 export class TileComponent {
   getHtml = (): string => {
@@ -27,11 +28,31 @@ export class TileComponent {
     return htmlString.trim();
   };
 
-  render = () => {
-    const tiles: null | NodeListOf<HTMLDivElement> = document.querySelectorAll(
-      selectors.tiles
-    );
+  addDeviceRemoveCta = (tile: HTMLDivElement) => {
+    const tileHeader: Element = tile.childNodes[0] as Element;
+    const headerText: null | string = tileHeader.textContent;
+    if (headerText) {
+      tileHeader.textContent = "";
+      tileHeader.insertAdjacentHTML(
+        "beforeend",
+        TileHeaderComponent.render(headerText)
+      );
+    }
 
+    const removeDeviceOriginal: Element = tile.childNodes[2]
+      .lastChild as Element;
+    const removeDeviceNew: Element = tile.childNodes[0].lastChild as Element;
+
+    if (removeDeviceOriginal && removeDeviceNew) {
+      removeDeviceNew.addEventListener("click", () => {
+        const removeCta =
+          removeDeviceOriginal.firstElementChild as HTMLAnchorElement;
+        removeCta.click();
+      });
+    }
+  };
+
+  addListeners = () => {
     const addDeviceDirect: null | HTMLButtonElement = document.querySelector(
       selectors.addDeviceDirect
     );
@@ -40,13 +61,9 @@ export class TileComponent {
       selectors.yourDeviceDirect
     );
 
-    if (!tiles || tiles.length === 0 || !addDeviceDirect || !yourDeviceDirect) {
+    if (!addDeviceDirect || !yourDeviceDirect) {
       return;
     }
-
-    tiles.forEach((tile: HTMLDivElement) => {
-      tile.insertAdjacentHTML("beforeend", this.getHtml());
-    });
 
     const shopPhones: null | NodeListOf<HTMLDivElement> =
       document.querySelectorAll("div." + selectors.shopPhone);
@@ -75,5 +92,22 @@ export class TileComponent {
         });
       });
     }
+  };
+
+  render = () => {
+    const tiles: null | NodeListOf<HTMLDivElement> = document.querySelectorAll(
+      selectors.tiles
+    );
+
+    if (!tiles || tiles.length === 0) {
+      return;
+    }
+
+    tiles.forEach((tile: HTMLDivElement) => {
+      tile.insertAdjacentHTML("beforeend", this.getHtml());
+      this.addDeviceRemoveCta(tile);
+    });
+
+    this.addListeners();
   };
 }

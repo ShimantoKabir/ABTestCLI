@@ -1,10 +1,13 @@
 import { Initializer } from "../../../../../utilities/initializer";
 import { mboxNames, pageData, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
+import { LocationObserver } from "../observer/location.observer";
 import { TestObserver } from "../observer/test.observer";
 import { TileComponent } from "./tile.component";
 
 export class MainComponent {
+  isNewTileAdded: boolean = false;
+
   constructor() {
     Initializer.init(TestInfo, "0.0.1");
   }
@@ -27,7 +30,6 @@ export class MainComponent {
   };
 
   addControlGoal = () => {
-    // this.addControlGoalListener(selectors.tileFooter);
     this.addControlGoalListener(selectors.tileFooterLink);
   };
 
@@ -41,16 +43,16 @@ export class MainComponent {
   };
 
   init = (): void => {
+    LocationObserver.listen(() => {
+      this.isNewTileAdded = false;
+    });
+
     const testObserver = new TestObserver(selectors.shoppingPageContainer);
 
     const callback = (mutationList: MutationRecord[]) => {
       for (let i = 0; i < mutationList.length; i++) {
         const mutationRecord: MutationRecord = mutationList[i];
-        //console.log("mutationRecord=", mutationRecord);
-
         const target: Element = mutationRecord.target as Element;
-        const perviousSibling: Element =
-          mutationRecord.previousSibling as Element;
 
         if (
           target &&
@@ -60,9 +62,11 @@ export class MainComponent {
           ) &&
           target.classList.contains(
             pageData.shoppingPage.planSummaryTargetClassList[1]
-          )
+          ) &&
+          !this.isNewTileAdded
         ) {
           this.addNewTile();
+          this.isNewTileAdded = true;
           break;
         }
 
@@ -72,9 +76,11 @@ export class MainComponent {
           target.id === pageData.shoppingPage.mobilePostTargetId &&
           mutationRecord.attributeName &&
           mutationRecord.attributeName ===
-            pageData.shoppingPage.mobilePostAttributeName
+            pageData.shoppingPage.mobilePostAttributeName &&
+          !this.isNewTileAdded
         ) {
           this.addNewTile();
+          this.isNewTileAdded = true;
           break;
         }
       }

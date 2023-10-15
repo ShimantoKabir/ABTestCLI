@@ -3,6 +3,8 @@ import { selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { LocationObserver } from "../observer/location.observer";
 import { TestObserver } from "../observer/test.observer";
+import { BreadcrumbComponent } from "./breadcrumb.component";
+import { NextButtonComponent } from "./next-button.component";
 
 export class MainComponent {
   isCCIDFound: boolean = false;
@@ -28,6 +30,12 @@ export class MainComponent {
           target.id === "ccCCID" &&
           this.isCCIDFound === false
         ) {
+          const breadcrumbComponent = new BreadcrumbComponent();
+          breadcrumbComponent.render();
+
+          const nextButtonComponent = new NextButtonComponent();
+          nextButtonComponent.render();
+
           this.isCCIDFound = true;
         }
       }
