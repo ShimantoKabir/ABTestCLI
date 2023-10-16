@@ -1,11 +1,11 @@
 export const selectors = {
-  existPlanSection: "div.css-ldo4d5",
+  existPlanSection: "div.css-1e54vvi",
   bullet: "div.bullet",
   phoneSelectorArea: "div.phone-selector-area",
   planContainer: "div.css-1f2odt2",
   plan: "div.css-mybjz6",
   price: "p.css-13qu9nj",
-  viewPlanLink: "a.css-93vlq5",
+  viewPlanLink: "a.css-10tsn0c",
   phoneSelector: "div.phone-selector",
   circle: "div.circle",
   comboPlan:
@@ -16,7 +16,7 @@ export const selectors = {
   shoppingPageContainer: "div#shopping-page-container",
   placeHolderImg: "img.placeholder-image",
   continueButton: "aside.sidebar a[href='/shopping']",
-  chakraHeading: "h3.css-5joft8",
+  chakraHeading: "h3.css-1oalryp",
   phoneNumber: "a.css-opyw1p",
   mainAppPhoneNumber: "ul.header-top-menu>li:first-child>a",
 };

@@ -1,1 +1,1 @@
-export enum TestInfo {ID = 'CC001', SITE = 'consumercellular', CLIENT = 'brainlab', VARIATION = '1'}
+export enum TestInfo {ID = 'CC001', SITE = 'consumercellular', TITLE = 'undefined', CLIENT = 'brainlab', TARGET = 'undefined', VARIATION = '1'}
