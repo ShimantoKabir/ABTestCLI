@@ -11,6 +11,7 @@ export const selectors = {
     "form#mktoForm_22195>div:nth-child(8)  div.mktoHtmlText.mktoHasWidth",
   formComponentContainer: "div.form-component-container",
   formSubmitButton: "form#mktoForm_22195 div.mktoButtonRow>span>button",
+  successCloseIcon: "div.success-close-icon",
 };
 
 export const mktoForms2 = {
@@ -24,9 +25,6 @@ export const mboxNames = {
   twentyPercentScroll: "20-percent-scroll",
   formSubmittedSuccessfully: "form-submitted-successfully",
 };
-
-export const isFormSubmittedStorageKey: string =
-  "is-form-successfully-submitted";
 
 const icons: Icon[] = [
   {
@@ -109,3 +107,6 @@ export const formInfos = {
 
 export const privacyPolicyLink: string =
   "https://www.f5.com/company/policies/privacy-policy";
+
+export const successText: string =
+  "Thanks you for your interest in F5. Look for the latest information in your inbox.";

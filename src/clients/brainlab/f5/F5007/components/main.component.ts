@@ -1,17 +1,14 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import {
-  isFormSubmittedStorageKey,
-  mboxNames,
-  mktoForms2,
-  scriptLink,
-  selectors,
-} from "../common/asset";
+import { mboxNames, mktoForms2, scriptLink, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { Loader } from "../loaders/loader";
 import { FormFooterComponent } from "./form-footer.component";
 import { FormComponent } from "./form.component";
+import { ServiceComponent } from "./service.component";
 
 export class MainComponent {
+  serviceComponent: ServiceComponent = new ServiceComponent();
+
   constructor() {
     Initializer.init(TestInfo, "0.0.1");
   }
@@ -42,9 +39,8 @@ export class MainComponent {
           }
 
           form.onSuccess((values: any, followUpUrl: any) => {
-            location.href = TestInfo.TARGET.toString();
             console.log(mboxNames.formSubmittedSuccessfully);
-            // localStorage.setItem(isFormSubmittedStorageKey, "true");
+            formComponent.showSuccessMessage();
             // @ts-ignore
             adobe.target.trackEvent({
               mbox: mboxNames.formSubmittedSuccessfully,
@@ -62,20 +58,12 @@ export class MainComponent {
       selectors.infrastructureSection
     );
 
-    const modalCloseIcon: null | HTMLDivElement = document.querySelector(
-      selectors.modalCloseIcon
-    );
+    const formComponentContainer: null | HTMLDivElement | undefined =
+      this.serviceComponent.manageModalClose(selectors.modalCloseIcon);
 
-    const formComponentContainer: null | HTMLDivElement =
-      document.querySelector(selectors.formComponentContainer);
-
-    if (!infrastructureSection || !modalCloseIcon || !formComponentContainer) {
+    if (!infrastructureSection || !formComponentContainer) {
       return;
     }
-
-    modalCloseIcon.addEventListener("click", () => {
-      formComponentContainer.classList.remove("show-form-component-container");
-    });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

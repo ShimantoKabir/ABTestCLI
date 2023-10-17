@@ -207,6 +207,21 @@
         max-width: 1440px;
       }
     }
+
+    > div.success-component {
+      background-color: white;
+      position: relative;
+      padding: 50px;
+      width: 370px;
+      display: none;
+
+      > div.success-close-icon {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+      }
+    }
   }
 
   &-2 {
@@ -240,6 +255,22 @@
         }
       }
     }
+
+    div.form-component-container.success {
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > div.form-component {
+        display: none;
+      }
+
+      > div.success-component {
+        display: block;
+        background-color: #f5f5f5;
+      }
+    }
   }
 
   &-1 {
@@ -261,6 +292,26 @@
         margin: 0 auto;
         padding: 0;
         z-index: 1000;
+      }
+
+      @media only screen and (max-width: 768px) {
+        top: 10px;
+        align-items: flex-start;
+        overflow-y: scroll;
+      }
+    }
+
+    div.form-component-container.show-form-component-container {
+      display: flex !important;
+    }
+
+    div.form-component-container.show-form-component-container.success {
+      > div.form-component {
+        display: none;
+      }
+
+      > div.success-component {
+        display: block;
       }
     }
   }

@@ -2,11 +2,17 @@ import { formInfos, mktoForms2, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { Icon } from "../models/icon";
 import { IconStepComponent } from "./icon-step.component";
+import { ServiceComponent } from "./service.component";
+import { SuccessComponent } from "./success.component";
 
 export class FormComponent {
+  successComponent: SuccessComponent = new SuccessComponent();
+  serviceComponent: ServiceComponent = new ServiceComponent();
+
   getHtml = (): string => {
     const htmlString: string = `
         <div class="form-component-container" >
+            ${this.successComponent.getHtml()}
             <div class="form-component" >
                 <div class="form-header" >
                     <div class="form-title" >
@@ -62,5 +68,16 @@ export class FormComponent {
     }
 
     body.insertAdjacentHTML("beforeend", this.getHtml());
+  };
+
+  showSuccessMessage = () => {
+    const formComponentContainer: null | HTMLDivElement | undefined =
+      this.serviceComponent.manageModalClose(selectors.successCloseIcon);
+
+    if (!formComponentContainer) {
+      return;
+    }
+
+    formComponentContainer.classList.add("success");
   };
 }
