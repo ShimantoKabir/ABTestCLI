@@ -3,7 +3,7 @@ function runTest() {}
 (function pollOnload() {
   if (
     document.querySelector("body") &&
-    document.querySelector("div#container1646962529")
+    document.querySelector("button.btn-tertiary")
   ) {
     try {
       runTest();
