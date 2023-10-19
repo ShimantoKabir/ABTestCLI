@@ -1,0 +1,386 @@
+@import "./common";
+
+.#{$id} {
+  &__hide {
+    display: none !important;
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+  }
+
+  div.success-stories {
+    display: none;
+  }
+
+  div.course-schedule-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+
+    div.component-container {
+      display: flex;
+      flex-direction: column;
+
+      div.component-details {
+        display: flex;
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        div.nursing-programs {
+          flex: 0.9;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          > div.program-item-container {
+            > div.program-item {
+              border: 1px solid #354a65;
+              width: 300px;
+              height: 45px;
+              border-bottom: none;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              > p {
+                text-align: center;
+                font-weight: 700;
+              }
+
+              &:last-child {
+                border-bottom: 1px solid #354a65;
+              }
+
+              &:first-child {
+                background-color: #354a65;
+                color: #fff;
+              }
+            }
+          }
+
+          > div.program-footer {
+            margin-top: 5px;
+            width: 300px;
+            padding: 3px;
+
+            > p {
+              font-size: 13px;
+              line-height: 15px;
+            }
+          }
+        }
+
+        div.request-info-container {
+          flex: 1.1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          div.request-info {
+            > p {
+            }
+          }
+
+          div.request-cta {
+            margin-top: 30px;
+            > button {
+              background-color: #eb9500;
+              color: #fff;
+              border-radius: 0;
+              padding: 10px 25px;
+              font-size: 1.25rem;
+              font-weight: 700;
+              cursor: pointer;
+              border: none;
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  div.plan-of-study-component {
+    > div.component-container {
+      > div.desktop-component-details {
+        > div.tab-header {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          padding: 20px;
+          margin-top: 20px;
+
+          > button {
+            border: 1px solid #354a65;
+            color: #354a65;
+            padding: 10px 15px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+
+          > button.active {
+            background-color: #354a65;
+            border: 1px solid #354a65;
+            color: #fff;
+          }
+        }
+
+        > div.tab-table {
+          display: none;
+          margin-top: 20px;
+
+          > table {
+            width: 100%;
+            border-collapse: collapse;
+
+            > thead {
+              > tr {
+                background-color: #354a65;
+                color: #fff;
+
+                > th {
+                  border: 1px solid #354a65;
+                }
+              }
+            }
+            > tbody {
+              > tr {
+                > td {
+                  border: 1px solid #354a65;
+                  padding-left: 10px;
+                }
+
+                > td:nth-child(3),
+                td:nth-child(4) {
+                  text-align: center;
+                }
+              }
+
+              > tr.course-hide {
+                display: none;
+              }
+            }
+          }
+
+          div.table-footer {
+            display: none;
+            margin-top: 15px;
+
+            div.indicator-component {
+              div.indicator-item {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-top: 10px;
+
+                div.sign {
+                  width: 25px;
+                }
+
+                div.meaning {
+                  margin-left: 10px;
+                }
+              }
+            }
+
+            div.schedule {
+              margin-top: 15px;
+            }
+          }
+
+          div.table-footer.show {
+            display: block;
+          }
+        }
+
+        > div.tab-table.active {
+          display: block;
+        }
+
+        > div.tab-footer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin-top: 20px;
+
+          > p {
+            border-bottom: 1px solid #354a65;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  div.success-story-component {
+    div.component-container {
+      position: relative;
+
+      div.slide-arrow {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: 35%;
+        left: 0;
+
+        div.arrow {
+          cursor: pointer;
+        }
+
+        div.left-arrow {
+          > svg {
+          }
+        }
+
+        div.right-arrow {
+          > svg {
+          }
+        }
+      }
+
+      div.component-slide {
+        width: 80%;
+        margin: 0 auto;
+
+        div.component-slide-wrap {
+          display: none;
+          justify-content: center;
+          align-items: center;
+
+          div.slide-img {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            > img {
+              border-radius: 50%;
+              width: 60%;
+              height: 60%;
+            }
+          }
+
+          div.slide-details {
+            flex: 7;
+            div.title {
+              > p {
+                font-weight: 700;
+                > strong {
+                  color: #eb9500;
+                }
+              }
+            }
+
+            div.description {
+              > p {
+              }
+            }
+          }
+        }
+
+        div.component-slide-wrap.active {
+          display: flex;
+        }
+      }
+
+      div.slide-dot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+
+        span.dot {
+          cursor: pointer;
+          height: 15px;
+          width: 15px;
+          margin: 0 2px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+          margin-left: 10px;
+
+          &:hover {
+            background-color: #eb9500;
+          }
+        }
+
+        span.dot.active {
+          background-color: #eb9500;
+        }
+      }
+    }
+  }
+
+  div.component-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    div.title {
+      > p {
+        display: inline;
+        vertical-align: initial;
+        overflow: initial;
+        max-width: initial;
+        margin: 0 2rem;
+        font-size: 1.35rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  div.component-container {
+    @media only screen and (min-width: 768px) {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+  }
+
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0.4;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

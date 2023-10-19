@@ -10,11 +10,7 @@ if (!ieChecks) {
   const main = new MainComponent();
   const poller = new Poller();
   poller.poll(
-    [
-      "body",
-      selectors.glideSlidesNthList + "(3)",
-      selectors.glideSlidesNthList + "(7)",
-    ],
+    ["body", selectors.unbounceTitle, selectors.successStories],
     main.init
   );
 }

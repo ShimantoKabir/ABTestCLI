@@ -1,5 +1,5 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { selectors } from "../common/asset";
+import { customEventName, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 
 export class MainComponent {
@@ -13,7 +13,7 @@ export class MainComponent {
     );
 
     const glideSlides3rdList: null | HTMLUListElement = document.querySelector(
-      selectors.glideSlidesNthList + "(2)"
+      selectors.glideSlidesNthList + "(3)"
     );
 
     if (!glideSlides7thList || !glideSlides3rdList) {
@@ -26,5 +26,24 @@ export class MainComponent {
 
     glideSlides3rdList.insertAdjacentElement("afterend", cloned7thSlide);
     glideSlides7thList.remove();
+
+    setTimeout(() => {
+      const glideSlides4thLink: null | HTMLUListElement =
+        document.querySelector(
+          selectors.glideSlidesNthList + "(4) a.dotted-link"
+        );
+
+      glideSlides4thLink &&
+        glideSlides4thLink.addEventListener("click", () => {
+          // @ts-ignore
+          window["optimizely"] = window["optimizely"] || [];
+          // @ts-ignore
+          window["optimizely"].push({
+            type: "event",
+            eventName: customEventName,
+          });
+          console.log("custom-event=", customEventName);
+        });
+    }, 500);
   };
 }
