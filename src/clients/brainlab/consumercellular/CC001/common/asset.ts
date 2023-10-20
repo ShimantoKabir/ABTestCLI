@@ -4,7 +4,7 @@ export const selectors = {
   phoneSelectorArea: "div.phone-selector-area",
   planContainer: "div.css-1f2odt2",
   plan: "div.css-mybjz6",
-  price: "p.css-13qu9nj",
+  price: "p.css-42j2ft",
   viewPlanLink: "a.css-10tsn0c",
   phoneSelector: "div.phone-selector",
   circle: "div.circle",
