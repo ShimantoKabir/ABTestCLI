@@ -31,11 +31,5 @@ export class MainComponent {
     } else {
       submitSection.insertAdjacentHTML("afterend", contactComponent.render());
     }
-
-    submitButton.addEventListener("click", () => {
-      console.log("mbox=", mboxNames.submitButtonMbox);
-      // @ts-ignore
-      adobe.target.trackEvent({ mbox: mboxNames.submitButtonMbox });
-    });
   };
 }

@@ -1,6 +1,7 @@
 import { planOfStudyData, tableRowHideBreakPoint } from "../common/asset";
 import { CourseItem } from "./course-item.component";
 import { IndicatorComponent } from "./indicator.component";
+import { MobilePlanOfStudyComponent } from "./mobile-plan-of-study.component";
 import { TItleComponent } from "./title.component";
 
 export class PlanOfStudyComponent {
@@ -8,6 +9,11 @@ export class PlanOfStudyComponent {
   tabTable: string = "tab-table";
   tabHeader: string = "tab-header";
   active: string = "active";
+  seeLessText: string = "See Less Course";
+  seeMoreText: string = "See More Course";
+
+  mobilePlanOfStudyComponent: MobilePlanOfStudyComponent =
+    new MobilePlanOfStudyComponent();
 
   getHtml = (): string => {
     const htmlString: string = `
@@ -63,7 +69,8 @@ export class PlanOfStudyComponent {
                 <tbody>
                 ${planOfStudyData.lpn.courses
                   .map((course, index) => {
-                    const needToHide: boolean = index > 4 ?? false;
+                    const needToHide: boolean =
+                      index > tableRowHideBreakPoint ?? false;
                     return CourseItem.getHtml(course, needToHide);
                   })
                   .join("\n")}
@@ -80,11 +87,16 @@ export class PlanOfStudyComponent {
               <p>See More Course</p>
             </div>
           </div>
+          ${this.mobilePlanOfStudyComponent.getHtml()}
         </div>
       </div>    
     `;
 
     return htmlString.trim();
+  };
+
+  replaceStringSpace = (str: string, replaceBy: string): string => {
+    return str.replace(/\s/g, replaceBy).toLowerCase();
   };
 
   manageTabFooterText = (tabFooter: HTMLDivElement) => {
@@ -96,12 +108,12 @@ export class PlanOfStudyComponent {
     }
 
     if (
-      tabFooterText.textContent.replace(/\s/g, "-").toLowerCase() ===
-      "see-more-course"
+      this.replaceStringSpace(tabFooterText.textContent, "-") ===
+      this.replaceStringSpace(this.seeMoreText, "-")
     ) {
-      tabFooterText.textContent = "See Less Course";
+      tabFooterText.textContent = this.seeLessText;
     } else {
-      tabFooterText.textContent = "See More Course";
+      tabFooterText.textContent = this.seeMoreText;
     }
 
     tabFooterText;
@@ -118,7 +130,7 @@ export class PlanOfStudyComponent {
     hiddenTableRows &&
       hiddenTableRows.length > 0 &&
       hiddenTableRows.forEach((tr: HTMLTableRowElement, index: number) => {
-        if (index > tableRowHideBreakPoint) {
+        if (index > tableRowHideBreakPoint + 1) {
           tr.classList.toggle("course-hide");
         }
       });
@@ -126,19 +138,22 @@ export class PlanOfStudyComponent {
 
   changeActiveForTable = (
     tabTables: NodeListOf<HTMLDivElement>,
-    event: string,
+    targetSection: string,
     tableIndex: number
   ) => {
     tabTables.forEach((tabTable: HTMLDivElement, index: number) => {
-      if (tabTable.classList.contains(this.active) && event === "see-more") {
+      if (
+        tabTable.classList.contains(this.active) &&
+        targetSection === this.tabFooter
+      ) {
         this.manageSeeMoreView(tabTable);
       }
 
-      if (event === "active") {
+      if (targetSection === this.tabTable) {
         tabTable.classList.remove(this.active);
       }
 
-      if (event === "active" && tableIndex === index) {
+      if (targetSection === this.tabTable && tableIndex === index) {
         tabTable.classList.add(this.active);
       }
     });
@@ -167,14 +182,39 @@ export class PlanOfStudyComponent {
 
     tabFooter.addEventListener("click", () => {
       this.manageTabFooterText(tabFooter);
-      this.changeActiveForTable(tabTables, "see-more", 10);
+      this.changeActiveForTable(tabTables, this.tabFooter, 10);
     });
 
     tabHeaderButtons.forEach((button: HTMLButtonElement, index: number) => {
       button.addEventListener("click", () => {
         this.mangeTabHeaderButtonActive(tabHeaderButtons, index);
-        this.changeActiveForTable(tabTables, "active", index);
+        this.changeActiveForTable(tabTables, this.tabTable, index);
+        this.syncFooterCtaText(tabFooter, tabTables);
       });
+    });
+  };
+
+  syncFooterCtaText = (
+    tabFooter: HTMLDivElement,
+    tabTables: NodeListOf<HTMLDivElement>
+  ) => {
+    tabTables.forEach((tabTable: HTMLDivElement) => {
+      if (tabTable.classList.contains(this.active)) {
+        const hiddenTableRow: null | HTMLTableRowElement =
+          tabTable.querySelector("tr.course-hide");
+        const tabFooterText: null | HTMLParagraphElement =
+          tabFooter.querySelector("p");
+
+        if (!hiddenTableRow && tabFooterText && tabFooterText.textContent) {
+          tabFooterText.textContent = this.seeLessText;
+        } else if (
+          hiddenTableRow &&
+          tabFooterText &&
+          tabFooterText.textContent
+        ) {
+          tabFooterText.textContent = this.seeMoreText;
+        }
+      }
     });
   };
 
