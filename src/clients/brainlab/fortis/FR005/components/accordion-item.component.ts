@@ -1,14 +1,13 @@
 import { adnIndicators } from "../common/adn.data";
-import { openOrCloseSvg } from "../common/asset";
+import { mboxNames, openOrCloseSvg } from "../common/asset";
 import { lpnIndicators } from "../common/lpn.data";
 import { Course } from "../models/course.model";
 import { Indicator } from "../models/indicator.model";
 
 export class AccordionItemComponent {
-  static getSignMeaning = (
-    credit: string,
-    type: string
-  ): Indicator | undefined => {
+  thead: string = "table.item-table>thead";
+
+  getSignMeaning = (credit: string, type: string): Indicator | undefined => {
     const sign: string = credit.substring(1);
     if (type === "adn") {
       const indicator: Indicator | undefined = adnIndicators.find(
@@ -27,7 +26,24 @@ export class AccordionItemComponent {
     }
   };
 
-  static getHtml = (course: Course, type: string): string => {
+  getSignMeaningHtml = (meaning: string): string => {
+    const htmlString: string = `
+      <tr>
+        <td colspan="3" >
+        ${meaning}
+        </td>
+      </tr>
+    `;
+
+    return htmlString.trim();
+  };
+
+  getHtml = (
+    course: Course,
+    type: string,
+    index: number,
+    needToHide: boolean
+  ): string => {
     const signMeaning: Indicator | undefined = this.getSignMeaning(
       course.credit,
       type
@@ -35,7 +51,7 @@ export class AccordionItemComponent {
 
     const htmlString: string = `
       <div class="accordion-item-component" >
-        <table>
+        <table class="item-table" >
           <thead>
             <tr>
               <th colspan="3" >
@@ -50,7 +66,7 @@ export class AccordionItemComponent {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="${index === 0 ? "show" : ""}" >
             <tr>
               <td>Course Code</td>
               <td>Clock Hours</td>
@@ -61,15 +77,32 @@ export class AccordionItemComponent {
               <td>${course.hours}</td>
               <td>${course.credit}</td>
             </tr>
-            <tr class="${signMeaning ? "" : "hide"}" >
-              <td colspan="3" >
-                ${signMeaning ? signMeaning.meaning : "N/A"};
-              </td>
-            </tr>
+            ${signMeaning ? this.getSignMeaningHtml(signMeaning.meaning) : ""}
           </tbody>
         </table>
       </div>
     `;
     return htmlString.trim();
+  };
+
+  makeReactive = () => {
+    const theads: NodeListOf<Element> | null = document.querySelectorAll(
+      this.thead
+    );
+
+    if (!theads || theads.length === 0) {
+      return;
+    }
+
+    theads.forEach((thead: Element) => {
+      thead.addEventListener("click", () => {
+        thead.nextElementSibling &&
+          thead.nextElementSibling.classList.toggle("show");
+        thead.classList.toggle("rotate");
+        console.log("mbox=", mboxNames.accordionToggle);
+        // @ts-ignore
+        adobe.target.trackEvent({ mbox: mboxNames.accordionToggle });
+      });
+    });
   };
 }

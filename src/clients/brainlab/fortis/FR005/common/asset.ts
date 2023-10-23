@@ -5,6 +5,7 @@ import { lpnCourses, lpnIndicators } from "./lpn.data";
 export const selectors = {
   unbounceTitle: "main.content>div>div.unbounce-title.parbase.section",
   successStories: "div.success-stories",
+  rfiButton: "main.content>div>div:nth-child(2) div.rfi-btn>a",
 };
 
 export const courseScheduleData = {
@@ -28,12 +29,14 @@ export const planOfStudyData = {
   title: "Plan of Study",
   adn: {
     title: "ASSOCIATE DEGREE IN NURSING (ADN)",
+    shortTitle: "ADN",
     courses: adnCourses,
     indicators: adnIndicators,
     Schedule: `Morning: 8:00 a.m. - 5:00 p.m. Monday through Friday Evening: 5:30 p.m. - 11:30 p.m. Monday through Friday *Clinical times may start as early 6:00am. Some rotations maybe over night rotations and end's late as 7:00am. This may also requve an occasional Saturday or Sunday. Hours are subject to change.`,
   },
   lpn: {
     title: "LICENSED PRACTICAL NURSING (LPN)",
+    shortTitle: "LPN",
     courses: lpnCourses,
     indicators: lpnIndicators,
     Schedule:
@@ -87,3 +90,18 @@ export const openOrCloseSvg = `
   <path d="M21.8981 8.58283L16.0405 14.454L10.7794 8.58283C10.3591 8.16249 9.68114 8.16249 9.27436 8.58283C8.85402 9.00317 8.85402 9.68114 9.27436 10.0879L14.5354 15.9591L8.58283 21.8981C8.16249 22.3184 8.16249 22.9964 8.58283 23.4032C9.00317 23.8235 9.68114 23.8235 10.0879 23.4032L15.9591 17.5455L21.2201 23.4032C21.6405 23.8235 22.3184 23.8235 22.7252 23.4032C23.1455 22.9828 23.1455 22.3049 22.7252 21.8981L17.4642 16.0405L23.4167 10.0879C23.8371 9.66758 23.8371 8.98961 23.4167 8.58283C22.9964 8.17605 22.3184 8.17605 21.8981 8.58283Z" fill="white"/>
 </svg>
 `;
+
+export const buttonTexts = {
+  seeLessText: "See Less Course",
+  seeMoreText: "See More Course",
+};
+
+export const mboxNames = {
+  requestInfo: "request-info",
+  seeMore: "see-more",
+  seeLess: "see-less",
+  tab: "tab",
+  slideArrow: "slide-arrow",
+  slideDot: "slide-dot",
+  accordionToggle: "accordion-toggle",
+};

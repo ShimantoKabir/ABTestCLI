@@ -1,21 +1,25 @@
+const paQuantity = "select#pa_quantity";
+const ulSelector = "ul.wcsatt-options-prompt-radios";
+
+function changeSelection() {
+  setTimeout(() => {
+    const ul = document.querySelector(ulSelector);
+    ul.lastElementChild.firstElementChild.click();
+  }, 100);
+}
+
 function runTest() {
-  const customEventName = "glide-3rd-or-6th-link-click";
-  console.log("ID: BB006, VARIATION: control, VERSION: 1.0.0 is running.....!");
-  const slide7thDottedLink = "ul.glide__slides>li:nth-child(7) a.dotted-link";
-  document.querySelector(slide7thDottedLink).addEventListener("click", () => {
-    window["optimizely"] = window["optimizely"] || [];
-    window["optimizely"].push({
-      type: "event",
-      eventName: customEventName,
-    });
-    console.log("custom-event=", customEventName);
+  console.log("Running....!");
+  changeSelection();
+  document.querySelector(paQuantity).addEventListener("change", () => {
+    changeSelection();
   });
 }
 
 (function pollOnload() {
   if (
     document.querySelector("body") &&
-    document.querySelector("ul.glide__slides>li:nth-child(7) a.dotted-link")
+    document.querySelector("select#pa_quantity")
   ) {
     try {
       runTest();

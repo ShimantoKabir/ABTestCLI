@@ -1,4 +1,4 @@
-import { courseScheduleData, selectors } from "../common/asset";
+import { courseScheduleData, mboxNames, selectors } from "../common/asset";
 import { PlanOfStudyComponent } from "./plan-of-Study.component";
 import { TItleComponent } from "./title.component";
 
@@ -29,7 +29,9 @@ export class CourseScheduleComponent {
                 <p>${courseScheduleData.requestInformation}</p>
               </div>
               <div class="request-cta" >
-                <button>${courseScheduleData.requestInformationCtaText}</button>
+                <button  data-toggle="modal" data-target="#rfiModal" >${
+                  courseScheduleData.requestInformationCtaText
+                }</button>
               </div>
             </div>
           </div>
@@ -51,6 +53,17 @@ export class CourseScheduleComponent {
     }
 
     unbounceTitle.insertAdjacentHTML("beforebegin", this.getHtml());
+
+    const request: null | HTMLDivElement = document.querySelector(
+      "div.request-cta>button"
+    );
+
+    request &&
+      request.addEventListener("click", () => {
+        console.log("mbox=", mboxNames.requestInfo);
+        // @ts-ignore
+        adobe.target.trackEvent({ mbox: mboxNames.requestInfo });
+      });
 
     this.planOfStudyComponent.makeReactive();
 

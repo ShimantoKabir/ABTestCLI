@@ -1,4 +1,10 @@
-import { planOfStudyData, tableRowHideBreakPoint } from "../common/asset";
+import {
+  buttonTexts,
+  mboxNames,
+  planOfStudyData,
+  tableRowHideBreakPoint,
+} from "../common/asset";
+import { replaceStringSpace } from "../common/utils";
 import { CourseItem } from "./course-item.component";
 import { IndicatorComponent } from "./indicator.component";
 import { MobilePlanOfStudyComponent } from "./mobile-plan-of-study.component";
@@ -9,8 +15,6 @@ export class PlanOfStudyComponent {
   tabTable: string = "tab-table";
   tabHeader: string = "tab-header";
   active: string = "active";
-  seeLessText: string = "See Less Course";
-  seeMoreText: string = "See More Course";
 
   mobilePlanOfStudyComponent: MobilePlanOfStudyComponent =
     new MobilePlanOfStudyComponent();
@@ -95,10 +99,6 @@ export class PlanOfStudyComponent {
     return htmlString.trim();
   };
 
-  replaceStringSpace = (str: string, replaceBy: string): string => {
-    return str.replace(/\s/g, replaceBy).toLowerCase();
-  };
-
   manageTabFooterText = (tabFooter: HTMLDivElement) => {
     const tabFooterText: null | HTMLParagraphElement =
       tabFooter.querySelector("p");
@@ -108,12 +108,18 @@ export class PlanOfStudyComponent {
     }
 
     if (
-      this.replaceStringSpace(tabFooterText.textContent, "-") ===
-      this.replaceStringSpace(this.seeMoreText, "-")
+      replaceStringSpace(tabFooterText.textContent, "-") ===
+      replaceStringSpace(buttonTexts.seeMoreText, "-")
     ) {
-      tabFooterText.textContent = this.seeLessText;
+      tabFooterText.textContent = buttonTexts.seeLessText;
+      console.log("mbox=", mboxNames.seeMore);
+      // @ts-ignore
+      adobe.target.trackEvent({ mbox: mboxNames.seeMore });
     } else {
-      tabFooterText.textContent = this.seeMoreText;
+      tabFooterText.textContent = buttonTexts.seeMoreText;
+      console.log("mbox=", mboxNames.seeLess);
+      // @ts-ignore
+      adobe.target.trackEvent({ mbox: mboxNames.seeLess });
     }
 
     tabFooterText;
@@ -190,8 +196,13 @@ export class PlanOfStudyComponent {
         this.mangeTabHeaderButtonActive(tabHeaderButtons, index);
         this.changeActiveForTable(tabTables, this.tabTable, index);
         this.syncFooterCtaText(tabFooter, tabTables);
+        console.log("mbox=", mboxNames.tab);
+        // @ts-ignore
+        adobe.target.trackEvent({ mbox: mboxNames.tab });
       });
     });
+
+    this.mobilePlanOfStudyComponent.makeReactive();
   };
 
   syncFooterCtaText = (
@@ -206,13 +217,13 @@ export class PlanOfStudyComponent {
           tabFooter.querySelector("p");
 
         if (!hiddenTableRow && tabFooterText && tabFooterText.textContent) {
-          tabFooterText.textContent = this.seeLessText;
+          tabFooterText.textContent = buttonTexts.seeLessText;
         } else if (
           hiddenTableRow &&
           tabFooterText &&
           tabFooterText.textContent
         ) {
-          tabFooterText.textContent = this.seeMoreText;
+          tabFooterText.textContent = buttonTexts.seeMoreText;
         }
       }
     });

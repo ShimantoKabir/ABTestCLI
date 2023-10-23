@@ -1,29 +1,6 @@
 @import "./common";
 
 .#{$id} {
-  &__hide {
-    display: none !important;
-  }
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 600px) {
-  }
-
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-  }
-
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-  }
-
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-  }
-
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
-  }
-
   div.success-stories {
     display: none;
   }
@@ -96,11 +73,6 @@
           align-items: center;
           flex-direction: column;
 
-          div.request-info {
-            > p {
-            }
-          }
-
           div.request-cta {
             margin-top: 30px;
             > button {
@@ -114,6 +86,14 @@
               border: none;
             }
           }
+
+          @media only screen and (max-width: 768px) {
+            margin-top: 20px;
+          }
+        }
+
+        @media only screen and (max-width: 768px) {
+          flex-direction: column;
         }
       }
     }
@@ -166,6 +146,7 @@
                 }
               }
             }
+
             > tbody {
               > tr {
                 > td {
@@ -239,10 +220,168 @@
       }
 
       > div.mobile-component-details {
+        padding: 5px;
+
+        > div.mobile-tab-header {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          padding: 20px;
+
+          > button {
+            border: 1px solid #354a65;
+            color: #354a65;
+            padding: 10px 15px;
+            font-weight: 700;
+            cursor: pointer;
+            background-color: #fff;
+          }
+
+          > button:first-child {
+            background-color: #354a65;
+            border: 1px solid #354a65;
+            color: #fff;
+          }
+        }
+
+        > div.mobile-tab-header.switch {
+          > button:first-child {
+            background-color: #fff;
+            color: #354a65;
+          }
+
+          > button:last-child {
+            background-color: #354a65;
+            border: 1px solid #354a65;
+            color: #fff;
+          }
+        }
+
+        > div.accordion-container {
+          > div.accordion-wrap {
+            > div.accordion-item-component {
+              margin-top: 10px;
+
+              > table.item-table {
+                width: 100%;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                background-color: #fff;
+                border-collapse: collapse;
+
+                > tbody {
+                  display: none;
+
+                  background-color: #f3f1ec;
+                  > tr {
+                    > td {
+                      padding: 5px 10px;
+                    }
+
+                    > td:nth-child(1) {
+                      width: 30%;
+                    }
+                    > td:nth-child(2) {
+                      width: 40%;
+                    }
+                    > td:nth-child(3) {
+                      width: 30%;
+                    }
+                  }
+                }
+
+                > tbody.show {
+                  display: block;
+                }
+
+                > thead {
+                  div.course-title {
+                    display: flex;
+                    background-color: #354a65;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 5px 10px;
+                    font-size: 17px;
+
+                    > div.title {
+                      color: #fff;
+                      text-align: left;
+                    }
+
+                    > div.icon {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      width: 25px;
+                      rotate: 45deg;
+                    }
+                  }
+                }
+
+                > thead.rotate {
+                  div.course-title {
+                    > div.icon {
+                      rotate: 90deg;
+                    }
+                  }
+                }
+              }
+            }
+
+            > div.accordion-item-component.hide {
+              display: none;
+            }
+
+            > div:nth-child(n + 6) {
+              display: none;
+            }
+          }
+
+          > div:last-child {
+            display: none;
+          }
+        }
+
+        > div.accordion-container.switch {
+          > div:first-child {
+            display: none;
+          }
+
+          > div:last-child {
+            display: block;
+          }
+        }
+
+        > div.accordion-container.show {
+          > div.accordion-wrap {
+            > div:nth-child(n + 6) {
+              display: block;
+            }
+          }
+        }
+
+        > div.mobile-tab-footer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          margin-top: 20px;
+
+          > p {
+            border-bottom: 1px solid #354a65;
+            font-weight: 700;
+          }
+        }
+
         @media only screen and (min-width: 768px) {
           display: none;
         }
       }
+    }
+
+    div.mobile-tab-header {
+      margin-top: 0;
     }
 
     p {
@@ -278,6 +417,10 @@
 
         div.right-arrow {
           padding-right: 10px;
+        }
+
+        @media only screen and (max-width: 768px) {
+          top: 5%;
         }
       }
 
@@ -324,10 +467,13 @@
               }
             }
 
-            div.description {
-              > p {
-              }
+            @media only screen and (max-width: 768px) {
+              margin-top: 20px;
             }
+          }
+
+          @media only screen and (max-width: 768px) {
+            flex-direction: column;
           }
         }
 
@@ -362,6 +508,10 @@
           background-color: #eb9500;
         }
       }
+    }
+
+    @media only screen and (max-width: 768px) {
+      margin-top: 40px;
     }
   }
 

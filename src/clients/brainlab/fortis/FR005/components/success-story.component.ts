@@ -1,4 +1,9 @@
-import { leftArrowSvg, rightArrowSvg, successStories } from "../common/asset";
+import {
+  leftArrowSvg,
+  mboxNames,
+  rightArrowSvg,
+  successStories,
+} from "../common/asset";
 import { SuccessStory } from "../models/success-story.model";
 
 export class SuccessStoryComponent {
@@ -85,17 +90,26 @@ export class SuccessStoryComponent {
     leftArrow.addEventListener("click", () => {
       this.slideIndex = this.slideIndex - 1;
       this.changeSlide(slides, dots, this.slideIndex);
+      console.log("mbox=", mboxNames.slideArrow);
+      // @ts-ignore
+      adobe.target.trackEvent({ mbox: mboxNames.slideArrow });
     });
 
     rightArrow.addEventListener("click", () => {
       this.slideIndex = this.slideIndex + 1;
       this.changeSlide(slides, dots, this.slideIndex);
+      console.log("mbox=", mboxNames.slideArrow);
+      // @ts-ignore
+      adobe.target.trackEvent({ mbox: mboxNames.slideArrow });
     });
 
     dots.forEach((dot: HTMLSpanElement, index: number) => {
       dot.addEventListener("click", () => {
         this.slideIndex = index + 1;
         this.changeSlide(slides, dots, this.slideIndex);
+        console.log("mbox=", mboxNames.slideArrow);
+        // @ts-ignore
+        adobe.target.trackEvent({ mbox: mboxNames.slideArrow });
       });
     });
   };
