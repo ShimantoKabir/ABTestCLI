@@ -9,14 +9,5 @@ const ieChecks = /MSIE|Trident|Edge\/(12|13|14|15|16|17|18)/.test(
 if (!ieChecks) {
   const main = new MainComponent();
   const poller = new Poller();
-  poller.poll(
-    [
-      "body",
-      selectors.unbounceTitle,
-      selectors.successStories,
-      selectors.nursingText,
-      selectors.submitButton,
-    ],
-    main.init
-  );
+  poller.poll(["body", selectors.applyCta], main.init);
 }

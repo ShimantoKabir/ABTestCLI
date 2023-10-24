@@ -6,18 +6,14 @@ export const selectors = {
   unbounceTitle: "main.content>div>div.unbounce-title.parbase.section",
   successStories: "div.success-stories",
   rfiButton: "main.content>div>div:nth-child(2) div.rfi-btn>a",
+  nursingText: "div.align-right>div.text>p:nth-child(3)",
+  submitButton: "div.modal-content>div.submit>button",
+  applyCta: "div.rfi-btn>a",
 };
 
 export const courseScheduleData = {
   title: "Course Schedule",
-  nursingPrograms: [
-    "Nursing Programs",
-    "October 2, 2023",
-    "January 8, 2024",
-    "April 4, 2024",
-    "July 8, 2024",
-    "September 30, 2024",
-  ],
+  nursingPrograms: ["Nursing Programs", "October 2, 2023", "January 8, 2024"],
   requestInformation:
     "The number of classes taken online varies each term, and some terms in the program may be taught entirely on campus. Speak to one of our admissions representatives for more information.",
   requestInformationCtaText: "Request Information",
@@ -92,16 +88,18 @@ export const openOrCloseSvg = `
 `;
 
 export const buttonTexts = {
-  seeLessText: "See Less Course",
-  seeMoreText: "See More Course",
+  seeLessText: "See Less Courses",
+  seeMoreText: "See More Courses",
 };
 
 export const mboxNames = {
-  requestInfo: "request-info",
   seeMore: "see-more",
   seeLess: "see-less",
   tab: "tab",
   slideArrow: "slide-arrow",
   slideDot: "slide-dot",
   accordionToggle: "accordion-toggle",
+  formSubmitButton: "form-submit-button",
+  applyClick: "apply-click",
+  scrollToSndOfWhatToLear: "scroll-to-end-of-what-to-learn",
 };

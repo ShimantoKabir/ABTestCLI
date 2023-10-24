@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'FR-TRIGGER', SITE = 'fortis', TITLE = 'Common trigger for all fortis test', CLIENT = 'brainlab', TARGET = 'https://www.fortis.edu', VARIATION = 'all'}

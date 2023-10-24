@@ -3,7 +3,7 @@ const submitButton = "div.modal-content>div.submit>button";
 const applyCta = "div.rfi-btn>a";
 const mboxNames = {
   formSubmitButton: "form-submit-button",
-  applyClick: "top-apply-click",
+  applyClick: "apply-click",
   scrollToSndOfWhatToLear: "scroll-to-end-of-what-to-learn",
 };
 
@@ -14,13 +14,13 @@ function triggerMetrics(mboxName) {
 }
 
 function runTest() {
-  console.log("Running....!");
+  console.log("ID: FR005, VARIATION: control, VERSION: 0.0.2 is running.....!");
 
   const nursingTextElm = document.querySelector(nursingText);
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.boundingClientRect.top > 0) {
+      if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
         triggerMetrics(mboxNames.scrollToSndOfWhatToLear);
       }
     });

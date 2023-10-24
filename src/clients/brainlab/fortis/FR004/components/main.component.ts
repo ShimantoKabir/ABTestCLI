@@ -8,27 +8,55 @@ export class MainComponent {
     Initializer.init(TestInfo, "0.0.1");
   }
 
+  triggerMetrics = (mboxName: string) => {
+    console.log("mbox=", mboxName);
+    // @ts-ignore
+    adobe.target.trackEvent({ mbox: mboxName });
+  };
+
   init = (): void => {
-    const contactComponent = new ContactComponent();
-
-    const submitSection: null | HTMLDivElement = document.querySelector(
-      selectors.submitSection
-    );
-    const modelHeader: null | HTMLDivElement = document.querySelector(
-      selectors.modelHeader
-    );
-
     const submitButton: null | HTMLDivElement = document.querySelector(
       selectors.submitSection + ">button"
     );
 
-    if (!submitSection || !modelHeader || !submitButton) {
+    submitButton &&
+      submitButton.addEventListener("click", () => {
+        this.triggerMetrics(mboxNames.formSubmitButtonMbox);
+      });
+
+    const applyCtas: null | NodeListOf<HTMLAnchorElement> =
+      document.querySelectorAll(selectors.applyCta);
+
+    applyCtas &&
+      applyCtas.length !== 0 &&
+      applyCtas.forEach((applyCta: HTMLAnchorElement, index: number) => {
+        applyCta.addEventListener("click", () => {
+          index === 0 && this.triggerMetrics(mboxNames.topApplyClick);
+          index === 1 && this.triggerMetrics(mboxNames.bottomApplyClick);
+        });
+      });
+
+    if (TestInfo.VARIATION.toString() === "control") {
+      return;
+    }
+
+    const contactComponent = new ContactComponent();
+
+    const modelHeader: null | HTMLDivElement = document.querySelector(
+      selectors.modelHeader
+    );
+
+    const submitSection: null | HTMLDivElement = document.querySelector(
+      selectors.submitSection
+    );
+
+    if (!submitSection || !modelHeader) {
       return;
     }
 
     if (TestInfo.VARIATION.toString() === "1") {
       modelHeader.insertAdjacentHTML("afterend", contactComponent.render());
-    } else {
+    } else if (TestInfo.VARIATION.toString() === "2") {
       submitSection.insertAdjacentHTML("afterend", contactComponent.render());
     }
   };

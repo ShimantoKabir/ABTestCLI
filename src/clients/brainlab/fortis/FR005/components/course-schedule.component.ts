@@ -1,4 +1,5 @@
 import { courseScheduleData, mboxNames, selectors } from "../common/asset";
+import { triggerMetrics } from "../common/utils";
 import { PlanOfStudyComponent } from "./plan-of-Study.component";
 import { TItleComponent } from "./title.component";
 
@@ -60,9 +61,7 @@ export class CourseScheduleComponent {
 
     request &&
       request.addEventListener("click", () => {
-        console.log("mbox=", mboxNames.requestInfo);
-        // @ts-ignore
-        adobe.target.trackEvent({ mbox: mboxNames.requestInfo });
+        triggerMetrics(mboxNames.applyClick);
       });
 
     this.planOfStudyComponent.makeReactive();

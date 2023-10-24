@@ -4,7 +4,7 @@ import {
   planOfStudyData,
   tableRowHideBreakPoint,
 } from "../common/asset";
-import { replaceStringSpace } from "../common/utils";
+import { replaceStringSpace, triggerMetrics } from "../common/utils";
 import { AccordionItemComponent } from "./accordion-item.component";
 
 export class MobilePlanOfStudyComponent {
@@ -54,7 +54,7 @@ export class MobilePlanOfStudyComponent {
           </div>
         </div>
         <div class="mobile-tab-footer" >
-          <p>See More Course</p>
+          <p>See More Courses</p>
         </div>
       </div>
     `;
@@ -109,14 +109,10 @@ export class MobilePlanOfStudyComponent {
         replaceStringSpace(buttonTexts.seeMoreText, "-")
       ) {
         mobileTabFooter.textContent = buttonTexts.seeLessText;
-        console.log("mbox=", mboxNames.seeMore);
-        // @ts-ignore
-        adobe.target.trackEvent({ mbox: mboxNames.seeMore });
+        triggerMetrics(mboxNames.seeMore);
       } else {
         mobileTabFooter.textContent = buttonTexts.seeMoreText;
-        console.log("mbox=", mboxNames.seeLess);
-        // @ts-ignore
-        adobe.target.trackEvent({ mbox: mboxNames.seeLess });
+        triggerMetrics(mboxNames.seeLess);
       }
 
       accordionContainer.classList.toggle("show");

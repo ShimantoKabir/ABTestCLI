@@ -1,6 +1,7 @@
 export const selectors = {
   modelHeader: "div.modal-header",
   submitSection: "div.modal-content>div.submit",
+  applyCta: "div.rfi-btn>a",
 };
 
 export const helps = [
@@ -22,5 +23,7 @@ export const helps = [
 ];
 
 export const mboxNames = {
-  submitButtonMbox: "submit-button-mbox",
+  formSubmitButtonMbox: "form-submit-button-mbox",
+  topApplyClick: "top-apply-click",
+  bottomApplyClick: "bottom-apply-click",
 };

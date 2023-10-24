@@ -4,7 +4,7 @@ import {
   planOfStudyData,
   tableRowHideBreakPoint,
 } from "../common/asset";
-import { replaceStringSpace } from "../common/utils";
+import { replaceStringSpace, triggerMetrics } from "../common/utils";
 import { CourseItem } from "./course-item.component";
 import { IndicatorComponent } from "./indicator.component";
 import { MobilePlanOfStudyComponent } from "./mobile-plan-of-study.component";
@@ -88,7 +88,7 @@ export class PlanOfStudyComponent {
               </div>
             </div>
             <div class="${this.tabFooter}" >
-              <p>See More Course</p>
+              <p>See More Courses</p>
             </div>
           </div>
           ${this.mobilePlanOfStudyComponent.getHtml()}
@@ -112,14 +112,10 @@ export class PlanOfStudyComponent {
       replaceStringSpace(buttonTexts.seeMoreText, "-")
     ) {
       tabFooterText.textContent = buttonTexts.seeLessText;
-      console.log("mbox=", mboxNames.seeMore);
-      // @ts-ignore
-      adobe.target.trackEvent({ mbox: mboxNames.seeMore });
+      triggerMetrics(mboxNames.seeMore);
     } else {
       tabFooterText.textContent = buttonTexts.seeMoreText;
-      console.log("mbox=", mboxNames.seeLess);
-      // @ts-ignore
-      adobe.target.trackEvent({ mbox: mboxNames.seeLess });
+      triggerMetrics(mboxNames.seeLess);
     }
 
     tabFooterText;
