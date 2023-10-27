@@ -1,8 +1,18 @@
-import { breadcrumbs, rightArrowSvg, selectors } from "../common/asset";
+import {
+  breadcrumbs,
+  mboxNames,
+  rightArrowSvg,
+  selectors,
+} from "../common/asset";
+import { triggerMetrics } from "../common/utils";
+import { Accordion } from "../models/accordion";
+import { ServiceComponent } from "./service.component";
 
 export class BreadcrumbComponent {
+  serviceComponent: ServiceComponent = new ServiceComponent();
+
   getBreadcrumbItem = (text: string, index: number): string => {
-    const activeClassName: string = index === 0 ? "breadcrumb-item-active" : "";
+    const activeClassName: string = index === 0 ? "active" : "";
     const htmlString: string = `
       <div class="breadcrumb-item ${activeClassName}" >
         <div class="text" >
@@ -47,6 +57,13 @@ export class BreadcrumbComponent {
   };
 
   render = () => {
+    const checkoutSections: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(selectors.checkoutSections);
+
+    checkoutSections.length === 6 &&
+      checkoutSections[4].parentElement &&
+      checkoutSections[4].parentElement.classList.add("aarp");
+
     if (window.innerWidth < 960) {
       const baseComponent: null | HTMLDivElement = document.querySelector(
         selectors.baseComponent
@@ -74,5 +91,46 @@ export class BreadcrumbComponent {
         oldSaveCard.click();
       });
     }
+
+    checkoutSections && this.addListenerToBreadcrumb(checkoutSections);
+  };
+
+  addListenerToBreadcrumb = (checkoutSections: NodeListOf<HTMLDivElement>) => {
+    const breadcrumbItems: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(selectors.breadcrumbItems);
+
+    if (!breadcrumbItems || breadcrumbItems.length === 0) {
+      return;
+    }
+
+    const accordions: Accordion[] =
+      this.serviceComponent.getAccordionData(checkoutSections);
+
+    breadcrumbItems.forEach((item: HTMLDivElement, index: number) => {
+      item.addEventListener("click", () => {
+        triggerMetrics(mboxNames.breadcrumbClick);
+        this.serviceComponent.manageCurrentBreadcrumbActive(
+          breadcrumbItems,
+          index
+        );
+        this.manageCurrentCardActive(accordions, index);
+      });
+    });
+  };
+
+  manageCurrentCardActive = (accordions: Accordion[], index: number) => {
+    accordions.forEach((accordion: Accordion, aIndex: number) => {
+      this.serviceComponent.switchActiveToAccordions(
+        accordion.accordionGroupsIndex,
+        aIndex === index ? "add" : "remove"
+      );
+    });
+  };
+
+  remove = () => {
+    const breadcrumb: null | HTMLDivElement = document.querySelector(
+      "div.breadcrumb-component"
+    );
+    breadcrumb && breadcrumb.remove();
   };
 }

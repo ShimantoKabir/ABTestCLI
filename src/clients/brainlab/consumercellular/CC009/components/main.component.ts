@@ -10,7 +10,7 @@ export class MainComponent {
   isCCIDFound: boolean = false;
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.4");
   }
 
   init = (): void => {
@@ -35,6 +35,13 @@ export class MainComponent {
 
           const nextButtonComponent = new NextButtonComponent();
           nextButtonComponent.render();
+
+          nextButtonComponent.handleAarpClick(() => {
+            console.log("hi");
+            breadcrumbComponent.remove();
+            breadcrumbComponent.render();
+            console.log("by");
+          });
 
           this.isCCIDFound = true;
         }

@@ -1,6 +1,7 @@
 export const selectors = {
   shoppingPageContainer: "div#shopping-page-container",
   checkoutWrapper: "div#checkout-wrapper",
+  checkoutSection: "div#checkout-sections-column",
   checkoutSections: "div#checkout-sections-column>div",
   placeOrderButtons: "div.submit-section>button",
   nextButtons: "div.next-button-component>button",
@@ -11,6 +12,7 @@ export const selectors = {
   newSaveCard: "div.checkout-header>div.left>h4",
   errors:
     "form.billing-info>div:nth-child(4), div.shipping-info-component>div:nth-child(4), form.payment-info>div.error",
+  aarpJoinButton: "div.customer-info-component-template>button.btn",
 };
 
 export const pageData = {
