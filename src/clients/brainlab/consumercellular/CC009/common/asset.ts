@@ -13,6 +13,7 @@ export const selectors = {
   errors:
     "form.billing-info>div:nth-child(4), div.shipping-info-component>div:nth-child(4), form.payment-info>div.error",
   aarpJoinButton: "div.customer-info-component-template>button.btn",
+  shoppingContainer: "div.shopping-container",
 };
 
 export const pageData = {
@@ -24,19 +25,24 @@ export const pageData = {
 
 export const breadcrumbs = [
   {
-    text: "CUSTOMER INFORMATION",
+    bigText: "CUSTOMER INFORMATION",
+    shortText: "CI",
   },
   {
-    text: "BILLING INFORMATION",
+    bigText: "BILLING INFORMATION",
+    shortText: "BI",
   },
   {
-    text: "SHIPPING INFORMATION",
+    bigText: "SHIPPING INFORMATION",
+    shortText: "SI",
   },
   {
-    text: "OTHER INFORMATION",
+    bigText: "OTHER INFORMATION",
+    shortText: "OI",
   },
   {
-    text: "PAYMENT INFORMATION",
+    bigText: "PAYMENT INFORMATION",
+    shortText: "PI",
   },
 ];
 

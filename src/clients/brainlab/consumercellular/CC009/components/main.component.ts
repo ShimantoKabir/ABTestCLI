@@ -37,10 +37,10 @@ export class MainComponent {
           nextButtonComponent.render();
 
           nextButtonComponent.handleAarpClick(() => {
-            console.log("hi");
             breadcrumbComponent.remove();
             breadcrumbComponent.render();
-            console.log("by");
+            nextButtonComponent.remove();
+            nextButtonComponent.render();
           });
 
           this.isCCIDFound = true;

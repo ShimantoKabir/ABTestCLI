@@ -1,6 +1,10 @@
 @import "./common";
 
 .#{$id} {
+  div#checkout-wrapper {
+    padding-top: 10px !important;
+  }
+
   div.base-affix-component > div > div > h2 {
     display: none;
 
@@ -64,6 +68,11 @@
           display: flex;
           justify-content: flex-start;
           align-items: center;
+
+          > i.error-icon {
+            display: none;
+            color: #d0021b;
+          }
         }
 
         > div.card-content {
@@ -116,6 +125,17 @@
       }
     }
 
+    > div.summary-section.error {
+      > div.card {
+        > div.card-title {
+          > i.error-icon {
+            display: block !important;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
     > div:last-child {
       > div.card {
         padding: 0 !important;
@@ -134,10 +154,18 @@
   }
 
   div.breadcrumb-component {
+    padding: 1.5rem 4.5rem;
+    position: sticky;
+    top: 15px;
+    z-index: 19000;
+    background-color: #fff;
+
     div.checkout-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 15px;
+      margin-bottom: 20px;
 
       > div.right {
         > h2 {
@@ -167,8 +195,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 2px;
-      margin: 20px 0;
 
       div.breadcrumb-item {
         display: flex;
@@ -203,6 +229,22 @@
               line-height: 22px;
               font-weight: 400;
               padding: 0;
+            }
+          }
+
+          > h3.big-text {
+            display: none;
+
+            @media only screen and (min-width: 960px) {
+              display: block;
+            }
+          }
+
+          > h3.short-text {
+            display: none;
+
+            @media only screen and (max-width: 959px) {
+              display: block;
             }
           }
 

@@ -11,12 +11,13 @@ import { ServiceComponent } from "./service.component";
 export class BreadcrumbComponent {
   serviceComponent: ServiceComponent = new ServiceComponent();
 
-  getBreadcrumbItem = (text: string, index: number): string => {
+  getBreadcrumbItem = (breadcrumb: any, index: number): string => {
     const activeClassName: string = index === 0 ? "active" : "";
     const htmlString: string = `
       <div class="breadcrumb-item ${activeClassName}" >
         <div class="text" >
-          <h3>${text}</h3>
+          <h3 class="big-text" >${breadcrumb.bigText}</h3>
+          <h3 class="short-text" >${breadcrumb.shortText}</h3>
         </div>
         <div class="icon" >
           ${rightArrowSvg}
@@ -46,9 +47,7 @@ export class BreadcrumbComponent {
         ${this.getHeader()} 
         <div class="breadcrumb-component-wrap">
         ${breadcrumbs
-          .map((breadcrumb, index) =>
-            this.getBreadcrumbItem(breadcrumb.text, index)
-          )
+          .map((breadcrumb, index) => this.getBreadcrumbItem(breadcrumb, index))
           .join("\n")}
         </div>
       </div>
@@ -64,20 +63,20 @@ export class BreadcrumbComponent {
       checkoutSections[4].parentElement &&
       checkoutSections[4].parentElement.classList.add("aarp");
 
-    if (window.innerWidth < 960) {
-      const baseComponent: null | HTMLDivElement = document.querySelector(
-        selectors.baseComponent
-      );
-      baseComponent &&
-        baseComponent.insertAdjacentHTML("afterend", this.getHtml());
-      return;
-    }
+    // if (window.innerWidth < 960) {
+    //   const baseComponent: null | HTMLDivElement = document.querySelector(
+    //     selectors.baseComponent
+    //   );
+    //   baseComponent &&
+    //     baseComponent.insertAdjacentHTML("afterend", this.getHtml());
+    //   return;
+    // }
 
-    const checkoutWrapper: null | HTMLDivElement = document.querySelector(
-      selectors.checkoutWrapper
+    const shoppingContainer: null | HTMLDivElement = document.querySelector(
+      selectors.shoppingContainer
     );
-    checkoutWrapper &&
-      checkoutWrapper.insertAdjacentHTML("afterbegin", this.getHtml());
+    shoppingContainer &&
+      shoppingContainer.insertAdjacentHTML("afterbegin", this.getHtml());
 
     const newSaveCard: null | HTMLHeadElement = document.querySelector(
       selectors.newSaveCard
@@ -114,8 +113,11 @@ export class BreadcrumbComponent {
           index
         );
         this.manageCurrentCardActive(accordions, index);
+        this.serviceComponent.clickNthCheckoutHeader(index, accordions);
       });
     });
+
+    this.serviceComponent.checkErrorOnPlaceOrderButtonClick(accordions);
   };
 
   manageCurrentCardActive = (accordions: Accordion[], index: number) => {

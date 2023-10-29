@@ -70,12 +70,6 @@ export class NextButtonComponent {
       nextButton.addEventListener("click", () => {
         triggerMetrics(mboxNames.nextClick);
 
-        const isErrorFound = this.serviceComponent.findNthSectionInputError(
-          accordions[index].accordionGroupsIndex
-        );
-
-        this.setDoneToCheckoutSection(index, accordions, "add");
-
         this.serviceComponent.manageCurrentBreadcrumbActive(
           breadcrumbItems,
           index + 1
@@ -90,22 +84,14 @@ export class NextButtonComponent {
           accordions[index + 1].accordionGroupsIndex,
           "add"
         );
+
+        this.serviceComponent.clickNthCheckoutHeader(index, accordions);
       });
+
+      this.serviceComponent.setErrorIconToCheckoutHeader(index, accordions);
     });
-  };
 
-  setDoneToCheckoutSection = (
-    index: number,
-    accordions: Accordion[],
-    action: string
-  ) => {
-    const section: null | HTMLDivElement =
-      this.serviceComponent.getNthCheckoutSection(
-        accordions[index].accordionGroupsIndex[0]
-      );
-
-    action === "add" && section && section.classList.add("done");
-    action === "remove" && section && section.classList.remove("done");
+    // this.serviceComponent.checkErrorAfterRender(accordions);
   };
 
   handleAarpClick = (callback: Function) => {
@@ -119,14 +105,12 @@ export class NextButtonComponent {
           const aarpSection: null | HTMLDivElement =
             this.serviceComponent.getNthCheckoutSection(3);
           aarpSection && aarpSection.classList.add("active");
-          this.removeAllNextButton();
-          this.render();
           callback();
         }, 250);
       });
   };
 
-  removeAllNextButton = () => {
+  remove = () => {
     const buttons: null | NodeListOf<HTMLDivElement> =
       document.querySelectorAll("div.next-button-component");
 

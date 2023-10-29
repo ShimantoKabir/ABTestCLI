@@ -1,8 +1,111 @@
-import { mboxNames, selectors } from "../common/asset";
-import { triggerMetrics } from "../common/utils";
+import { selectors } from "../common/asset";
 import { Accordion } from "../models/accordion";
 
 export class ServiceComponent {
+  checkErrorOnPlaceOrderButtonClick = (accordions: Accordion[]) => {
+    const placeOrderButtons: null | NodeListOf<HTMLButtonElement> =
+      this.getPlaceOrderButton();
+
+    if (!placeOrderButtons || placeOrderButtons.length === 0) {
+      return;
+    }
+
+    placeOrderButtons.forEach((button: HTMLButtonElement) => {
+      button.addEventListener("click", () => {
+        setTimeout(() => {
+          accordions.forEach((accordion: Accordion, index) => {
+            const isErrorFound = this.findNthSectionInputError(
+              accordion.accordionGroupsIndex
+            );
+
+            !isErrorFound &&
+              this.setDoneOrErrorToCheckoutSection(
+                index,
+                accordions,
+                "add",
+                "success"
+              );
+
+            isErrorFound &&
+              this.setDoneOrErrorToCheckoutSection(
+                index,
+                accordions,
+                "remove",
+                "success"
+              );
+
+            !isErrorFound &&
+              this.setDoneOrErrorToCheckoutSection(
+                index,
+                accordions,
+                "remove",
+                "error"
+              );
+
+            isErrorFound &&
+              this.setDoneOrErrorToCheckoutSection(
+                index,
+                accordions,
+                "add",
+                "error"
+              );
+          });
+        }, 250);
+      });
+    });
+  };
+
+  setDoneOrErrorToCheckoutSection = (
+    index: number,
+    accordions: Accordion[],
+    action: string,
+    type: string
+  ) => {
+    const section: null | HTMLDivElement = this.getNthCheckoutSection(
+      accordions[index].accordionGroupsIndex[0]
+    );
+    type === "success" &&
+      action === "add" &&
+      section &&
+      section.classList.add("done");
+
+    type === "success" &&
+      action === "remove" &&
+      section &&
+      section.classList.remove("done");
+
+    type === "error" &&
+      action === "add" &&
+      section &&
+      section.classList.add("error");
+
+    type === "error" &&
+      action === "remove" &&
+      section &&
+      section.classList.remove("error");
+  };
+
+  checkErrorAfterRender = (accordions: Accordion[]) => {
+    const errors: null | NodeListOf<HTMLDivElement> = document.querySelectorAll(
+      selectors.errors
+    );
+
+    errors.forEach((errorElm: HTMLDivElement, index: number) => {
+      const style = errorElm.getAttribute("style");
+      style &&
+        index === 0 &&
+        this.setDoneOrErrorToCheckoutSection(1, accordions, "add", "error");
+
+      style &&
+        index === 1 &&
+        this.setDoneOrErrorToCheckoutSection(2, accordions, "add", "error");
+
+      style &&
+        index === 2 &&
+        this.setDoneOrErrorToCheckoutSection(4, accordions, "add", "error");
+    });
+  };
+
   getPlaceOrderButton = (): null | NodeListOf<HTMLButtonElement> => {
     return document.querySelectorAll(selectors.placeOrderButtons);
   };
@@ -39,42 +142,13 @@ export class ServiceComponent {
         checkoutSection
           .querySelectorAll("input")
           .forEach((input: HTMLInputElement) => {
-            if (!input.value) {
+            if (input.classList.contains("error-border") && !isErrorFound) {
               isErrorFound = true;
             }
           });
     });
 
     return isErrorFound;
-  };
-
-  manageError = (
-    style: null | string,
-    index: number,
-    compareIndex: number,
-    errorPosition: number,
-    checkoutSections: NodeListOf<HTMLDivElement>
-  ) => {
-    if (!style && index === compareIndex) {
-      const card = this.getCart(checkoutSections, errorPosition);
-      card && card.classList.add("card-error");
-    } else if (style && index === compareIndex) {
-      const card = this.getCart(checkoutSections, errorPosition);
-      card && card.classList.remove("card-error");
-    }
-  };
-
-  checkErrorAfterSubmit = (checkoutSections: NodeListOf<HTMLDivElement>) => {
-    const errors: null | NodeListOf<HTMLDivElement> = document.querySelectorAll(
-      selectors.errors
-    );
-
-    errors.forEach((errorElm: HTMLDivElement, index: number) => {
-      const style = errorElm.getAttribute("style");
-      this.manageError(style, index, 0, 1, checkoutSections);
-      this.manageError(style, index, 1, 2, checkoutSections);
-      this.manageError(style, index, 2, 4, checkoutSections);
-    });
   };
 
   isNextSiblingHasHeading = (
@@ -151,5 +225,23 @@ export class ServiceComponent {
       action === "add" && section && section.classList.add("active");
       action === "remove" && section && section.classList.remove("active");
     });
+  };
+
+  clickNthCheckoutHeader = (index: number, accordions: Accordion[]) => {
+    const checkoutIndex = accordions[index].accordionGroupsIndex[0];
+    const selector: string = `${selectors.checkoutNthSection}(${checkoutIndex})>div.card>div.card-title`;
+    const cardTitle: null | HTMLDivElement = document.querySelector(selector);
+    cardTitle && cardTitle.click();
+  };
+
+  setErrorIconToCheckoutHeader = (index: number, accordions: Accordion[]) => {
+    const checkoutIndex = accordions[index].accordionGroupsIndex[0];
+    const selector: string = `${selectors.checkoutNthSection}(${checkoutIndex})>div.card>div.card-title`;
+    const cardTitle: null | HTMLDivElement = document.querySelector(selector);
+    cardTitle &&
+      cardTitle.insertAdjacentHTML(
+        "afterbegin",
+        `<i class="fa fa-times-circle red error-icon" ></i>`
+      );
   };
 }
