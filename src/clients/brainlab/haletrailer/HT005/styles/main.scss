@@ -1,0 +1,147 @@
+@import "./common";
+
+.#{$id} {
+  &__hide {
+    display: none !important;
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+  }
+
+  div.uk-margin-large-bottom.uk-grid {
+    display: none;
+  }
+
+  div.uk-container-large > div:last-child {
+    margin-top: 50px;
+  }
+
+  main.main {
+    display: flex;
+    flex-direction: column-reverse;
+
+    > div#support {
+      border-top: 0;
+      max-width: 1400px;
+      margin: 0 auto;
+
+      > div {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        background-color: #fff;
+        box-shadow: 0 2px 8px #00000014;
+
+        > h2 {
+          margin-top: 40px;
+
+          @media only screen and (max-width: 859px) {
+            font-size: 2rem;
+          }
+        }
+
+        > div#gform_wrapper_1 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          div.uk-first-column {
+            flex: 7;
+
+            > div.uk-grid {
+              > div.uk-padding {
+                > h2 {
+                  display: none;
+                }
+              }
+
+              @media only screen and (max-width: 859px) {
+                display: flex;
+                flex-direction: column;
+              }
+            }
+
+            > div.uk-text-center {
+              margin: 0;
+              padding: 0;
+
+              > a {
+                display: none;
+              }
+
+              > div.location-component {
+                padding: 20px;
+
+                > div.header {
+                  text-align: left;
+                  padding-left: 10px;
+                }
+
+                > div.locations {
+                  display: grid;
+                  grid-template-columns: auto auto auto auto;
+                  padding: 10px;
+                  text-align: left;
+
+                  > a {
+                    color: #d81920;
+                  }
+
+                  > a:hover {
+                    text-decoration: underline;
+                  }
+
+                  @media only screen and (max-width: 859px) {
+                    grid-template-columns: auto auto;
+                  }
+                }
+              }
+            }
+          }
+
+          form#gform_1 {
+            flex: 3;
+            background-color: #f2f2f2;
+            margin: 20px;
+            padding: 20px;
+
+            > div.gform_body {
+              > div.gform_fields {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                > div.gfield {
+                  width: 100%;
+                  margin-bottom: 10px;
+                }
+              }
+            }
+          }
+
+          @media only screen and (max-width: 859px) {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}
