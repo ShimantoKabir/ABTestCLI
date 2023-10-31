@@ -3,11 +3,12 @@ import { selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { LocationObserver } from "../observer/location.observer";
 import { TestObserver } from "../observer/test.observer";
-import { BreadcrumbComponent } from "./breadcrumb.component";
 import { NextButtonComponent } from "./next-button.component";
+import { ServiceComponent } from "./service.component";
 
 export class MainComponent {
   isCCIDFound: boolean = false;
+  serviceComponent = new ServiceComponent();
 
   constructor() {
     Initializer.init(TestInfo, "0.0.4");
@@ -30,17 +31,19 @@ export class MainComponent {
           target.id === "ccCCID" &&
           this.isCCIDFound === false
         ) {
-          const breadcrumbComponent = new BreadcrumbComponent();
-          breadcrumbComponent.render();
+          // const breadcrumbComponent = new BreadcrumbComponent();
+          // breadcrumbComponent.render();
 
-          const nextButtonComponent = new NextButtonComponent();
-          nextButtonComponent.render();
+          const nextButtonComponent = new NextButtonComponent(
+            this.serviceComponent
+          );
+          nextButtonComponent.render(true);
 
           nextButtonComponent.handleAarpClick(() => {
-            breadcrumbComponent.remove();
-            breadcrumbComponent.render();
+            // breadcrumbComponent.remove();
+            // breadcrumbComponent.render();
             nextButtonComponent.remove();
-            nextButtonComponent.render();
+            nextButtonComponent.render(false);
           });
 
           this.isCCIDFound = true;

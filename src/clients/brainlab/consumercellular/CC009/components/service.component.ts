@@ -2,7 +2,11 @@ import { selectors } from "../common/asset";
 import { Accordion } from "../models/accordion";
 
 export class ServiceComponent {
+  displayNoneStyle: string = "display:-none;";
+  accordions: Accordion[] = [];
+
   checkErrorOnPlaceOrderButtonClick = (accordions: Accordion[]) => {
+    this.accordions = accordions;
     const placeOrderButtons: null | NodeListOf<HTMLButtonElement> =
       this.getPlaceOrderButton();
 
@@ -11,99 +15,97 @@ export class ServiceComponent {
     }
 
     placeOrderButtons.forEach((button: HTMLButtonElement) => {
-      button.addEventListener("click", () => {
-        setTimeout(() => {
-          accordions.forEach((accordion: Accordion, index) => {
-            const isErrorFound = this.findNthSectionInputError(
-              accordion.accordionGroupsIndex
+      button.addEventListener("click", this.placeOrderButtonListenerFunction);
+    });
+  };
+
+  setAccordions = (accordions: Accordion[]) => {
+    this.accordions = accordions;
+  };
+
+  placeOrderButtonListenerFunction = () => {
+    console.log("accordions=", this.accordions);
+    setTimeout(() => {
+      this.accordions.length > 0 &&
+        this.accordions.forEach((accordion: Accordion, index) => {
+          const isErrorFound = this.findNthSectionInputError(
+            accordion.accordionGroupsIndex
+          );
+
+          !isErrorFound &&
+            this.setDoneOrErrorToCheckoutSection(
+              index,
+              this.accordions,
+              "success"
             );
 
-            !isErrorFound &&
-              this.setDoneOrErrorToCheckoutSection(
-                index,
-                accordions,
-                "add",
-                "success"
-              );
+          isErrorFound &&
+            this.setDoneOrErrorToCheckoutSection(
+              index,
+              this.accordions,
+              "error"
+            );
+        });
+      this.checkExtraError(this.accordions);
+    }, 250);
+  };
 
-            isErrorFound &&
-              this.setDoneOrErrorToCheckoutSection(
-                index,
-                accordions,
-                "remove",
-                "success"
-              );
+  checkInputError = (accordions: Accordion[]) => {
+    accordions.forEach((accordion: Accordion, index) => {
+      const isErrorFound = this.findNthSectionInputError(
+        accordion.accordionGroupsIndex
+      );
 
-            !isErrorFound &&
-              this.setDoneOrErrorToCheckoutSection(
-                index,
-                accordions,
-                "remove",
-                "error"
-              );
+      isErrorFound &&
+        this.setDoneOrErrorToCheckoutSection(index, accordions, "error");
+    });
+  };
 
-            isErrorFound &&
-              this.setDoneOrErrorToCheckoutSection(
-                index,
-                accordions,
-                "add",
-                "error"
-              );
-          });
-        }, 250);
-      });
+  checkExtraError = (accordions: Accordion[]) => {
+    const errors: null | NodeListOf<HTMLDivElement> = document.querySelectorAll(
+      selectors.errors
+    );
+
+    errors.forEach((errorElm: HTMLDivElement, index: number) => {
+      const style: string | null = errorElm.getAttribute("style");
+
+      !style &&
+        index === 0 &&
+        this.setDoneOrErrorToCheckoutSection(1, accordions, "error");
+
+      !style &&
+        index === 1 &&
+        this.setDoneOrErrorToCheckoutSection(4, accordions, "error");
     });
   };
 
   setDoneOrErrorToCheckoutSection = (
     index: number,
     accordions: Accordion[],
-    action: string,
     type: string
   ) => {
-    const section: null | HTMLDivElement = this.getNthCheckoutSection(
-      accordions[index].accordionGroupsIndex[0]
-    );
-    type === "success" &&
-      action === "add" &&
-      section &&
-      section.classList.add("done");
+    const groups: number[] = accordions[index].accordionGroupsIndex;
 
-    type === "success" &&
-      action === "remove" &&
-      section &&
-      section.classList.remove("done");
+    groups.forEach((group: number) => {
+      const section: null | HTMLDivElement = this.getNthCheckoutSection(group);
 
-    type === "error" &&
-      action === "add" &&
-      section &&
-      section.classList.add("error");
+      if (type === "success" && section) {
+        section.classList.remove("error");
+        section.classList.add("success");
+        section.classList.remove("active");
+      }
 
-    type === "error" &&
-      action === "remove" &&
-      section &&
-      section.classList.remove("error");
+      if (type === "error" && section) {
+        section.classList.remove("success");
+        section.classList.add("error");
+        section.classList.add("active");
+      }
+    });
   };
 
   checkErrorAfterRender = (accordions: Accordion[]) => {
-    const errors: null | NodeListOf<HTMLDivElement> = document.querySelectorAll(
-      selectors.errors
-    );
-
-    errors.forEach((errorElm: HTMLDivElement, index: number) => {
-      const style = errorElm.getAttribute("style");
-      style &&
-        index === 0 &&
-        this.setDoneOrErrorToCheckoutSection(1, accordions, "add", "error");
-
-      style &&
-        index === 1 &&
-        this.setDoneOrErrorToCheckoutSection(2, accordions, "add", "error");
-
-      style &&
-        index === 2 &&
-        this.setDoneOrErrorToCheckoutSection(4, accordions, "add", "error");
-    });
+    this.checkInputError(accordions);
+    this.checkExtraError(accordions);
   };
 
   getPlaceOrderButton = (): null | NodeListOf<HTMLButtonElement> => {
@@ -231,7 +233,7 @@ export class ServiceComponent {
     const checkoutIndex = accordions[index].accordionGroupsIndex[0];
     const selector: string = `${selectors.checkoutNthSection}(${checkoutIndex})>div.card>div.card-title`;
     const cardTitle: null | HTMLDivElement = document.querySelector(selector);
-    cardTitle && cardTitle.click();
+    // cardTitle && cardTitle.click();
   };
 
   setErrorIconToCheckoutHeader = (index: number, accordions: Accordion[]) => {

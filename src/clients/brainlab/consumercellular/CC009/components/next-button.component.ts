@@ -4,7 +4,11 @@ import { Accordion } from "../models/accordion";
 import { ServiceComponent } from "./service.component";
 
 export class NextButtonComponent {
-  serviceComponent = new ServiceComponent();
+  serviceComponent!: ServiceComponent;
+
+  constructor(serviceComponent: ServiceComponent) {
+    this.serviceComponent = serviceComponent;
+  }
 
   getHtml = (): string => {
     const htmlString: string = `
@@ -14,18 +18,18 @@ export class NextButtonComponent {
     return htmlString.trim();
   };
 
-  render = () => {
+  render = (isFirst: boolean) => {
     const checkoutSections: null | NodeListOf<HTMLDivElement> =
       document.querySelectorAll(selectors.checkoutSections);
 
-    const breadcrumbItems: null | NodeListOf<HTMLDivElement> =
-      document.querySelectorAll(selectors.breadcrumbItems);
+    // const breadcrumbItems: null | NodeListOf<HTMLDivElement> =
+    //   document.querySelectorAll(selectors.breadcrumbItems);
 
     if (
       !checkoutSections ||
-      checkoutSections.length === 0 ||
-      !breadcrumbItems ||
-      breadcrumbItems.length === 0
+      checkoutSections.length === 0
+      // || !breadcrumbItems ||
+      // breadcrumbItems.length === 0
     ) {
       return;
     }
@@ -45,18 +49,57 @@ export class NextButtonComponent {
 
       const lastIndexOfGroups: number =
         accordion.accordionGroupsIndex.slice(-1)[0];
-      const section: null | HTMLDivElement =
+      const groupBottomSection: null | HTMLDivElement =
         this.serviceComponent.getNthCheckoutSection(lastIndexOfGroups);
 
-      section && section.insertAdjacentHTML("beforeend", this.getHtml());
+      const groupTopSection: null | HTMLDivElement =
+        this.serviceComponent.getNthCheckoutSection(
+          accordion.accordionGroupsIndex[0]
+        );
+
+      groupBottomSection &&
+        groupBottomSection.insertAdjacentHTML("beforeend", this.getHtml());
+      groupTopSection &&
+        this.addListenerToCardTitle(groupTopSection, accordions, index);
     });
 
-    this.addNextButtonListener(accordions, breadcrumbItems);
+    // this.addNextButtonListener(accordions, breadcrumbItems);
+    this.addNextButtonListener(accordions);
+    this.serviceComponent.checkErrorAfterRender(accordions);
+    isFirst &&
+      this.serviceComponent.checkErrorOnPlaceOrderButtonClick(accordions);
+
+    !isFirst && this.serviceComponent.setAccordions(accordions);
+  };
+
+  addListenerToCardTitle = (
+    section: HTMLDivElement,
+    accordions: Accordion[],
+    aIndex: number
+  ) => {
+    const cardTitle: null | HTMLDivElement =
+      section.querySelector("div.card-title");
+
+    cardTitle &&
+      cardTitle.addEventListener("click", () => {
+        accordions.forEach((accordion: Accordion, index: number) => {
+          this.serviceComponent.switchActiveToAccordions(
+            accordion.accordionGroupsIndex,
+            "remove"
+          );
+
+          aIndex === index &&
+            this.serviceComponent.switchActiveToAccordions(
+              accordion.accordionGroupsIndex,
+              "add"
+            );
+        });
+      });
   };
 
   addNextButtonListener = (
-    accordions: Accordion[],
-    breadcrumbItems: NodeListOf<HTMLDivElement>
+    accordions: Accordion[]
+    // breadcrumbItems: NodeListOf<HTMLDivElement>
   ) => {
     const nextButtons: null | NodeListOf<Element> = document.querySelectorAll(
       selectors.nextButtons
@@ -70,10 +113,10 @@ export class NextButtonComponent {
       nextButton.addEventListener("click", () => {
         triggerMetrics(mboxNames.nextClick);
 
-        this.serviceComponent.manageCurrentBreadcrumbActive(
-          breadcrumbItems,
-          index + 1
-        );
+        // this.serviceComponent.manageCurrentBreadcrumbActive(
+        //   breadcrumbItems,
+        //   index + 1
+        // );
 
         this.serviceComponent.switchActiveToAccordions(
           accordions[index].accordionGroupsIndex,
@@ -85,13 +128,15 @@ export class NextButtonComponent {
           "add"
         );
 
-        this.serviceComponent.clickNthCheckoutHeader(index, accordions);
+        window.scroll({
+          top: 150,
+          left: 0,
+          behavior: "smooth",
+        });
       });
 
       this.serviceComponent.setErrorIconToCheckoutHeader(index, accordions);
     });
-
-    // this.serviceComponent.checkErrorAfterRender(accordions);
   };
 
   handleAarpClick = (callback: Function) => {
@@ -114,10 +159,19 @@ export class NextButtonComponent {
     const buttons: null | NodeListOf<HTMLDivElement> =
       document.querySelectorAll("div.next-button-component");
 
+    const errorIcons: null | NodeListOf<Element> =
+      document.querySelectorAll("i.error-icon");
+
     buttons &&
       buttons.length > 0 &&
       buttons.forEach((button: HTMLDivElement) => {
         button.remove();
+      });
+
+    errorIcons &&
+      errorIcons.length > 0 &&
+      errorIcons.forEach((errorIcon: Element) => {
+        errorIcon.remove();
       });
   };
 }

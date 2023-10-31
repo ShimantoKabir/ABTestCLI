@@ -116,8 +116,6 @@ export class BreadcrumbComponent {
         this.serviceComponent.clickNthCheckoutHeader(index, accordions);
       });
     });
-
-    this.serviceComponent.checkErrorOnPlaceOrderButtonClick(accordions);
   };
 
   manageCurrentCardActive = (accordions: Accordion[], index: number) => {

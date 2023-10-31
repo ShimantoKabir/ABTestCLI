@@ -1,34 +1,39 @@
 @import "./common";
 
 .#{$id} {
-  div#checkout-wrapper {
-    padding-top: 10px !important;
+  div.grecaptcha-badge {
+    z-index: 19001;
   }
 
-  div.base-affix-component > div > div > h2 {
-    display: none;
+  // div#checkout-wrapper {
+  //   padding-top: 10px !important;
+  // }
 
-    @media only screen and (max-width: 959px) {
-      display: block;
-    }
-  }
+  // div.base-affix-component > div > div > h2 {
+  //   display: none;
 
-  div.base-affix-component > div > div > h4 {
-    display: none;
-  }
+  //   @media only screen and (max-width: 959px) {
+  //     display: block;
+  //   }
+  // }
+
+  // div.base-affix-component > div > div > h4 {
+  //   display: none;
+  // }
 
   div#checkout-sections-column {
-    > h2 {
-      display: none;
-    }
+    // > h2 {
+    //   display: none;
+    // }
 
     > div.summary-section {
       margin-bottom: 20px;
 
       > div.next-button-component {
+        display: none;
         position: absolute;
-        bottom: 15px;
-        right: 15px;
+        bottom: 10px;
+        right: 10px;
 
         > button {
           text-align: center;
@@ -36,8 +41,8 @@
           border: none;
           background-color: #f26631;
           border-radius: 5px;
-          padding: 5px 25px;
-          font-size: 20px;
+          padding: 2px 12px;
+          font-size: 18px;
           font-weight: 400;
 
           > i {
@@ -80,13 +85,6 @@
         }
       }
 
-      > div.card.card-error {
-        > div.card-title {
-          background-color: red !important;
-          color: #fff;
-        }
-      }
-
       > div.card.no-border-top {
         display: none;
       }
@@ -112,9 +110,13 @@
       > div.card.no-border-top {
         display: block;
       }
+
+      div.next-button-component {
+        display: block;
+      }
     }
 
-    > div.summary-section.done {
+    > div.summary-section.success {
       > div.card {
         > div.card-title {
           > i:last-child {
@@ -142,7 +144,7 @@
       }
 
       > div.next-button-component {
-        display: none;
+        display: none !important;
       }
     }
   }
