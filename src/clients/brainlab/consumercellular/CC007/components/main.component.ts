@@ -1,12 +1,22 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { pageData, selectors } from "../common/asset";
+import { mBoxNames, pageData, selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { TestObserver } from "../observer/test.observer";
 
 export class MainComponent {
+  visitedPath: string = "";
+
   constructor() {
     Initializer.init(TestInfo, "0.0.1");
   }
+
+  trackEvent = (mbox: string) => {
+    console.log("mBoxName=", mbox);
+    // @ts-ignore
+    adobe.target.trackEvent({
+      mbox: mbox,
+    });
+  };
 
   addListener = (selector: string, eventName: string, mBoxName: string) => {
     const cta: null | Element = document.querySelector(selector);
@@ -17,11 +27,7 @@ export class MainComponent {
 
     cta.addEventListener(eventName, () => {
       if (!cta.classList.contains("disabled")) {
-        console.log("mBoxName=", mBoxName);
-        // @ts-ignore
-        adobe.target.trackEvent({
-          mbox: mBoxName,
-        });
+        this.trackEvent(mBoxName);
       }
     });
   };
@@ -65,6 +71,17 @@ export class MainComponent {
     const testObserver = new TestObserver(selectors.shoppingPageContainer);
 
     const callback = (mutationList: MutationRecord[]) => {
+      if (this.visitedPath !== window.location.pathname) {
+        this.visitedPath = window.location.pathname;
+        this.visitedPath === "/shopping/checkout" &&
+          this.trackEvent(mBoxNames.checkoutPageVisit);
+        this.visitedPath === "/shopping/thankyou" &&
+          this.trackEvent(mBoxNames.thankYouPageVisit);
+
+        this.visitedPath === "/shopping/checkout/processing" &&
+          this.trackEvent(mBoxNames.processingPageVisit);
+      }
+
       if (TestInfo.VARIATION.toString() === "1") {
         this.mangeHeader();
       }

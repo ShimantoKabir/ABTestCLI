@@ -7,7 +7,7 @@ import { SuccessStoryComponent } from "./success-story.component";
 
 export class MainComponent {
   constructor() {
-    Initializer.init(TestInfo, "0.0.2");
+    Initializer.init(TestInfo, "0.0.4");
   }
 
   init = (): void => {
@@ -45,16 +45,16 @@ export class MainComponent {
         });
       });
 
-    const nursingText = document.querySelector(selectors.nursingText);
+    const courseSchedule = document.querySelector(selectors.courseSchedule);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+        if (entry.isIntersecting && entry.boundingClientRect.top > 0) {
           triggerMetrics(mboxNames.scrollToSndOfWhatToLear);
         }
       });
     });
 
-    nursingText && observer.observe(nursingText);
+    courseSchedule && observer.observe(courseSchedule);
   };
 }

@@ -1,12 +1,19 @@
+import { Course } from "../models/course.model";
+import { Indicator } from "../models/indicator.model";
 import { SuccessStory } from "../models/success-story.model";
-import { adnCourses, adnIndicators } from "./adn.data";
-import { lpnCourses, lpnIndicators } from "./lpn.data";
+import { floridaAdnCourses, floridaAdnIndicators } from "./florida-adn.data";
+import { floridaLpnCourses, floridaLpnIndicators } from "./florida-lpn.data";
+import { indianaAdnCourses, indianaAdnIndicators } from "./indiana-adn.data";
+import { indianaLpnCourses, indianaLpnIndicators } from "./indiana-lpn.data";
+import { ohioAdnCourses, ohioAdnIndicators } from "./ohio-adn.data";
+import { ohioLpnCourses, ohioLpnIndicators } from "./ohio-lpn.data";
+import { TestInfo } from "./test.info";
 
 export const selectors = {
   unbounceTitle: "main.content>div>div.unbounce-title.parbase.section",
   successStories: "div.success-stories",
   rfiButton: "main.content>div>div:nth-child(2) div.rfi-btn>a",
-  nursingText: "div.align-right>div.text>p:nth-child(3)",
+  courseSchedule: "div.course-schedule-component",
   submitButton: "div.modal-content>div.submit>button",
   applyCta: "div.rfi-btn>a",
 };
@@ -20,6 +27,36 @@ export const courseScheduleData = {
   footerText:
     "Each quarter is 12 weeks in length. Term dates are subject to change.",
 };
+
+const variation: string = TestInfo.VARIATION.toString();
+
+const adnIndicators: Indicator[] =
+  variation === "florida"
+    ? floridaAdnIndicators
+    : variation === "indiana"
+    ? indianaAdnIndicators
+    : ohioAdnIndicators;
+
+const lpnIndicators: Indicator[] =
+  variation === "florida"
+    ? floridaLpnIndicators
+    : variation === "indiana"
+    ? indianaLpnIndicators
+    : ohioLpnIndicators;
+
+const adnCourses: Course[] =
+  variation === "florida"
+    ? floridaAdnCourses
+    : variation === "indiana"
+    ? indianaAdnCourses
+    : ohioAdnCourses;
+
+const lpnCourses: Course[] =
+  variation === "florida"
+    ? floridaLpnCourses
+    : variation === "indiana"
+    ? indianaLpnCourses
+    : ohioLpnCourses;
 
 export const planOfStudyData = {
   title: "Plan of Study",

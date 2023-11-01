@@ -14,7 +14,6 @@ if (!ieChecks) {
       "body",
       selectors.unbounceTitle,
       selectors.successStories,
-      selectors.nursingText,
       selectors.submitButton,
     ],
     main.init

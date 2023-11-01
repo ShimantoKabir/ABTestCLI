@@ -4,6 +4,7 @@ import {
   planOfStudyData,
   tableRowHideBreakPoint,
 } from "../common/asset";
+import { TestInfo } from "../common/test.info";
 import { replaceStringSpace, triggerMetrics } from "../common/utils";
 import { CourseItem } from "./course-item.component";
 import { IndicatorComponent } from "./indicator.component";
@@ -15,6 +16,7 @@ export class PlanOfStudyComponent {
   tabTable: string = "tab-table";
   tabHeader: string = "tab-header";
   active: string = "active";
+  variation: string = TestInfo.VARIATION.toString();
 
   mobilePlanOfStudyComponent: MobilePlanOfStudyComponent =
     new MobilePlanOfStudyComponent();
@@ -25,7 +27,7 @@ export class PlanOfStudyComponent {
         <div class="component-container" >
           ${TItleComponent.render(planOfStudyData.title)}
           <div class="desktop-component-details" >
-            <div class="${this.tabHeader}" >
+            <div class="${this.tabHeader} ${this.variation}" >
               <button class="adn-tab-button active" >${
                 planOfStudyData.adn.title
               }</button>

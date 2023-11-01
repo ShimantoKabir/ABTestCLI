@@ -4,18 +4,20 @@ import {
   planOfStudyData,
   tableRowHideBreakPoint,
 } from "../common/asset";
+import { TestInfo } from "../common/test.info";
 import { replaceStringSpace, triggerMetrics } from "../common/utils";
 import { AccordionItemComponent } from "./accordion-item.component";
 
 export class MobilePlanOfStudyComponent {
   accordionItemComponent: AccordionItemComponent = new AccordionItemComponent();
+  variation: string = TestInfo.VARIATION.toString();
 
   constructor() {}
 
   getHtml = () => {
     const htmlString: string = `
       <div class="mobile-component-details" >
-        <div class="mobile-tab-header" >
+        <div class="mobile-tab-header ${this.variation}" >
           <button class="adn-tab-button" >${
             planOfStudyData.adn.shortTitle
           }</button>
@@ -31,7 +33,7 @@ export class MobilePlanOfStudyComponent {
                   index > tableRowHideBreakPoint ?? false;
                 return this.accordionItemComponent.getHtml(
                   course,
-                  "adn",
+                  planOfStudyData.adn.indicators,
                   index,
                   needToHide
                 );
@@ -45,7 +47,7 @@ export class MobilePlanOfStudyComponent {
                   index > tableRowHideBreakPoint ?? false;
                 return this.accordionItemComponent.getHtml(
                   course,
-                  "lpn",
+                  planOfStudyData.adn.indicators,
                   index,
                   needToHide
                 );

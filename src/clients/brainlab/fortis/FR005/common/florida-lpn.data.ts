@@ -1,7 +1,7 @@
 import { Course } from "../models/course.model";
 import { Indicator } from "../models/indicator.model";
 
-export const lpnCourses: Course[] = [
+export const floridaLpnCourses: Course[] = [
   {
     code: "PNR104",
     title: "Basic Skills, Quality & Safety in Nursing Practice",
@@ -100,7 +100,7 @@ export const lpnCourses: Course[] = [
   },
 ];
 
-export const lpnIndicators: Indicator[] = [
+export const floridaLpnIndicators: Indicator[] = [
   {
     sign: "*",
     meaning: "INDICATES A GENERAL EDUCATION COURSE",

@@ -8,6 +8,12 @@ export const pageData = {
     desktopPreviousSiblingClass: "base-due-today-wrapper",
     desktopTargetLastChildClass: "submit-bar",
     desktopPlaceOrderButtonSelector: "div.on-desktop>button",
-    mBoxName: "checkout-page-place-order",
+    mBoxName: "place-order",
   },
+};
+
+export const mBoxNames = {
+  checkoutPageVisit: "checkout-page-visit",
+  processingPageVisit: "processing-page-visit",
+  thankYouPageVisit: "thankyou-page-visit",
 };

@@ -1,29 +1,21 @@
-import { adnIndicators } from "../common/adn.data";
 import { mboxNames, openOrCloseSvg } from "../common/asset";
-import { lpnIndicators } from "../common/lpn.data";
 import { Course } from "../models/course.model";
 import { Indicator } from "../models/indicator.model";
+import { triggerMetrics } from "../common/utils";
 
 export class AccordionItemComponent {
   thead: string = "table.item-table>thead";
 
-  getSignMeaning = (credit: string, type: string): Indicator | undefined => {
+  getSignMeaning = (
+    credit: string,
+    indicators: Indicator[]
+  ): Indicator | undefined => {
     const sign: string = credit.substring(1);
-    if (type === "adn") {
-      const indicator: Indicator | undefined = adnIndicators.find(
-        (indicator: Indicator) => indicator.sign === sign
-      );
+    const indicator: Indicator | undefined = indicators.find(
+      (indicator: Indicator) => indicator.sign === sign
+    );
 
-      return indicator;
-    }
-
-    if (type === "lpn") {
-      const indicator: Indicator | undefined = lpnIndicators.find(
-        (indicator: Indicator) => indicator.sign === sign
-      );
-
-      return indicator;
-    }
+    return indicator;
   };
 
   getSignMeaningHtml = (meaning: string): string => {
@@ -40,13 +32,13 @@ export class AccordionItemComponent {
 
   getHtml = (
     course: Course,
-    type: string,
+    indicators: Indicator[],
     index: number,
     needToHide: boolean
   ): string => {
     const signMeaning: Indicator | undefined = this.getSignMeaning(
       course.credit,
-      type
+      indicators
     );
 
     const htmlString: string = `
@@ -99,9 +91,7 @@ export class AccordionItemComponent {
         thead.nextElementSibling &&
           thead.nextElementSibling.classList.toggle("show");
         thead.classList.toggle("rotate");
-        console.log("mbox=", mboxNames.accordionToggle);
-        // @ts-ignore
-        adobe.target.trackEvent({ mbox: mboxNames.accordionToggle });
+        triggerMetrics(mboxNames.accordionToggle);
       });
     });
   };
