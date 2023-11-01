@@ -1,13 +1,20 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { mBoxNames, pageData, selectors } from "../common/asset";
+import {
+  mBoxNames,
+  mobileMaxWidth,
+  pageData,
+  pathnames,
+  selectors,
+} from "../common/asset";
 import { TestInfo } from "../common/test.info";
+import { LocationObserver } from "../observer/location.observer";
 import { TestObserver } from "../observer/test.observer";
 
 export class MainComponent {
-  visitedPath: string = "";
+  location: string = "";
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.5");
   }
 
   trackEvent = (mbox: string) => {
@@ -26,9 +33,25 @@ export class MainComponent {
     }
 
     cta.addEventListener(eventName, () => {
-      if (!cta.classList.contains("disabled")) {
-        this.trackEvent(mBoxName);
-      }
+      !cta.getAttribute("disabled") && this.trackEvent(mBoxName);
+    });
+  };
+
+  addPlaceOrderListener = (selector: string) => {
+    const placeOrderButtons: null | NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll(selector);
+
+    if (!placeOrderButtons || placeOrderButtons.length === 0) {
+      return;
+    }
+
+    placeOrderButtons.forEach((button: HTMLButtonElement) => {
+      button.addEventListener("click", () => {
+        !button.classList.contains("disabled") &&
+          this.trackEvent(mBoxNames.placeOrderSuccessClick);
+        button.classList.contains("disabled") &&
+          this.trackEvent(mBoxNames.placeOrderErrorClick);
+      });
     });
   };
 
@@ -49,52 +72,44 @@ export class MainComponent {
     );
 
     if (isCheckoutPage && !isNewHeaderDesignAdded) {
-      console.log(
-        "isCheckoutPage=" +
-          isCheckoutPage +
-          ", isNewHeaderDesignAdded=" +
-          isNewHeaderDesignAdded
-      );
       navHeader.classList.add("checkout-new-header");
     } else if (!isCheckoutPage && isNewHeaderDesignAdded) {
-      console.log(
-        "isCheckoutPage=" +
-          isCheckoutPage +
-          ", isNewHeaderDesignAdded=" +
-          isNewHeaderDesignAdded
-      );
       navHeader.classList.remove("checkout-new-header");
     }
   };
 
+  setPageVisitMatrix = (location: string) => {
+    location === pathnames.checkout &&
+      this.trackEvent(mBoxNames.checkoutPageVisit);
+    location === pathnames.thankyou &&
+      this.trackEvent(mBoxNames.thankYouPageVisit);
+    location === pathnames.processing &&
+      this.trackEvent(mBoxNames.processingPageVisit);
+  };
+
   init = (): void => {
+    LocationObserver.listen((location: string) => {
+      this.location = location;
+      this.setPageVisitMatrix(location);
+    });
+
     const testObserver = new TestObserver(selectors.shoppingPageContainer);
 
     const callback = (mutationList: MutationRecord[]) => {
-      if (this.visitedPath !== window.location.pathname) {
-        this.visitedPath = window.location.pathname;
-        this.visitedPath === "/shopping/checkout" &&
-          this.trackEvent(mBoxNames.checkoutPageVisit);
-        this.visitedPath === "/shopping/thankyou" &&
-          this.trackEvent(mBoxNames.thankYouPageVisit);
-
-        this.visitedPath === "/shopping/checkout/processing" &&
-          this.trackEvent(mBoxNames.processingPageVisit);
-      }
-
       if (TestInfo.VARIATION.toString() === "1") {
         this.mangeHeader();
       }
 
       for (let index = 0; index < mutationList.length; index++) {
-        const element = mutationList[index].target as Element;
+        const target = mutationList[index].target as Element;
         const previousSibling: Element = mutationList[index]
           .previousSibling as Element;
 
-        const lastChild: Element = element.lastChild as Element;
+        const lastChild: Element = target.lastChild as Element;
+        const mutationRecord: MutationRecord = mutationList[index];
 
         if (
-          element &&
+          target &&
           lastChild &&
           lastChild.classList &&
           lastChild.classList.contains(
@@ -106,11 +121,61 @@ export class MainComponent {
             pageData.checkoutPage.desktopPreviousSiblingClass
           )
         ) {
-          this.addListener(
-            pageData.checkoutPage.desktopPlaceOrderButtonSelector,
-            "click",
-            pageData.checkoutPage.mBoxName
+          this.addPlaceOrderListener(
+            pageData.checkoutPage.placeOrderButtonSelector
           );
+        }
+
+        // desktop-shopping-page-review-order
+        if (
+          target &&
+          target.classList &&
+          target.classList.contains(pageData.shoppingPage.desktopTargetClass) &&
+          previousSibling &&
+          previousSibling.classList &&
+          previousSibling.classList.contains(
+            pageData.shoppingPage.desktopSiblingClass
+          ) &&
+          this.location === "/shopping"
+        ) {
+          window.innerWidth > mobileMaxWidth &&
+            this.addListener(
+              pageData.shoppingPage.desktopCtaSelector,
+              "click",
+              mBoxNames.reviewOrderClick
+            );
+
+          window.innerWidth < mobileMaxWidth &&
+            this.addListener(
+              pageData.shoppingPage.mobileCtaSelector,
+              "click",
+              mBoxNames.reviewOrderClick
+            );
+        }
+
+        // desktop-shopping-page-post-review-order
+        if (
+          target &&
+          target.id &&
+          target.id === pageData.shoppingPage.mobilePostTargetId &&
+          mutationRecord.attributeName &&
+          mutationRecord.attributeName ===
+            pageData.shoppingPage.mobilePostAttributeName &&
+          this.location === "/shopping"
+        ) {
+          window.innerWidth > mobileMaxWidth &&
+            this.addListener(
+              pageData.shoppingPage.desktopCtaSelector,
+              "click",
+              mBoxNames.reviewOrderClick
+            );
+
+          window.innerWidth < mobileMaxWidth &&
+            this.addListener(
+              pageData.shoppingPage.mobileCtaSelector,
+              "click",
+              mBoxNames.reviewOrderClick
+            );
         }
       }
     };

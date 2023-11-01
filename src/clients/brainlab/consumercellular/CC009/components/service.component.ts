@@ -1,9 +1,52 @@
-import { selectors } from "../common/asset";
+import { mboxNames, selectors } from "../common/asset";
+import { triggerMetrics } from "../common/utils";
 import { Accordion } from "../models/accordion";
 
 export class ServiceComponent {
   displayNoneStyle: string = "display:-none;";
   accordions: Accordion[] = [];
+
+  addSaveCartListener = () => {
+    const oldSaveCard: null | HTMLHeadElement = document.querySelector(
+      selectors.oldSaveCard
+    );
+
+    oldSaveCard &&
+      oldSaveCard.addEventListener("click", () => {
+        triggerMetrics(mboxNames.saveCartClick);
+      });
+  };
+
+  addPlaceOrderListener = () => {
+    const placeOrderButtons: null | NodeListOf<HTMLButtonElement> =
+      this.getPlaceOrderButton();
+
+    if (!placeOrderButtons || placeOrderButtons.length === 0) {
+      return;
+    }
+
+    placeOrderButtons.forEach((button: HTMLButtonElement) => {
+      button.addEventListener("click", () => {
+        !button.classList.contains("disabled") &&
+          triggerMetrics(mboxNames.placeOrderSuccessClick);
+        button.classList.contains("disabled") &&
+          triggerMetrics(mboxNames.placeOrderErrorClick);
+      });
+    });
+  };
+
+  addCardTitleListener = () => {
+    const cardTitles: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(selectors.cardTitles);
+
+    cardTitles &&
+      cardTitles.length > 0 &&
+      cardTitles.forEach((title: HTMLDivElement) => {
+        title.addEventListener("click", () => {
+          triggerMetrics(mboxNames.tabClick);
+        });
+      });
+  };
 
   checkErrorOnPlaceOrderButtonClick = (accordions: Accordion[]) => {
     this.accordions = accordions;
@@ -15,39 +58,41 @@ export class ServiceComponent {
     }
 
     placeOrderButtons.forEach((button: HTMLButtonElement) => {
-      button.addEventListener("click", this.placeOrderButtonListenerFunction);
+      button.addEventListener("click", () => {
+        !button.classList.contains("disabled") &&
+          triggerMetrics(mboxNames.placeOrderSuccessClick);
+        button.classList.contains("disabled") &&
+          triggerMetrics(mboxNames.placeOrderErrorClick);
+
+        setTimeout(() => {
+          this.accordions.length > 0 &&
+            this.accordions.forEach((accordion: Accordion, index) => {
+              const isErrorFound = this.findNthSectionInputError(
+                accordion.accordionGroupsIndex
+              );
+
+              !isErrorFound &&
+                this.setDoneOrErrorToCheckoutSection(
+                  index,
+                  this.accordions,
+                  "success"
+                );
+
+              isErrorFound &&
+                this.setDoneOrErrorToCheckoutSection(
+                  index,
+                  this.accordions,
+                  "error"
+                );
+            });
+          this.checkExtraError(this.accordions);
+        }, 250);
+      });
     });
   };
 
   setAccordions = (accordions: Accordion[]) => {
     this.accordions = accordions;
-  };
-
-  placeOrderButtonListenerFunction = () => {
-    console.log("accordions=", this.accordions);
-    setTimeout(() => {
-      this.accordions.length > 0 &&
-        this.accordions.forEach((accordion: Accordion, index) => {
-          const isErrorFound = this.findNthSectionInputError(
-            accordion.accordionGroupsIndex
-          );
-
-          !isErrorFound &&
-            this.setDoneOrErrorToCheckoutSection(
-              index,
-              this.accordions,
-              "success"
-            );
-
-          isErrorFound &&
-            this.setDoneOrErrorToCheckoutSection(
-              index,
-              this.accordions,
-              "error"
-            );
-        });
-      this.checkExtraError(this.accordions);
-    }, 250);
   };
 
   checkInputError = (accordions: Accordion[]) => {

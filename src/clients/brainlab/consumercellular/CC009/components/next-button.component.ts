@@ -82,6 +82,8 @@ export class NextButtonComponent {
 
     cardTitle &&
       cardTitle.addEventListener("click", () => {
+        triggerMetrics(mboxNames.tabClick);
+
         accordions.forEach((accordion: Accordion, index: number) => {
           this.serviceComponent.switchActiveToAccordions(
             accordion.accordionGroupsIndex,

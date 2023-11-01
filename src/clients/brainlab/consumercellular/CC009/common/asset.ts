@@ -14,12 +14,24 @@ export const selectors = {
     "form.billing-info>div:nth-child(4), div.shipping-info-component>div:nth-child(4), form.payment-info>div.error",
   aarpJoinButton: "div.customer-info-component-template>button.btn",
   shoppingContainer: "div.shopping-container",
+  cardTitles:
+    "div#checkout-sections-column>div.summary-section>div.card>div.card-title",
 };
 
 export const pageData = {
   checkoutPage: {
     checkoutTargetClassList: ["plan-summary-component", "col-md-6"],
     planSummarySiblingClassList: ["base-plan-summary-component"],
+  },
+  shoppingPage: {
+    desktopCtaSelector: "div.btn-checkout>a.btn-shop",
+    mobileCtaSelector: "div.review-order-button>a.btn-shop",
+    mobilePreTargetClass: "main-content",
+    mobilePreSiblingClass: "input-component-frame",
+    desktopTargetClass: "checkout-column",
+    desktopSiblingClass: "checkout-column",
+    mobilePostTargetId: "save-cart-zip-code",
+    mobilePostAttributeName: "data-previous-value",
   },
 };
 
@@ -55,5 +67,21 @@ export const rightArrowSvg = `
 export const mboxNames = {
   breadcrumbClick: "breadcrumb-click",
   nextClick: "next-click",
-  placeOrderClick: "place-order-click",
+  placeOrderSuccessClick: "place-order-success-click",
+  placeOrderErrorClick: "place-order-error-click",
+  reviewOrderClick: "review-order-click",
+  checkoutPageVisit: "checkout-page-visit",
+  processingPageVisit: "processing-page-visit",
+  thankYouPageVisit: "thankyou-page-visit",
+  saveCartClick: "save-cart-click",
+  tabClick: "tab-click",
 };
+
+export const pathnames = {
+  checkout: "/shopping/checkout",
+  processing: "/shopping/checkout/processing",
+  shopping: "/shopping",
+  thankyou: "/shopping/thankyou",
+};
+
+export const mobileMaxWidth: number = 720;
