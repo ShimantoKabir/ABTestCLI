@@ -1,0 +1,19 @@
+@import "./common";
+
+.#{$id} {
+  div.lightbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    > a {
+      padding: 0 20px;
+      background-color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+}
