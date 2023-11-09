@@ -5,7 +5,7 @@ import { ContactComponent } from "./contact.component";
 
 export class MainComponent {
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.2");
   }
 
   triggerMetrics = (mboxName: string) => {
@@ -15,6 +15,8 @@ export class MainComponent {
   };
 
   init = (): void => {
+    sessionStorage.setItem("thank-you-key", "thank-you-value");
+
     const submitButton: null | HTMLDivElement = document.querySelector(
       selectors.submitSection + ">button"
     );

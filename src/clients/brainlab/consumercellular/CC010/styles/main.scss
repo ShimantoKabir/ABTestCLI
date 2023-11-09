@@ -1,0 +1,14 @@
+@import "./common";
+
+.#{$id} {
+  div.grid-item-container.promo.new-promo {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("https://www.consumercellular.com//content/dam/consumercellularincprogram/web/motorola-razr-product-tile/1403%20-%20Website%20-%20Tiles%20-%20Motorola%20razr%20(Venus)%20-%20October%20-%20Q4%20'23%20r3_357x707%20LEARN%20MORE.png");
+  }
+
+  div.grid-item-container.promo.new-promo g.promo-tile-bg > image {
+    display: none !important;
+  }
+}

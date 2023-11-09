@@ -1,15 +1,17 @@
 function executeModification() {
   const mboxName = "thank-you-mbox";
+  const thankYouKey = "thank-you-key";
   const VARIATION = "thank-you";
   const testInfo =
-    "ID: FR004, VARIATION: " + VARIATION + ", VERSION: 0.0.1, is running....!";
+    "ID: FR004, VARIATION: " + VARIATION + ", VERSION: 0.0.3, is running....!";
   console.log(testInfo);
 
-  const thankYouKey = sessionStorage.getItem("thank-you-key");
+  const thankYouValue = sessionStorage.getItem(thankYouKey);
 
-  if (!thankYouKey && thankYouKey === "thank-you-value") {
+  if (thankYouValue && thankYouValue === "thank-you-value") {
     console.log("mbox=", mboxName);
     adobe.target.trackEvent({ mbox: mboxName });
+    sessionStorage.removeItem(thankYouKey);
   }
 }
 
