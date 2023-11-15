@@ -20,5 +20,6 @@
     "tsyringe",
     "unbounce",
     "userjs"
-  ]
+  ],
+  "editor.formatOnSave": true
 }
