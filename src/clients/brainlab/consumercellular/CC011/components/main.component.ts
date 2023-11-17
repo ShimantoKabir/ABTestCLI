@@ -26,8 +26,6 @@ export class MainComponent {
 
         const target: Element = mutationRecord.target as Element;
 
-        console.log("target=", target);
-
         if (
           this.location === this.planPagePathname &&
           !this.isDesiredElementFound &&

@@ -1,0 +1,13 @@
+@import "./common";
+
+.#{$id} {
+  section.most-plans
+    > div:nth-child(3)
+    > div.plan-selection-wrapper
+    > button
+    > div.body
+    > span.monthly-charge
+    > span.base-dollar-display-component.hide {
+    display: none !important;
+  }
+}
