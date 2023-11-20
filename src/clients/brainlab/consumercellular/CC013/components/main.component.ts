@@ -1,5 +1,10 @@
 import { Initializer } from "../../../../../utilities/initializer";
-import { pathnames } from "../common/asset";
+import {
+  mBoxNames,
+  pathnames,
+  selectors,
+  triggerMetrics,
+} from "../common/asset";
 import { State } from "../common/state";
 import { TestInfo } from "../common/test.info";
 import { LocationObserver } from "../observer/location.observer";
@@ -17,9 +22,11 @@ export class MainComponent {
   isLineSectionFound: boolean = false;
   isPlanSectionFound: boolean = false;
   isComboPlanFound: boolean = false;
+  mobileBreakPoint: number = 720;
+  variation: string = TestInfo.VARIATION.toString();
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.6");
   }
 
   init = (): void => {
@@ -28,58 +35,74 @@ export class MainComponent {
       this.isLineSectionFound = false;
       this.isPlanSectionFound = false;
       this.isComboPlanFound = false;
+      this.location === pathnames.plan &&
+        triggerMetrics(mBoxNames.planPageVisit);
     });
 
     const testObserver = new TestObserver("body");
     const callback = (mutationList: MutationRecord[]) => {
       for (let index = 0; index < mutationList.length; index++) {
         const target: Element = mutationList[index].target as Element;
-        //console.log("target=", target);
+        console.log("target-length=", target.innerHTML.length);
 
         if (
-          target &&
-          target.classList &&
-          target.classList.contains("line-selection-component") &&
-          this.location === pathnames.plan &&
-          !this.isLineSectionFound
+          target.innerHTML.length > 206000 &&
+          !this.isLineSectionFound &&
+          !this.isComboPlanFound &&
+          !this.isPlanSectionFound &&
+          this.location === pathnames.plan
         ) {
+          window.innerWidth > this.mobileBreakPoint &&
+            this.state.activeListener();
+
           this.lineService.addListener((line: number) => {
             this.state.selectedLine = line;
-
+            triggerMetrics(mBoxNames.lineClick);
             setTimeout(() => {
-              this.planService.changePlanPrice(false);
+              this.variation === "1" && this.planService.changePlanPrice(false);
             }, 50);
           });
           this.isLineSectionFound = true;
-        }
 
-        if (
-          target &&
-          target.classList &&
-          target.classList.contains("choose-plan-combo") &&
-          this.location === pathnames.plan &&
-          !this.isComboPlanFound
-        ) {
-          this.aarpService.addListener((isChecked: boolean) => {
-            this.state.isAarpChecked = isChecked;
-            setTimeout(() => {
-              this.planService.changePlanPrice(true);
-            }, 500);
-          });
+          // ======
+
+          window.innerWidth > this.mobileBreakPoint &&
+            this.state.activeListener();
+
+          window.innerWidth > this.mobileBreakPoint &&
+            this.aarpService.addListener((isChecked: boolean) => {
+              this.state.isAarpChecked = isChecked;
+              triggerMetrics(mBoxNames.aarpClick);
+              setTimeout(() => {
+                this.variation === "1" &&
+                  this.planService.changePlanPrice(true);
+              }, 50);
+            }, selectors.desktopAarpCheckbox);
+
+          window.innerWidth < this.mobileBreakPoint &&
+            this.aarpService.addListener((isChecked: boolean) => {
+              this.state.isAarpChecked = isChecked;
+              triggerMetrics(mBoxNames.aarpClick);
+              setTimeout(() => {
+                this.variation === "1" &&
+                  this.planService.changePlanPrice(true);
+              }, 50);
+            }, selectors.mobileAarpCheckbox);
+
           this.isComboPlanFound = true;
-        }
 
-        if (
-          target &&
-          target.classList &&
-          target.classList.contains("monthly-charge") &&
-          this.location === pathnames.plan &&
-          !this.isPlanSectionFound
-        ) {
-          if (window.innerWidth < 720) {
+          // ======
+
+          if (window.innerWidth < this.mobileBreakPoint) {
             this.planService.getMobilePlanElements();
           } else {
-            this.planService.getPlanElements();
+            this.planService.getPlanElements(selectors.desktopPlans);
+            this.planService.changeUnitText(
+              selectors.desktopMonthlyChargeUnits
+            );
+            this.planService.addPlanButtonsListener(
+              selectors.desktopPlanButtons
+            );
           }
 
           this.isPlanSectionFound = true;

@@ -9,10 +9,9 @@ export class AarpService {
     this.state = state;
   }
 
-  addListener = (onChange: Function) => {
-    const aarpCheckbox: null | HTMLDivElement = document.querySelector(
-      selectors.aarpCheckbox
-    );
+  addListener = (onChange: Function, checkboxSelector: string) => {
+    const aarpCheckbox: null | HTMLDivElement =
+      document.querySelector(checkboxSelector);
 
     if (!aarpCheckbox) {
       return;
@@ -20,7 +19,7 @@ export class AarpService {
 
     aarpCheckbox.addEventListener("click", () => {
       this.isAarpChecked = this.getAarpCheckboxValue(aarpCheckbox);
-      onChange(this.isAarpChecked);
+      this.state.needListener && onChange(this.isAarpChecked);
     });
   };
 

@@ -26,7 +26,7 @@ export class LineService {
           const line: number = Number(
             circle.nextElementSibling.nextElementSibling.textContent
           );
-          onLineClick(line);
+          this.state.needListener && onLineClick(line);
         }
       });
     });

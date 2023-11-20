@@ -1,9 +1,10 @@
-import { selectors } from "../common/asset";
+import { mBoxNames, selectors, triggerMetrics } from "../common/asset";
 import { State } from "../common/state";
 
 export class PlanService {
   state!: State;
   plans!: NodeListOf<HTMLSpanElement>;
+  lastCircleIndex: number = 3;
 
   constructor(state: State) {
     this.state = state;
@@ -17,10 +18,9 @@ export class PlanService {
     }
   };
 
-  getPlanElements = () => {
-    const plans: null | NodeListOf<HTMLSpanElement> = document.querySelectorAll(
-      selectors.plans
-    );
+  getPlanElements = (planSelected: string) => {
+    const plans: null | NodeListOf<HTMLSpanElement> =
+      document.querySelectorAll(planSelected);
     if (!plans || plans.length === 0) {
       return;
     }
@@ -35,31 +35,53 @@ export class PlanService {
       return;
     }
 
-    circles.item(0).classList.contains("circle-selected") &&
-      circles.item(1).click();
-    circles.item(0).classList.contains("circle") && circles.item(0).click();
+    for (let index = 0; index < circles.length; index++) {
+      const circle: HTMLDivElement = circles.item(index);
 
-    const plans: null | NodeListOf<HTMLSpanElement> = document.querySelectorAll(
-      selectors.mobilePlans
-    );
-    if (!plans || plans.length === 0) {
-      return;
+      if (
+        circle.classList.contains("circle-selected") &&
+        index !== this.lastCircleIndex
+      ) {
+        circles.item(index + 1).click();
+        setTimeout(() => {
+          circle.click();
+        }, 250);
+        break;
+      } else {
+        circles.item(index - 1).click();
+        setTimeout(() => {
+          circle.click();
+        }, 250);
+        break;
+      }
     }
-    this.plans = plans;
+
+    setTimeout(() => {
+      this.state.activeListener();
+      this.getPlanElements(selectors.mobilePlans);
+      this.changeUnitText(selectors.mobileMonthlyChargeUnits);
+      this.addPlanButtonsListener(selectors.mobilePlanButtons);
+    }, 250);
   };
 
   changePlanPrice = (isAarp: boolean) => {
     this.state.selectedLine === 2 &&
+      this.plans &&
+      this.plans.length > 0 &&
       this.plans.forEach((plan: HTMLSpanElement) => {
         this.calculatePriceAndShow(plan, 2);
       });
 
     this.state.selectedLine === 3 &&
+      this.plans &&
+      this.plans.length > 0 &&
       this.plans.forEach((plan: HTMLSpanElement) => {
         this.calculatePriceAndShow(plan, 3);
       });
 
     this.state.selectedLine === 1 &&
+      this.plans &&
+      this.plans.length > 0 &&
       this.plans.forEach((plan: HTMLSpanElement) => {
         plan.lastElementChild && plan.lastElementChild.classList.add("hide");
       });
@@ -99,5 +121,31 @@ export class PlanService {
         this.getHtml(splittedPrice[0], null)
       );
     }
+  };
+
+  changeUnitText = (planSelected: string) => {
+    const units: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(planSelected);
+    if (!units || units.length === 0) {
+      return;
+    }
+
+    units.forEach((unit: HTMLDivElement) => {
+      unit.textContent = "A MONTH PER LINE";
+    });
+  };
+
+  addPlanButtonsListener = (planButtonsSelected: string) => {
+    const buttons: null | NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll(planButtonsSelected);
+    if (!buttons || buttons.length === 0) {
+      return;
+    }
+
+    buttons.forEach((button: HTMLButtonElement) => {
+      button.addEventListener("click", () => {
+        triggerMetrics(mBoxNames.planClick);
+      });
+    });
   };
 }

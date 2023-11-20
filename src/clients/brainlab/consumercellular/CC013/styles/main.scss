@@ -1,13 +1,36 @@
 @import "./common";
 
 .#{$id} {
-  section.most-plans
-    > div:nth-child(3)
-    > div.plan-selection-wrapper
-    > button
-    > div.body
-    > span.monthly-charge
-    > span.base-dollar-display-component.hide {
-    display: none !important;
+  &-1 {
+    section.most-plans
+      > div:nth-child(3)
+      > div.plan-selection-wrapper
+      > button
+      > div.body
+      > span.monthly-charge
+      > span.base-dollar-display-component.hide {
+      display: none !important;
+    }
+
+    section.most-plans
+      > div:nth-child(3)
+      > div.plan-selection-wrapper
+      > button
+      > div.body
+      > div.monthly-charge-units {
+      font-size: 2em;
+    }
+
+    section.most-plans
+      > div:nth-child(3)
+      > div.slider-wrapper
+      > div.slick-slider
+      > div.slick-list
+      > div.slick-track
+      > button.combo-plan
+      > div.body
+      > div.monthly-charge-units {
+      font-size: 2.5em;
+    }
   }
 }
