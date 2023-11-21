@@ -13,19 +13,20 @@ export class MainComponent {
     Initializer.init(TestInfo, "0.0.1");
   }
 
-  trackEvent = (evnetName: string) => {
+  trackEvent = (eventName: string) => {
     //@ts-ignore
     window["optimizely"] = window["optimizely"] || [];
     //@ts-ignore
     window["optimizely"].push({
       type: "event",
-      eventName: evnetName,
+      eventName: eventName,
     });
-    console.log("event-name=", evnetName);
+    console.log("event-name=", eventName);
   };
 
   addViewDetailButtonListener = (wrapper: HTMLDivElement) => {
-    const button: null | HTMLButtonElement = wrapper.querySelector("span.show-detail-btn");
+    const button: null | HTMLButtonElement =
+      wrapper.querySelector("span.gallery-link");
     const link: null | HTMLAnchorElement = wrapper.querySelector("a");
 
     button &&
@@ -44,9 +45,10 @@ export class MainComponent {
         }, 250);
       });
 
-    link && link.addEventListener("click",()=>{
-      this.trackEvent(eventNames.cardVisualizerLinkClick)
-    });
+    link &&
+      link.addEventListener("click", () => {
+        this.trackEvent(eventNames.cardVisualizerLinkClick);
+      });
   };
 
   addBottomLightboxLink = (link: string | null, modal: HTMLDivElement) => {
