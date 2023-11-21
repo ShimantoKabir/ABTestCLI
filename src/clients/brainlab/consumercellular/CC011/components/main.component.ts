@@ -3,11 +3,16 @@ import { selectors } from "../common/asset";
 import { TestInfo } from "../common/test.info";
 import { LocationObserver } from "../observer/location.observer";
 import { TestObserver } from "../observer/test.observer";
+import { PlanService } from "../services/plan.service";
+import { RangeComponent } from "./range.component";
 
 export class MainComponent {
   location: string = "";
-  isDesiredElementFound: boolean = false;
   planPagePathname: string = "/shopping/choose/plan";
+  isModificationApplied: boolean = false;
+  lastCircleIndex: number = 3;
+  planService: PlanService = new PlanService();
+  rangComponent: RangeComponent = new RangeComponent(this.planService);
 
   constructor() {
     Initializer.init(TestInfo, "0.0.1");
@@ -16,24 +21,24 @@ export class MainComponent {
   init = (): void => {
     LocationObserver.listen((location: string) => {
       this.location = location;
-      this.isDesiredElementFound = false;
+      this.isModificationApplied = false;
     });
 
-    const testObserver = new TestObserver(selectors.shoppingPageContainer);
+    const testObserver = new TestObserver("body");
     const callback = (mutationList: MutationRecord[]) => {
       for (let index = 0; index < mutationList.length; index++) {
-        const mutationRecord = mutationList[index];
-
-        const target: Element = mutationRecord.target as Element;
+        const target: Element = mutationList[index].target as Element;
+        // console.log("target-length=", target.innerHTML.length);
 
         if (
-          this.location === this.planPagePathname &&
-          !this.isDesiredElementFound &&
-          target.classList.contains("combo-plan")
+          target.innerHTML &&
+          target.innerHTML.length > 200000 &&
+          !this.isModificationApplied &&
+          this.location === this.planPagePathname
         ) {
           this.displaySlider();
-          this.isDesiredElementFound = true;
-          break;
+          this.rangComponent.render();
+          this.isModificationApplied = true;
         }
       }
     };
@@ -41,15 +46,36 @@ export class MainComponent {
   };
 
   displaySlider = () => {
-    const slickSlider: Element | null = document.querySelector(
-      selectors.slickSlider
-    );
-    console.log("slickSlider=", slickSlider);
-    if (!slickSlider) {
+    const circles: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(selectors.circles);
+
+    if (!circles || circles.length === 0) {
       return;
     }
 
-    console.log("first-button=", slickSlider.childNodes[1]);
-    console.log("first-button=", slickSlider.childNodes[2]);
+    for (let index = 0; index < circles.length; index++) {
+      const circle: HTMLDivElement = circles.item(index);
+
+      if (
+        circle.classList.contains("circle-selected") &&
+        index !== this.lastCircleIndex
+      ) {
+        circles.item(index + 1).click();
+        setTimeout(() => {
+          circle.click();
+        }, 250);
+        break;
+      } else {
+        circles.item(index - 1).click();
+        setTimeout(() => {
+          circle.click();
+        }, 250);
+        break;
+      }
+    }
+
+    setTimeout(() => {
+      this.planService.getArrows();
+    }, 350);
   };
 }
