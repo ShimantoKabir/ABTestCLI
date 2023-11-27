@@ -1,16 +1,19 @@
-import { selectors, sliderMoveRange } from "../common/asset";
+import { selectors, step } from "../common/asset";
 import { PlanService } from "../services/plan.service";
+import { ServiceComponent } from "./service.component";
 
 export class RangeComponent {
   private planService!: PlanService;
+  private serviceComponent!: ServiceComponent;
 
   constructor(planService: PlanService) {
     this.planService = planService;
+    this.serviceComponent = new ServiceComponent(this.planService);
   }
 
   getHtml = (): string => {
     const htmlString: string = `
-      <div class="range-component" ><input type="range" min="1" max="100" value="1" step="33"></div>
+      <div class="range-component" ><input type="range" min="1" max="100" value="1" step="${step}"></div>
     `;
     return htmlString.trim();
   };
@@ -40,22 +43,20 @@ export class RangeComponent {
 
     range.oninput = () => {
       const currentRangeValue: number = Number(range.value);
-
-      if (currentRangeValue > prevRangeValue) {
-        const isRangeFound = sliderMoveRange.find(
-          (range: number) => range === currentRangeValue
-        );
-
-        isRangeFound && this.planService.clickArrow("next");
-      } else {
-        const isRangeFound = sliderMoveRange.find(
-          (range: number) => range === currentRangeValue
-        );
-
-        isRangeFound && this.planService.clickArrow("prev");
-      }
-
-      prevRangeValue = currentRangeValue;
+      this.serviceComponent.evaluateMovement(currentRangeValue);
     };
+  };
+
+  activeNth = (nth: number) => {
+    const range: HTMLInputElement | null = document.querySelector(
+      selectors.range
+    );
+
+    if (!range) {
+      return;
+    }
+
+    range.value = nth.toString();
+    this.serviceComponent.setPerviousRangeValue(nth);
   };
 }

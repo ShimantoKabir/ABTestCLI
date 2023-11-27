@@ -4,5 +4,5 @@ export enum TestInfo {
   TITLE = "6.9M - Pricing is scroll off screen",
   CLIENT = "brainlab",
   TARGET = "https://www.consumercellular.com/shopping/choose/plan",
-  VARIATION = "1",
+  VARIATION = "2",
 }
