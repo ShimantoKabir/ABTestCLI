@@ -1,4 +1,3 @@
-import { link } from "fs-extra";
 import { Trailer } from "../models/trailer";
 import { Link } from "../models/link";
 
@@ -28,10 +27,12 @@ export class MainService {
     const links: null | NodeListOf<HTMLAnchorElement> =
       content.querySelectorAll("a");
 
+    description && description.classList.add("accordion-description");
+
     this.trailers.push({
       headline: heading && heading.textContent ? heading.textContent : "",
       description:
-        description && description.textContent ? description.textContent : "",
+        description && description.innerHTML ? description.innerHTML : "",
       links: links && links.length > 0 ? this.getLinksData(links) : [],
     });
   };
@@ -39,6 +40,7 @@ export class MainService {
   getLinksData = (linkElements: NodeListOf<HTMLAnchorElement>): Link[] => {
     const links: Link[] = [];
     linkElements.forEach((link: HTMLAnchorElement) => {
+      link.classList.add("accordion-link");
       links.push({
         href: link.href,
         text: link.textContent ? link.textContent : "",

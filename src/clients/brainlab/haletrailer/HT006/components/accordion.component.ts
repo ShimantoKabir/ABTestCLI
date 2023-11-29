@@ -7,15 +7,17 @@ export class AccordionComponent {
     const linkItemHtml: string = `
       <div class="link-item">
         <div class="round"></div>
-        <div class="link"><a href="${link.href}" >${link.text}</a></div>
+        <div class="link">
+          <a class="accordion-link" href="${link.href}" >${link.text}</a>
+        </div>
       </div>
     `;
     return linkItemHtml.trim();
   };
 
-  getAccordionItemHtml = (trailer: Trailer) => {
+  getAccordionItemHtml = (trailer: Trailer, index: number) => {
     const accordionItemHtml: string = `
-      <div class="accordion-item" >
+      <div class="accordion-item ${index === 0 ? "active" : ""}" >
         <div class="heading" >
           <div class="text" >
             <h2>${trailer.headline}</h2>
@@ -25,7 +27,9 @@ export class AccordionComponent {
           </div>
         </div>
         <div class="body" >
-          <div class="description" >${trailer.description}</div>
+          <div class="description accordion-description" >
+            ${trailer.description}
+          </div>
           <div class="link-container" >
             ${trailer.links
               .map((link: Link) => this.getLinkItemHtml(link))
@@ -41,7 +45,9 @@ export class AccordionComponent {
     const htmlString: string = `
       <div class="accordion-container" >
       ${trailers
-        .map((trailer: Trailer) => this.getAccordionItemHtml(trailer))
+        .map((trailer: Trailer, index: number) =>
+          this.getAccordionItemHtml(trailer, index)
+        )
         .join("\n")}
       </div>
     `;
@@ -57,5 +63,23 @@ export class AccordionComponent {
     }
 
     spacer.insertAdjacentHTML("afterend", this.getHtml(trailers));
+    this.reactive();
+  };
+
+  reactive = () => {
+    const headings: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(
+        "div.accordion-container>div.accordion-item>div.heading"
+      );
+    if (!headings || headings.length === 0) {
+      return;
+    }
+
+    headings.forEach((heading: HTMLDivElement) => {
+      heading.addEventListener("click", () => {
+        heading.parentElement &&
+          heading.parentElement.classList.toggle("active");
+      });
+    });
   };
 }

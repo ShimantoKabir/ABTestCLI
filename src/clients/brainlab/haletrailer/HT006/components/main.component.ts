@@ -8,7 +8,8 @@ import { AccordionComponent } from "./accordion.component";
 export class MainComponent {
   mainService: MainService = new MainService();
   accordionComponent: AccordionComponent = new AccordionComponent();
-  private trailers: Trailer[] = [];
+  trailers: Trailer[] = [];
+  variation: string = TestInfo.VARIATION.toString();
 
   constructor() {
     Initializer.init(TestInfo, "0.0.1");
@@ -22,12 +23,12 @@ export class MainComponent {
       return;
     }
 
-    trailers[0].parentElement &&
+    this.variation === "1" &&
+      trailers[0].parentElement &&
       trailers[0].parentElement.classList.add("hide");
 
     this.trailers = this.mainService.collectData(trailers);
 
-    this.accordionComponent.render(this.trailers);
-    //this.mainService.collectData(trailers);
+    this.variation === "1" && this.accordionComponent.render(this.trailers);
   };
 }

@@ -4,23 +4,115 @@
   div.hide {
     display: none !important;
   }
-  /* Extra small devices (phones, 600px and down) */
-  @media only screen and (max-width: 600px) {
-  }
 
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-  }
+  &-1 {
+    div.accordion-container {
+      > div.accordion-item {
+        margin-bottom: 20px;
 
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-  }
+        > div.heading {
+          background-color: #0032a1;
+          color: #ffffff;
+          display: flex;
+          justify-content: space-between;
+          padding: 5px 15px;
+          align-items: center;
+          cursor: pointer;
 
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-  }
+          > div.text {
+            > h2 {
+              margin: 0 !important;
+              padding: 0 !important;
+              font-size: 24px;
+              font-weight: 700;
+              line-height: 28px;
+            }
+          }
+        }
 
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
+        > div.body {
+          padding: 20px;
+          display: none;
+
+          > div.description {
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 28px;
+
+            > a {
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 28px;
+            }
+          }
+
+          > div.link-container {
+            display: grid;
+
+            > div.link-item {
+              display: flex;
+              align-items: baseline;
+              justify-content: flex-start;
+              width: 100%;
+              margin-top: 5px;
+
+              > div.round {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: red;
+              }
+
+              > div.link {
+                margin-left: 10px;
+
+                > a {
+                  font-size: 20px;
+                  line-height: 25px;
+                  font-weight: 700;
+                }
+              }
+            }
+
+            @media only screen and (max-width: 768px) {
+              grid-template-columns: auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+
+            @media only screen and (min-width: 768px) {
+              grid-template-columns: auto auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+
+            @media only screen and (min-width: 992px) {
+              grid-template-columns: auto auto auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+
+            @media only screen and (min-width: 1200px) {
+              grid-template-columns: auto auto auto auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+          }
+        }
+      }
+
+      > div.accordion-item.active {
+        > div.heading {
+          > div.icon {
+            transform: rotate(180deg);
+          }
+        }
+
+        > div.body {
+          display: block !important;
+        }
+      }
+    }
   }
 }
