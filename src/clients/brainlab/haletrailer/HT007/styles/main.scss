@@ -1,0 +1,111 @@
+@import "./common";
+
+.#{$id} {
+  div.hide {
+    display: none !important;
+  }
+
+  &-1 {
+    div.accordion-container {
+      > div.accordion-item {
+        margin-bottom: 20px;
+
+        > div.heading {
+          background-color: #0032a1;
+          color: #ffffff;
+          display: flex;
+          justify-content: space-between;
+          padding: 5px 15px;
+          align-items: center;
+          cursor: pointer;
+
+          > div.text {
+            > h2 {
+              margin: 0 !important;
+              padding: 0 !important;
+              font-size: 24px;
+              font-weight: 700;
+              line-height: 28px;
+
+              @media only screen and (max-width: 768px) {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+
+        > div.body {
+          padding: 20px;
+          display: none;
+
+          > div.link-container {
+            display: grid;
+
+            > div.link-item {
+              display: flex;
+              align-items: baseline;
+              justify-content: flex-start;
+              width: 100%;
+              margin-top: 5px;
+
+              > div.round {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: red;
+              }
+
+              > div.link {
+                margin-left: 10px;
+
+                > a {
+                  font-size: 20px;
+                  line-height: 25px;
+                  font-weight: 700;
+                  pointer-events: none;
+                  cursor: default;
+                }
+              }
+            }
+
+            @media only screen and (max-width: 768px) {
+              grid-template-columns: auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+
+            @media only screen and (min-width: 768px) {
+              grid-template-columns: auto auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+
+            @media only screen and (min-width: 992px) {
+              grid-template-columns: auto auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+
+            @media only screen and (min-width: 1200px) {
+              grid-template-columns: auto auto;
+              column-gap: 10px;
+              column-gap: 10px;
+            }
+          }
+        }
+      }
+
+      > div.accordion-item.active {
+        > div.heading {
+          > div.icon {
+            transform: rotate(180deg);
+          }
+        }
+
+        > div.body {
+          display: block !important;
+        }
+      }
+    }
+  }
+}
