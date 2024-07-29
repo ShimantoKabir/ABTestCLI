@@ -1,0 +1,72 @@
+@import "./common";
+
+.#{$id} {
+  div.disclaimer-component {
+    margin-top: 50px;
+  }
+
+  div.trade-in-prompt.on-top {
+    display: none;
+  }
+
+  div.message-component {
+    padding: 1em;
+    border-radius: 0.5rem;
+    width: 100%;
+    background-color: #d9f0f6;
+    color: #001e45;
+    font-size: 1.6rem;
+
+    font-weight: 500;
+
+    > div.component-wrap {
+      > p {
+        margin: 0 !important;
+        line-height: 1.5;
+      }
+
+      > p.free {
+        font-weight: bold;
+      }
+
+      > p.term {
+        > a {
+          font-weight: 700;
+        }
+      }
+
+      > p.redeem {
+        > a {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  div#shopping-page-container
+    > div.body-content
+    > div.container
+    > div.grid-container {
+    margin-top: 10px;
+  }
+
+  div.placeholder-device-header {
+    margin-top: 35px;
+  }
+
+  div.product-image {
+    margin-bottom: 15px;
+  }
+
+  p#action_insert_17174222979494628 {
+    display: none;
+  }
+
+  p#action_insert_17171716487894141 {
+    display: none;
+  }
+
+  p#action_insert_17171711939882855 {
+    display: none;
+  }
+}

@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'F5017', SITE = 'f5', TITLE = 'BLTEST050 Jumplink to form', CLIENT = 'brainlab', TARGET = 'https://www.f5.com/go/solution/gigaom-radar-for-cloud-networking', VARIATION = '1'}

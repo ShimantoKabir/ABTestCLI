@@ -1,0 +1,120 @@
+@import "./common";
+
+.#{$id} {
+  main#main-content > div > div:nth-child(4) {
+    > div:first-child {
+      display: none;
+    }
+  }
+
+  div.m-b-lg > div.card-container {
+    max-width: 1024px;
+  }
+
+  div.o-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  a.learn-more-link {
+    background-color: #000;
+    color: #fff;
+    padding: 7px 15px;
+  }
+
+  div.feature-container {
+    > div.feature-component {
+      width: 100%;
+      background-color: #d7d2cb40;
+      padding: 25px;
+      margin-bottom: 20px;
+
+      > div.feature-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        border: 10px solid #fff;
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: #d7d2cb40;
+
+        > div.feature-img {
+          width: 48%;
+          > img {
+            width: 100%;
+          }
+
+          @media only screen and (max-width: 768px) {
+            width: 100%;
+          }
+        }
+
+        > div.feature-gap {
+          width: 4%;
+        }
+
+        > div.feature-content {
+          width: 48%;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          padding-top: 10px;
+          padding-bottom: 10px;
+
+          > div.heading {
+            @media only screen and (max-width: 768px) {
+              font-size: 17px;
+            }
+          }
+
+          > div.description {
+            margin-top: 20px;
+            margin-bottom: 40px;
+
+            > div.break {
+              margin-top: 10px;
+            }
+
+            @media only screen and (max-width: 768px) {
+              font-size: 15px;
+            }
+          }
+
+          > div.feature-link {
+            > a {
+              border: 2px solid #000;
+              color: #fff;
+              background-color: #000;
+              padding: 15px 15px;
+              font-weight: 700;
+              font-size: 18px;
+            }
+          }
+
+          @media only screen and (max-width: 768px) {
+            width: 100%;
+          }
+        }
+
+        @media only screen and (max-width: 768px) {
+          flex-direction: column;
+        }
+      }
+
+      > div:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      > div.feature-item.reverse {
+        flex-direction: row-reverse;
+
+        @media only screen and (max-width: 768px) {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}

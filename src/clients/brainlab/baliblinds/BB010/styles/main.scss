@@ -1,0 +1,43 @@
+@import "./common";
+
+.#{$id} {
+  div.slide-caption-inner {
+    > a.dotted-link {
+      background-color: #fff;
+      width: max-content;
+      padding: 5px 10px;
+      color: #102a4a !important;
+      font-family: "aktiv-grotesk", HelveticaNeue, "Helvetica Neue", Helvetica,
+        Arial, Roboto, sans-serif;
+      font-weight: 600;
+    }
+
+    > a.dotted-link:hover {
+      background-color: #e9f3fb !important;
+    }
+
+    > a.dotted-link.out {
+      color: #006072 !important;
+    }
+
+    > a.dotted-link.cellular {
+      color: #102a4a !important;
+    }
+
+    > a.dotted-link.pleated {
+      color: #5f5450 !important;
+    }
+
+    > a.dotted-link.solar {
+      color: #4e626a !important;
+    }
+
+    > a.dotted-link.roller {
+      color: #8a2233 !important;
+    }
+
+    > a.dotted-link.window {
+      color: #5f5450 !important;
+    }
+  }
+}

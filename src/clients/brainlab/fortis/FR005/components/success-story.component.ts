@@ -2,7 +2,7 @@ import {
   leftArrowSvg,
   mboxNames,
   rightArrowSvg,
-  successStories,
+  selectors,
 } from "../common/asset";
 import { SuccessStory } from "../models/success-story.model";
 
@@ -17,7 +17,7 @@ export class SuccessStoryComponent {
         </div>
         <div class="slide-details" >
           <div class="title" >  
-            <p><strong>${slide.name}</strong>, ${slide.title}</p>
+            <p><strong>${slide.name}</strong> ${slide.title}</p>
           </div>
           <div class="description" >
             <p>${slide.description}</p>
@@ -28,7 +28,7 @@ export class SuccessStoryComponent {
     return htmlString.trim();
   };
 
-  private getHtml = (): string => {
+  private getHtml = (stories: SuccessStory[]): string => {
     const htmlString: string = `
       <div class="success-story-component" >
         <div class="component-container" >
@@ -41,14 +41,14 @@ export class SuccessStoryComponent {
             </div>
           </div>
           <div class="component-slide" >
-          ${successStories
+          ${stories
             .map((story: SuccessStory, index: number) =>
               this.getSlide(story, index)
             )
             .join("\n")}
           </div>
           <div class="slide-dot" > 
-          ${successStories
+          ${stories
             .map(
               (story: SuccessStory, index: number) =>
                 `<span class="dot ${index === 0 ? "active" : ""}" ></span>`
@@ -63,7 +63,9 @@ export class SuccessStoryComponent {
   };
 
   render = (unbounceTitle: HTMLDivElement) => {
-    unbounceTitle.insertAdjacentHTML("afterend", this.getHtml());
+    const stories: SuccessStory[] = this.collectSuccessStories();
+
+    unbounceTitle.insertAdjacentHTML("afterend", this.getHtml(stories));
 
     const leftArrow: null | HTMLDivElement =
       document.querySelector("div.left-arrow");
@@ -107,7 +109,7 @@ export class SuccessStoryComponent {
       dot.addEventListener("click", () => {
         this.slideIndex = index + 1;
         this.changeSlide(slides, dots, this.slideIndex);
-        console.log("mbox=", mboxNames.slideArrow);
+        console.log("mbox=", mboxNames.slideDot);
         // @ts-ignore
         adobe.target.trackEvent({ mbox: mboxNames.slideArrow });
       });
@@ -140,5 +142,46 @@ export class SuccessStoryComponent {
         dot.classList.add("active");
       }
     });
+  };
+
+  collectSuccessStories = (): SuccessStory[] => {
+    const stories: SuccessStory[] = [];
+
+    const successStories: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll(selectors.successStories);
+
+    if (successStories === null || successStories.length === 0) {
+      return [];
+    }
+
+    successStories.forEach((story: HTMLDivElement) => {
+      const imgElm: null | HTMLImageElement = story.querySelector("img");
+
+      const nameElm: null | HTMLSpanElement =
+        story.querySelector("span.tertiary-text");
+
+      const descriptionElm: null | HTMLParagraphElement = story.querySelector(
+        "div.text>p:last-child"
+      );
+
+      const storyModel: SuccessStory = new SuccessStory();
+
+      const src = imgElm && imgElm.getAttribute("src");
+      storyModel.img = src ? "https://www.fortis.edu".concat(src) : "";
+
+      const title =
+        nameElm && nameElm.childNodes[1] && nameElm.childNodes[1].textContent;
+      storyModel.title = title ?? "";
+
+      const description = descriptionElm && descriptionElm.textContent;
+      storyModel.description = description ?? "";
+
+      const name = nameElm && nameElm.textContent;
+      storyModel.name = name ?? "";
+
+      stories.push(storyModel);
+    });
+
+    return stories;
   };
 }

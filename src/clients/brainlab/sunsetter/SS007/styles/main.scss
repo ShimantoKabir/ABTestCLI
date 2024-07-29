@@ -1,0 +1,396 @@
+@import "./common";
+
+.#{$id} {
+  main#content > div:first-child > div:first-child {
+    display: none;
+
+    @media only screen and (max-width: 1140px) {
+      display: block;
+    }
+  }
+
+  div.main-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+    > div.component-wrap {
+      width: 1100px;
+      margin: 0 auto;
+
+      > div.extra-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+
+        > div.hero-component {
+          width: 70%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          > div.component-wrap {
+            position: relative;
+
+            > div.img {
+              > img {
+                width: 100%;
+                display: none;
+              }
+
+              > img.active {
+                display: block;
+              }
+            }
+
+            > div.hero-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+
+              > div.overlay-wrap {
+                max-width: 350px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: hsla(202.9, 98%, 21%, 0.85);
+                padding: 20px 10px;
+
+                > div.overlay-text {
+                  > h2 {
+                    text-align: center;
+                    color: #fff;
+                    font-size: 2.4rem;
+                  }
+
+                  > h2.step-one {
+                    display: block;
+                  }
+
+                  > h2.step-two {
+                    display: none;
+                  }
+                }
+
+                > div.overlay-text.submitted {
+                  > h2.step-one {
+                    display: none;
+                  }
+
+                  > h2.step-two {
+                    display: block;
+                  }
+                }
+
+                > div.overlay-cta {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-top: 10px;
+
+                  > a {
+                    padding: 1.2rem 2rem;
+                    margin: 5px;
+                    line-height: 1;
+                    text-decoration: none;
+                    font-weight: 700;
+                    border-radius: 5px;
+                  }
+
+                  > a.price {
+                    background: #fd6;
+                    color: #01426a;
+                  }
+
+                  > a.dealer {
+                    background: #005180;
+                    color: #fff;
+                  }
+                }
+              }
+            }
+          }
+
+          > div.carousel-component {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+
+            > div.component-wrap {
+              position: relative;
+              width: 100%;
+
+              > div.swiper {
+                width: 85%;
+
+                > div.swiper-wrapper {
+                  > div.swiper-slide {
+                    > div.image-card {
+                      > img {
+                        width: 100%;
+                        cursor: pointer;
+                      }
+                    }
+
+                    > div.image-card.active {
+                      background-color: transparent !important;
+
+                      > img {
+                        border: 2px solid #0a456b;
+                        border-radius: 5px;
+                      }
+                    }
+                  }
+                }
+              }
+
+              > div.carousel-controller {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: absolute;
+                top: 30%;
+                left: 0;
+                width: 100%;
+
+                > div.carousel-prev {
+                  padding: 10px;
+                }
+
+                > div.carousel-pagination {
+                  width: max-content;
+
+                  > span.swiper-pagination-bullet {
+                    width: 15px;
+                    height: 15px;
+                  }
+
+                  > span.swiper-pagination-bullet-active {
+                    background: #fd6;
+                  }
+                }
+
+                > div.carousel-next {
+                  padding: 10px;
+                }
+              }
+            }
+          }
+        }
+
+        > div.form-component {
+          width: 30%;
+          background-color: #01426a;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10px;
+          flex-direction: column;
+
+          > div.component-wrap {
+            padding: 20px;
+
+            > div.headline {
+              > h3 {
+                color: #fff;
+                text-align: left;
+              }
+            }
+
+            > form {
+              margin-top: 20px;
+
+              > div.input-area {
+                display: flex;
+                margin-top: 10px;
+                justify-content: space-between;
+                align-items: center;
+
+                > div.name {
+                  width: 110px;
+
+                  > label {
+                    color: #fff;
+                  }
+                }
+
+                > div.input {
+                  width: 100%;
+
+                  > input {
+                    padding: 10px;
+                    border: 2px solid #ffc600;
+                    border-radius: 5px;
+                    width: 100%;
+                  }
+
+                  > select {
+                    padding: 10px;
+                    border: 2px solid #ffc600;
+                    border-radius: 5px;
+                    width: 100%;
+                  }
+                }
+
+                > div.check-box {
+                  > input {
+                    position: static;
+                  }
+                }
+
+                > div.check-box-label {
+                  margin-left: 10px;
+
+                  > p {
+                    color: #fff;
+                    font-size: 12px;
+                    line-height: 1;
+                  }
+                }
+              }
+
+              > div.submit-area {
+                margin-top: 20px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+
+                > div.submit-area-text {
+                  > p {
+                    color: #fff;
+                    > span {
+                      color: #fff;
+                    }
+                  }
+                }
+
+                > div.cta {
+                  width: 100%;
+
+                  > button {
+                    background: #fd6;
+                    color: #01426a;
+                    padding: 10px 15px;
+                    border-radius: 5px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    width: 100%;
+                    border: 1px solid #fd6;
+                    margin-top: 5px;
+                  }
+                }
+              }
+
+              > div.input-area-tex {
+                margin-top: 10px;
+                > p {
+                  color: #fff;
+                  font-weight: 700;
+                  font-size: 14px;
+                }
+              }
+            }
+
+            > div.form-footer {
+              margin-top: 15px;
+
+              > div.skip {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                > a {
+                  text-align: center;
+                  font-weight: 700;
+                }
+              }
+
+              > div.footer-text {
+                margin-top: 10px;
+
+                > p {
+                  color: #fff;
+                  font-size: 1rem;
+                  line-height: 1.3;
+                }
+              }
+            }
+          }
+
+          > div.component-wrap.success {
+            display: none;
+
+            > div.success-wrap {
+              > p {
+                color: #fff;
+              }
+            }
+          }
+
+          > div.component-wrap.step-two {
+            display: none;
+          }
+
+          > div.component-wrap.step-one {
+            display: block;
+          }
+
+          > div.error-msg {
+            padding: 10px;
+            background-color: red;
+            width: 100%;
+            display: none;
+
+            > p {
+              color: #fff;
+              text-align: center;
+              font-weight: 600;
+            }
+          }
+
+          > div.error-msg.show {
+            display: block;
+          }
+        }
+
+        > div.form-component.next-step {
+          > div.component-wrap.step-two {
+            display: block;
+          }
+
+          > div.component-wrap.step-one {
+            display: none;
+          }
+        }
+
+        > div.form-component.next-step.submitted {
+          > div.component-wrap.step-two {
+            display: none;
+          }
+
+          > div.component-wrap.step-one {
+            display: none;
+          }
+
+          > div.component-wrap.success {
+            display: block;
+          }
+        }
+      }
+    }
+
+    @media only screen and (max-width: 1140px) {
+      display: none;
+    }
+  }
+}

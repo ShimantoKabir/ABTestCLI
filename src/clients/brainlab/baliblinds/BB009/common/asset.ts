@@ -1,0 +1,24 @@
+export const selectors = {
+  categoryContent: "div.product-category-content",
+  descriptions: "div.product-link-content-container>p",
+};
+
+export const whereToBuyLink: string = "/where-to-buy/";
+
+export const productDescriptions = [
+  `Got both style and savings on your mind? Bali Cellular Shades are designed for both. The honeycomb shape traps hot and cold air that can escape through your windows, saving you money on energy bills all year long, while their crisp lines add soft dimension to any room.`,
+  `One of three types of Bali Roman shades, (classic, tailored, and natural), Bali Classic Roman Shades give you sophisticated simplicity, crisp lines, and impeccable light control. Made from one continuous piece of fabric, these well-crafted shades have no vertical seams, and can be embellished with matching tassels or valance trim for a buttoned up look.`,
+  `Bali Exterior Solar Shades turn your indoor and outdoor spaces into sun-shaded sanctuaries. Capable of blocking sunlight before it enters your home, exterior solar shades control temperatures even better than their interior counterparts. Combined with UV protection and glare management, your home stays protected in more ways than one. Best of all, you still get to enjoy the view.`,
+  `Designed to look like real wood, Bali Composite and Faux Wood Blinds offer timeless beauty on a budget. Besides being affordable and resistant to humidity, faux wood and composite blinds can add distinctive character to any room—light colors add cheerful charm to a kitchen or living room, while dark colors create a thoughtful atmosphere for a study or den.`,
+  `Bali Aluminum and Vinyl Horizontal Blinds add a clean, modern aesthetic to your room—and are durable enough to stand the test of time, even in the most demanding spaces.`,
+  `Bali layered and zebra shades combine alternating stripes of sheer and semi-opaque or opaque fabric for a modern take on light control and style. These stripes are available in three different sizes, with wider options offering a better view. When open, layered and zebra shades let in softly filtered light, while closed bands offer superior light blocking for a clean, modern look.`,
+  `Bring the outdoors in for a uniquely natural look with Bali Natural Shades. Made with renewable materials like grass, jute, bamboo, and American hardwood, these shades feature organic details like mineral marks knots, and other uneven patterns, making every natural shade its own one-of-a-kind piece of art.`,
+  `Bali Pleated Shades are made with crisp, even folds to add just the right dimension to your interior design. These unique shades come in a huge selection of interesting and expressive fabrics to fit just about any decor style, from rustic to eclectic, contemporary to traditional.`,
+  `Bali Roller Shades offer minimalist style and an easy-to-use design. Motorize your shades to control them with the push of a button—or a tap on a screen. Get instant privacy and light control with a simple lift or pull. Roller shades come in huge assortment fabrics—hand-selected by our designers—with colors, textures, patterns, and prints to suit any décor.`,
+  `Clean, sleek, and modern, Bali Sheer Shades are essentially soft blinds that combine the gentle, light filtering attributes of fabric shades with the reliable light control and functionality of traditional blinds.`,
+  `Looking for an alternative to vertical blinds or drapery? Bali Sliding Panels offer a sleek, contemporary option for wide windows and are available in an array of materials from our solar, roller, classic Roman, and all-new, natural shade collections. For an unexpected design twist, you can even use sliding panel blinds as a room divider or closet door. Achieve the same effect with natural drapery.`,
+  `One of 3 types of Bali Roman shades, (classic, tailored, and natural), Bali Tailored Roman Shades feature the customized quality and fine fabrics you would expect from a high-end designer—but at a lower price. You get lush fabrics, hand-sewn tailoring, customization options, and more.`,
+  `Always in style—if even in a throwback sort of way—Bali Vertical Blinds are a versatile, durable option for wide windows and patio doors that continues to deliver on reliable and affordable light control.`,
+  `Feel like you're outside—even when you're not—with the relaxed, natural beauty of Bali Wood Blinds. Durable, warm, and luxurious all at the same time, natural wood blinds instantly turn your windows into the talk of the room.`,
+  `Bali® Essentials offers a streamlined assortment of popular value blinds and shades in a timeless palette for any home decor. Products offered in this inexpensive line are all cordless, which means they’re the safest options for homes with young children—plus, our value products are all custom made to fit your windows at an affordable price and are covered by a five-year warranty.`,
+];

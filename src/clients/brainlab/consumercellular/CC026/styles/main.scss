@@ -1,0 +1,55 @@
+@import "./common";
+
+.#{$id} {
+  a.espanol-link {
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 0.2rem;
+      height: 1.2rem;
+      margin-top: -0.3rem;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      background: #fff;
+    }
+
+    @media only screen and (max-width: 958px) {
+      display: none;
+    }
+  }
+
+  a.espanol-link.home {
+    cursor: pointer;
+    text-decoration: none;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    font-size: 1.125rem;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  nav > div > div:nth-child(2) {
+    gap: unset;
+
+    > div > a {
+      padding-left: 0 !important;
+
+      &:before {
+        content: "";
+        display: inline-block;
+        width: 0.2rem;
+        height: 1.2rem;
+        margin-top: -0.3rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        background: #fff;
+      }
+    }
+  }
+}

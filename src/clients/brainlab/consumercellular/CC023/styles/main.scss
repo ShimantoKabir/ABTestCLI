@@ -1,0 +1,17 @@
+@import "./common";
+
+.#{$id} {
+  div#unfortunate-header-spacer {
+    display: none !important;
+  }
+
+  div#unfortunate-header-spacer.show {
+    display: block !important;
+  }
+
+  div#shopping-app {
+    div.base-due-today-wrapper {
+      padding-top: 10px;
+    }
+  }
+}

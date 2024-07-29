@@ -1,0 +1,58 @@
+@import "./common";
+
+.#{$id} {
+  &-1 {
+    div.card-content {
+      > div.body-md {
+        > a {
+          display: none;
+        }
+      }
+
+      > a:nth-child(4) {
+        display: none;
+      }
+
+      > div.more-price-button {
+        display: flex;
+        flex-wrap: wrap;
+
+        > a.more-details-btn {
+          border: 1px solid #0071b3;
+          font-size: 1.3rem;
+          font-family: "Inter", sans-serif;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 1.25;
+          color: #0071b3;
+          border-radius: 0.4rem;
+          text-decoration: none;
+
+          @media only screen and (max-width: 767px) {
+            padding: 0.8rem 1.2rem;
+          }
+
+          @media only screen and (min-width: 768px) {
+            padding: 1.1rem 2rem;
+          }
+
+          @media only screen and (min-width: 992px) {
+            font-size: 1.4rem;
+          }
+        }
+
+        > a.more-details-btn:hover {
+          background-color: #e1eff8;
+        }
+
+        > div.gap {
+          width: 10px;
+        }
+
+        > a {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

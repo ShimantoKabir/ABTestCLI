@@ -1,0 +1,28 @@
+@import "./common";
+
+.#{$id} {
+  div.carousal > div.theme-wrap {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  div.description > div.theme-wrap {
+    margin-bottom: 136px !important;
+  }
+
+  div.carousal {
+    div.row {
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+
+      > div:first-child {
+        flex: 0 0 100% !important;
+      }
+
+      > div:last-child {
+        width: 0 !important;
+        max-width: 0 !important;
+      }
+    }
+  }
+}

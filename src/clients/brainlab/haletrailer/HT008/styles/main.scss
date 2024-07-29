@@ -1,0 +1,35 @@
+@import "./common";
+
+.#{$id} {
+  .hide {
+    display: none !important;
+  }
+
+  div.trailer-year {
+    display: none;
+  }
+
+  div.trailer-dimensions {
+    display: none;
+  }
+
+  div.arrow-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    rotate: 180deg;
+  }
+
+  div.arrow-component.down {
+    rotate: 0deg;
+  }
+
+  .trailer-bg-color {
+    background-color: #fff;
+  }
+
+  .trailer-opacity {
+    opacity: 0.5;
+  }
+}

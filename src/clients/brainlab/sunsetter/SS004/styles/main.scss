@@ -1,0 +1,123 @@
+@import "./common";
+
+.#{$id} {
+  div.quotation-component {
+    margin: 10px;
+
+    > div.swiper {
+      > div.swiper-wrapper {
+        > div.swiper-slide {
+          > div.quote-card {
+            background-color: #0a456b;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+
+            > div.quote-quotation {
+              max-width: 350px;
+              height: 120px;
+              margin: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+
+              > p {
+                color: #fff;
+              }
+
+              @media only screen and (max-width: 1066px) {
+                max-width: 100%;
+              }
+            }
+
+            > div.quote-star {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            > div.quote-name-location {
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              padding: 10px;
+
+              > p {
+                color: #fff;
+              }
+            }
+          }
+
+          > div.quote-card.card-blue {
+            background-color: #0a80bb;
+
+            > div.quote-svg {
+              > svg {
+                > path {
+                  fill: #0a456b;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    > div.carousel-controller {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+
+      > div.carousel-prev {
+        padding: 10px;
+      }
+
+      > div.carousel-pagination {
+        width: max-content;
+
+        > span.swiper-pagination-bullet {
+          width: 15px;
+          height: 15px;
+        }
+
+        > span.swiper-pagination-bullet-active {
+          background: #fd6;
+        }
+      }
+
+      > div.carousel-next {
+        padding: 10px;
+      }
+    }
+  }
+
+  > div.carousel-controller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+
+    > div.carousel-prev {
+      padding: 10px;
+    }
+
+    > div.carousel-pagination {
+      width: max-content;
+
+      > span.swiper-pagination-bullet {
+        width: 15px;
+        height: 15px;
+      }
+
+      > span.swiper-pagination-bullet-active {
+        background: #fd6;
+      }
+    }
+
+    > div.carousel-next {
+      padding: 10px;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import "./common";
+
+.#{$id} {
+  div.show {
+    display: block !important;
+  }
+
+  // div#f5-nginx > div > div.content > div.cont01,
+  // div#f5-systems > div > div.content > div.cont01
+
+  div#f5-distributed-cloud-services > div > div.content > div.cont01,
+  div#f5-big-ip > div > div.content > div.cont01 {
+    display: none;
+  }
+
+  div#f5-distributed-cloud-services
+    > div
+    > div.content
+    > div.c29-columns.js-inview,
+  div#f5-big-ip > div > div.content > div.c29-columns.js-inview {
+    cursor: pointer;
+  }
+
+  div#f5-distributed-cloud-services
+    > div
+    > div.content
+    > div.c29-columns.js-inview.expand,
+  div#f5-big-ip > div > div.content > div.c29-columns.js-inview.expand {
+    div.arrow-icon {
+      rotate: 180deg;
+    }
+  }
+
+  div#f5-distributed-cloud-services
+    > div
+    > div.content
+    > div.c29-columns
+    > div.c29-columns__wrap
+    > div.c29-columns__container,
+  div#f5-big-ip
+    > div
+    > div.content
+    > div.c29-columns
+    > div.c29-columns__wrap
+    > div.c29-columns__container {
+    border-bottom: 1px solid #000;
+    margin-bottom: 30px;
+  }
+
+  h3.at02__title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    > div.arrow-icon {
+      margin-left: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: max-content;
+    }
+  }
+}

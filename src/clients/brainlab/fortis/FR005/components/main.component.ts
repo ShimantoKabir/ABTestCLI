@@ -6,8 +6,10 @@ import { CourseScheduleComponent } from "./course-schedule.component";
 import { SuccessStoryComponent } from "./success-story.component";
 
 export class MainComponent {
+  variation: string = TestInfo.VARIATION.toString();
+
   constructor() {
-    Initializer.init(TestInfo, "0.0.4");
+    Initializer.init(TestInfo, "0.0.11");
   }
 
   init = (): void => {
@@ -45,7 +47,12 @@ export class MainComponent {
         });
       });
 
-    const courseSchedule = document.querySelector(selectors.courseSchedule);
+    const interactionSelector: string =
+      this.variation === "hvac" || this.variation === "surgical"
+        ? selectors.planOfStudy
+        : selectors.courseSchedule;
+
+    const courseSchedule = document.querySelector(interactionSelector);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

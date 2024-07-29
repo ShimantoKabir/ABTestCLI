@@ -1,0 +1,102 @@
+@import "./common";
+
+.#{$id} {
+  div.hide {
+    display: none !important;
+  }
+
+  main > section[data-typename="UiColumn"] {
+    display: none;
+  }
+
+  div.carousal-component {
+    position: relative;
+
+    > div.component-wrap {
+      > div.swiper {
+        width: 100%;
+        height: 100%;
+
+        > div.swiper-wrapper {
+          > section {
+            background: none !important;
+            width: 95%;
+
+            > div.ui-column {
+              > div.ui-column__container {
+                opacity: 1 !important;
+              }
+            }
+
+            @media only screen and (max-width: 768px) {
+              width: 90%;
+            }
+          }
+        }
+
+        > div.swiper-pagination {
+          margin-top: 20px;
+          position: static;
+          margin-bottom: 40px;
+
+          > span {
+            width: 15px;
+            height: 15px;
+          }
+
+          > span.swiper-pagination-bullet-active {
+            background: #000;
+          }
+        }
+      }
+    }
+
+    > div.carousel-controller {
+      position: absolute;
+      top: 45%;
+      width: 100%;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > div.controller-wrap {
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse;
+
+        > div.carousel-arrow {
+          cursor: pointer;
+
+          > div.svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            background-color: #000;
+
+            > svg {
+              @media only screen and (max-width: 768px) {
+                height: 15px;
+                width: 15px;
+              }
+            }
+
+            @media only screen and (max-width: 768px) {
+              height: 30px;
+              width: 30px;
+            }
+          }
+        }
+
+        > div.carousel-arrow.vanish {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,123 @@
+@import "./common";
+
+.#{$id} {
+  div.faq-component {
+    background-color: #f3f1ec;
+
+    > div.component-container {
+      > div.component-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        div.title {
+          > p {
+            display: inline;
+            vertical-align: initial;
+            overflow: initial;
+            max-width: initial;
+            margin: 0 2rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+          }
+
+          > p.desktop {
+            display: block;
+
+            @media only screen and (max-width: 768px) {
+              display: none;
+            }
+          }
+
+          > p.mobile {
+            display: none;
+
+            @media only screen and (max-width: 768px) {
+              display: block;
+            }
+          }
+        }
+      }
+
+      > div.accordion-component {
+        padding: 20px;
+
+        > div.accordion-item {
+          background-color: #fff;
+          margin-top: 20px;
+
+          > div.item-heading {
+            background-color: #354a65;
+            display: flex;
+            color: #fff;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            padding: 5px 10px;
+            cursor: pointer;
+
+            > div.heading {
+              @media only screen and (max-width: 768px) {
+                font-size: 17px;
+                line-height: 25px;
+                margin-right: 10px;
+              }
+            }
+
+            > div.icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 30px;
+              rotate: 45deg;
+            }
+          }
+
+          div.item-body {
+            padding: 20px;
+            display: none;
+
+            > div.answer {
+              line-height: 25px;
+
+              @media only screen and (max-width: 768px) {
+                font-size: 17px;
+                line-height: 25px;
+                margin-right: 10px;
+              }
+            }
+
+            > div.points {
+              margin-top: 10px;
+              display: none;
+            }
+
+            > div.points.show {
+              display: block;
+            }
+          }
+        }
+
+        > div.accordion-item.active {
+          > div.item-body {
+            display: block;
+          }
+
+          > div.item-heading {
+            > div.icon {
+              rotate: 90deg;
+            }
+          }
+        }
+      }
+
+      @media only screen and (min-width: 768px) {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+    }
+  }
+}

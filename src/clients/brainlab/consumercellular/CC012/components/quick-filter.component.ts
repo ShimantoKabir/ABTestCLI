@@ -1,13 +1,27 @@
-import { triggerMetrics } from "../../CC009/common/utils";
 import {
   getSpecificFilterMenuHierarchy,
   mboxNames,
-  quickFilters,
+  mobileBreakPoint,
   selectors,
+  triggerMetrics,
+  v1QuickFilters,
+  v2QuickFilters,
 } from "../common/asset";
+import { TestInfo } from "../common/test.info";
 import { QuickFilterModel } from "../models/quick-filter-model";
+import { ServiceComponent } from "./service.component";
 
 export class QuickFilterComponent {
+  variation: string = TestInfo.VARIATION.toString();
+  quickFilters: QuickFilterModel[] = [];
+  serviceComponent!: ServiceComponent;
+
+  constructor(serviceComponent: ServiceComponent) {
+    this.serviceComponent = serviceComponent;
+    this.quickFilters =
+      this.variation === "1" ? v1QuickFilters : v2QuickFilters;
+  }
+
   getQuickFilterItemHtml = (quickFilterModel: QuickFilterModel): string => {
     const htmlString: string = `
       <div class="filer-menu" >
@@ -20,7 +34,7 @@ export class QuickFilterComponent {
   getHtml = (): string => {
     const htmlString: string = `
       <div class="quick-filer-component" >
-        ${quickFilters.map((quickFilterModel: QuickFilterModel) =>
+        ${this.quickFilters.map((quickFilterModel: QuickFilterModel) =>
           this.getQuickFilterItemHtml(quickFilterModel)
         )}.join("\n")}
       <div>
@@ -31,49 +45,71 @@ export class QuickFilterComponent {
 
   render = () => {
     const gridContainer: HTMLDivElement | null = document.querySelector(
-      selectors.gridContainer
+      selectors.shoppingHeader
     );
     if (!gridContainer) {
       return;
     }
 
-    gridContainer.insertAdjacentHTML("beforebegin", this.getHtml());
+    const insertPosition: InsertPosition =
+      mobileBreakPoint < window.innerWidth ? "beforebegin" : "afterend";
+
+    gridContainer.insertAdjacentHTML(insertPosition, this.getHtml());
 
     this.makeReactive();
   };
 
   makeReactive = () => {
     const buttons: null | NodeListOf<HTMLButtonElement> =
-      document.querySelectorAll("div.quick-filer-component>div.filer-menu>div");
+      document.querySelectorAll(selectors.quickFilterMenus);
 
     if (!buttons || buttons.length === 0) {
       return;
     }
 
     buttons.forEach((button: HTMLButtonElement) => {
-      button.addEventListener("click", () => {
-        const id: string | null = button.getAttribute("id");
+      const id: string | null = button.getAttribute("id");
+      this.addListenerToExistFilter(id, button);
 
+      button.addEventListener("click", () => {
+        this.serviceComponent.clearAllFilter();
         this.filter(id);
         button.classList.toggle("active");
-        triggerMetrics(mboxNames.filterCtaClick);
+        triggerMetrics(mboxNames.quickFilterClick);
       });
     });
   };
 
-  filter = (id: string | null) => {
+  addListenerToExistFilter = (id: string | null, button: HTMLButtonElement) => {
+    const filterMenu: null | HTMLDivElement = document.querySelector(
+      selectors.filterMenu
+    );
+
+    const existFilter = this.findExistFilter(id);
+    existFilter &&
+      existFilter.addEventListener("click", () => {
+        setTimeout(() => {
+          filterMenu &&
+            !filterMenu.getAttribute("style") &&
+            button.classList.toggle("active");
+        }, 25);
+      });
+  };
+
+  findExistFilter = (id: string | null): HTMLDivElement | null => {
     if (!id) {
-      return;
+      return null;
     }
 
     const quickFilterModelId = Number(id);
 
-    const quickFilterModel: QuickFilterModel | undefined = quickFilters.find(
-      (model: QuickFilterModel) => model.id === quickFilterModelId
-    );
+    const quickFilterModel: QuickFilterModel | undefined =
+      this.quickFilters.find(
+        (model: QuickFilterModel) => model.id === quickFilterModelId
+      );
 
     if (!quickFilterModel) {
-      return;
+      return null;
     }
 
     const existFilterSelector: string = getSpecificFilterMenuHierarchy(
@@ -81,9 +117,25 @@ export class QuickFilterComponent {
       quickFilterModel.childPosition
     );
 
-    const existFilter: HTMLDivElement | null =
-      document.querySelector(existFilterSelector);
+    return document.querySelector(existFilterSelector);
+  };
 
+  filter = (id: string | null) => {
+    const existFilter = this.findExistFilter(id);
     existFilter && existFilter.click();
+  };
+
+  disableDropDownFilter = () => {
+    const ids: string[] = this.quickFilters.map(
+      (quickFilter: QuickFilterModel) => quickFilter.id.toString()
+    );
+
+    const t = this;
+    ids.forEach((id) => {
+      const li = t.findExistFilter(id);
+      li &&
+        li.parentElement &&
+        li.parentElement.classList.add("disable-listener");
+    });
   };
 }

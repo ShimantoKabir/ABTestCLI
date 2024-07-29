@@ -3,10 +3,18 @@ import { Indicator } from "../models/indicator.model";
 import { SuccessStory } from "../models/success-story.model";
 import { floridaAdnCourses, floridaAdnIndicators } from "./florida-adn.data";
 import { floridaLpnCourses, floridaLpnIndicators } from "./florida-lpn.data";
+import {
+  hvacAdnCourses,
+  hvacAdnIndicators,
+  hvacSchedule,
+} from "./hvac-adn.data";
+import { hvacLpnCourses, hvacLpnIndicators } from "./hvac-lpn.data";
 import { indianaAdnCourses, indianaAdnIndicators } from "./indiana-adn.data";
 import { indianaLpnCourses, indianaLpnIndicators } from "./indiana-lpn.data";
 import { ohioAdnCourses, ohioAdnIndicators } from "./ohio-adn.data";
 import { ohioLpnCourses, ohioLpnIndicators } from "./ohio-lpn.data";
+import { surgicalAdnCourses, surgicalAdnIndicators } from "./surgical-adn.data";
+import { surgicalLpnCourses, surgicalLpnIndicators } from "./surgical-lpn.data";
 import { TestInfo } from "./test.info";
 
 export const selectors = {
@@ -14,6 +22,7 @@ export const selectors = {
   successStories: "div.success-stories",
   rfiButton: "main.content>div>div:nth-child(2) div.rfi-btn>a",
   courseSchedule: "div.course-schedule-component",
+  planOfStudy: "div.plan-of-study-component",
   submitButton: "div.modal-content>div.submit>button",
   applyCta: "div.rfi-btn>a",
 };
@@ -35,6 +44,10 @@ const adnIndicators: Indicator[] =
     ? floridaAdnIndicators
     : variation === "indiana"
     ? indianaAdnIndicators
+    : variation === "hvac"
+    ? hvacAdnIndicators
+    : variation === "surgical"
+    ? surgicalAdnIndicators
     : ohioAdnIndicators;
 
 const lpnIndicators: Indicator[] =
@@ -42,6 +55,10 @@ const lpnIndicators: Indicator[] =
     ? floridaLpnIndicators
     : variation === "indiana"
     ? indianaLpnIndicators
+    : variation === "hvac"
+    ? hvacLpnIndicators
+    : variation === "surgical"
+    ? surgicalLpnIndicators
     : ohioLpnIndicators;
 
 const adnCourses: Course[] =
@@ -49,6 +66,10 @@ const adnCourses: Course[] =
     ? floridaAdnCourses
     : variation === "indiana"
     ? indianaAdnCourses
+    : variation === "hvac"
+    ? hvacAdnCourses
+    : variation === "surgical"
+    ? surgicalAdnCourses
     : ohioAdnCourses;
 
 const lpnCourses: Course[] =
@@ -56,6 +77,10 @@ const lpnCourses: Course[] =
     ? floridaLpnCourses
     : variation === "indiana"
     ? indianaLpnCourses
+    : variation === "hvac"
+    ? hvacLpnCourses
+    : variation === "surgical"
+    ? surgicalLpnCourses
     : ohioLpnCourses;
 
 export const planOfStudyData = {
@@ -65,7 +90,10 @@ export const planOfStudyData = {
     shortTitle: "ADN",
     courses: adnCourses,
     indicators: adnIndicators,
-    Schedule: `Morning: 8:00 a.m. - 5:00 p.m. Monday through Friday Evening: 5:30 p.m. - 11:30 p.m. Monday through Friday *Clinical times may start as early 6:00am. Some rotations maybe over night rotations and end's late as 7:00am. This may also requve an occasional Saturday or Sunday. Hours are subject to change.`,
+    Schedule:
+      variation === "hvac"
+        ? hvacSchedule
+        : `Morning: 8:00 a.m. - 5:00 p.m. Monday through Friday Evening: 5:30 p.m. - 11:30 p.m. Monday through Friday *Clinical times may start as early 6:00am. Some rotations maybe over night rotations and end's late as 7:00am. This may also requve an occasional Saturday or Sunday. Hours are subject to change.`,
   },
   lpn: {
     title: "LICENSED PRACTICAL NURSING (LPN)",
@@ -78,30 +106,6 @@ export const planOfStudyData = {
 };
 
 export const tableRowHideBreakPoint: number = 4;
-
-export const successStories: SuccessStory[] = [
-  {
-    name: "Teshieka C",
-    title: "Associate Degree in Nursing",
-    description:
-      "I chose Fortis for a number of reasons to get my Associates Degree.  The first reason was that it was local.  In addition to that, there were staff members here that really cared when I came to orientation. There were people here who made me feel like I want to be invested in your education and I want to see you grow and that for me pushed me to say that’s the place I need to be.",
-    img: "https://www.fortis.edu/campuses/florida/cutler-bay/ignite/nursing/_jcr_content/par/success_stories/image.transform/w200/q80/img.jpg",
-  },
-  {
-    name: "Ken H",
-    title: "Practical Nursing",
-    description:
-      "I strongly encourage anyone seeking self-improvement and career enhancement to enroll in Fortis College. The programs they offer integrate the talent, knowledge, and skills of top-quality instructors, as well as, a diverse group of highly motivated students who are preparing for rewarding careers. Thanks to Fortis College, I now have the “real world” experience necessary to lead a successful career! I am a practical nursing graduate holding down two LPN jobs now and back in school with Fortis to complete my Associates of Registered Nursing.",
-    img: "https://www.fortis.edu/campuses/florida/cutler-bay/ignite/nursing/_jcr_content/par/success_stories_183318302/image.transform/w200/q80/img.jpg",
-  },
-  {
-    name: "Denise S",
-    title: "Associate Degree in Nursing ",
-    description:
-      "Right now I work as a nurse and a case manager for Superior Home Care and Hospice.  Going to school at Fortis worked out very well for me.  I did the morning classes.  I also worked full-time.  I was struggling as a CNA making $13 an hour for 40 hours a week which wasn’t enough to get by.  Graduating as a nurse and working for a home health agency has really made a huge difference.  Financially, it’s made a huge difference in my life.",
-    img: "https://www.fortis.edu/campuses/florida/cutler-bay/ignite/nursing/_jcr_content/par/success_stories_342827713/image.transform/w200/q80/img.jpg",
-  },
-];
 
 export const leftArrowSvg = `
 <svg width="40" height="55" viewBox="0 0 40 55" fill="none" xmlns="http://www.w3.org/2000/svg">

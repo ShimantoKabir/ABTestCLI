@@ -1,0 +1,61 @@
+@import "./common";
+
+.#{$id} {
+  a.action-link.black {
+    display: none;
+  }
+
+  div.free-learn-cta {
+    > a {
+      padding: 0.6rem 0.7rem;
+      border-radius: 0;
+      display: inline-block;
+      font-size: 1.6rem;
+      min-height: 3.9rem;
+      text-align: center;
+      text-decoration: none !important;
+      margin: 5px;
+    }
+    > a.learn-more {
+      border: 0.1rem solid #4c4e50;
+      background-color: #4c4e50;
+      color: #fff;
+
+      &:hover {
+        background: #000;
+      }
+    }
+
+    > a.free-swatch {
+      border: 0.1rem solid #65686b;
+      background-color: transparent;
+      color: #4c4e50;
+    }
+  }
+
+  div.product-category-content {
+    > a {
+      display: none;
+    }
+
+    > div.shade-cta {
+      a.where-to-buy {
+        background: transparent;
+        border: 0.1rem solid #65686b;
+        color: #65686b;
+        padding: 0.6rem 1.5rem;
+        margin-left: 10px;
+        border-radius: 0;
+        display: inline-block;
+        font-size: 1.6rem;
+        min-height: 3.9rem;
+        text-align: center;
+        text-decoration: none !important;
+      }
+
+      @media only screen and (max-width: 767px) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

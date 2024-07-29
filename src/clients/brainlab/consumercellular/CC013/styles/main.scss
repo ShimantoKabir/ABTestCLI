@@ -31,6 +31,10 @@
       > div.body
       > div.monthly-charge-units {
       font-size: 2.5em;
+
+      @media screen and (max-width: 720px) {
+        font-size: 2.1em;
+      }
     }
   }
 }

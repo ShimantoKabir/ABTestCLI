@@ -1,0 +1,208 @@
+@import "./common";
+
+.#{$id} {
+  &__hide {
+    display: none !important;
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+  }
+
+  div.overlay-component {
+    position: fixed;
+    // display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    cursor: pointer;
+
+    > div.component-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100%;
+      margin: 5px;
+      padding-bottom: 2%;
+
+      > div.catalog {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 50%;
+        z-index: 3;
+
+        > div.catalog-overlay {
+          background-color: #0088cc;
+
+          > div.overlay-image {
+          }
+
+          > div.overlay-body {
+            min-height: 350px;
+          }
+        }
+
+        > div.main {
+          background-color: #fff;
+          width: 440px;
+          z-index: 2;
+          margin: 5px;
+          padding: 20px;
+          position: absolute;
+          display: none;
+
+          > div.heading {
+            > h6 {
+              text-align: center;
+              font-size: 15px;
+            }
+          }
+
+          > div.description {
+            margin-top: 20px;
+
+            table,
+            td,
+            th {
+              border-bottom: 1px solid;
+              padding: 15px 10px;
+            }
+
+            > table {
+              width: 100%;
+              border-collapse: collapse;
+
+              > thead {
+                > tr {
+                  > th {
+                    text-align: left;
+                    font-size: 13px;
+                  }
+                }
+              }
+
+              > tbody {
+                > tr {
+                  > td {
+                    text-align: left;
+                    font-size: 12px;
+
+                    > input {
+                      width: 20px;
+                      height: 20px;
+                      padding: 0 !important;
+                      box-sizing: unset;
+                      text-align: center;
+                    }
+
+                    > button {
+                      background-color: #000;
+                      border: black;
+                      color: #fff;
+                      padding: 10px 15px;
+                      font-size: 14px;
+                      text-transform: uppercase;
+                      font-weight: 600;
+                      cursor: pointer;
+                    }
+                  }
+
+                  > td:nth-child(2) {
+                    color: red;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        > div.main.first-form {
+          > div.heading {
+            > h6 {
+              font-size: 25px;
+              margin-bottom: 20px;
+            }
+          }
+
+          display: none;
+          > div.hbspt-form {
+            > form {
+              padding: 0 !important;
+              margin: 0 !important;
+
+              > div.hs_submit {
+                > div.actions {
+                  padding: 0 !important;
+                  margin: 0 !important;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  > input {
+                    background-color: black;
+                    box-shadow: unset;
+                    border-color: black;
+                    color: white !important;
+                    border-radius: 0;
+                    padding: 10px 15px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        > div.main.second-form {
+          display: none;
+
+          > div.hbspt-form {
+            height: 500px !important;
+            overflow-y: auto;
+          }
+        }
+
+        > div.main.show {
+          display: block !important;
+        }
+
+        > div.main.show {
+          display: block !important;
+        }
+      }
+    }
+  }
+
+  div.overlay-component.show {
+    display: block;
+  }
+
+  form > div.hs_send_marketing_email_flag {
+    display: none;
+  }
+
+  form > div > div.hs-richtext.hs-main-font-element {
+    display: none;
+  }
+}

@@ -1,12 +1,16 @@
 import { courseScheduleData, mboxNames, selectors } from "../common/asset";
+import { TestInfo } from "../common/test.info";
 import { triggerMetrics } from "../common/utils";
 import { PlanOfStudyComponent } from "./plan-of-Study.component";
+import { RequestCtaComponent } from "./request-cta.component";
 import { TItleComponent } from "./title.component";
 
 export class CourseScheduleComponent {
+  variation: string = TestInfo.VARIATION.toString();
   planOfStudyComponent: PlanOfStudyComponent = new PlanOfStudyComponent();
+  requestCtaComponent: RequestCtaComponent = new RequestCtaComponent();
 
-  private getHtml = (): string => {
+  private getCourseScheduleHtml = (): string => {
     const htmlString: string = `
       <div class="course-schedule-component" >
         <div class="component-container" >
@@ -29,16 +33,28 @@ export class CourseScheduleComponent {
               <div class="request-info" >
                 <p>${courseScheduleData.requestInformation}</p>
               </div>
-              <div class="request-cta" >
-                <button  data-toggle="modal" data-target="#rfiModal" >${
-                  courseScheduleData.requestInformationCtaText
-                }</button>
+              <div class="request-cta ${this.variation}" >
+                <button data-toggle="modal" data-target="#rfiModal" >
+                  ${courseScheduleData.requestInformationCtaText}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      ${this.planOfStudyComponent.getHtml()};
+    `;
+
+    return this.variation === "hvac" || this.variation === "surgical"
+      ? ""
+      : htmlString.trim();
+  };
+
+  private getHtml = (): string => {
+    const htmlString: string = `
+      ${this.requestCtaComponent.getHtml()}
+      ${this.getCourseScheduleHtml()}
+      ${this.planOfStudyComponent.getHtml()}
+      ${this.requestCtaComponent.getHtml()}
     `;
 
     return htmlString.trim();
@@ -54,6 +70,8 @@ export class CourseScheduleComponent {
     }
 
     unbounceTitle.insertAdjacentHTML("beforebegin", this.getHtml());
+
+    this.requestCtaComponent.addListener();
 
     const request: null | HTMLDivElement = document.querySelector(
       "div.request-cta>button"

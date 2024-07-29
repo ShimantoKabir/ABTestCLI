@@ -1,0 +1,131 @@
+@import "./common";
+
+.#{$id} {
+  &__hide {
+    display: none !important;
+  }
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+  }
+
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  }
+
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+  }
+
+  div.desktop-signal-component {
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > div.component-wrap {
+      border: 1px solid #001e45;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px rgba(125, 120, 125, 1);
+      display: grid;
+      grid-template-columns: auto auto;
+      width: 80%;
+
+      > div.signal-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        > div.signal-item-wrap {
+          width: 80%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px;
+
+          > div.signal-icon {
+            margin-right: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          > div.signal-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            > p {
+              font-weight: 700;
+              font-size: 1.4rem;
+              margin: 0 !important;
+            }
+          }
+        }
+      }
+    }
+
+    > div.component-wrap > div:nth-child(3) > div.signal-item-wrap {
+      border-top: 1px solid #9b9b9b;
+    }
+
+    > div.component-wrap > div:nth-child(4) > div.signal-item-wrap {
+      border-top: 1px solid #9b9b9b;
+    }
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  div.mobile-signal-component {
+    border-radius: 1rem;
+    border: 1px solid #001e45;
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(125, 120, 125, 1);
+
+    > div.component-wrap {
+      padding: 10px 15px;
+
+      > div.signal-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid lightgray;
+
+        > div.signal-icon {
+          margin-right: 10px;
+
+          > i {
+            font-size: 24px;
+          }
+        }
+
+        > div.signal-text {
+          > p {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.4rem;
+          }
+        }
+      }
+      > div.signal-item:last-child {
+        border: none;
+      }
+    }
+
+    @media only screen and (min-width: 769px) {
+      display: none;
+    }
+  }
+}

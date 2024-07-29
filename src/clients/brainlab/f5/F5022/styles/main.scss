@@ -1,0 +1,126 @@
+@import "./common";
+
+.#{$id} {
+  &-2 {
+    div.root.responsivegrid
+      > div
+      > div.responsivegrid.aem-GridColumn.aem-GridColumn--default--12
+      > div.aem-Grid
+      > div:nth-child(4) {
+      width: 0px;
+      height: 0px;
+      opacity: 0;
+
+      > div.bg-info {
+        > div.c29-columns__container {
+          display: none;
+        }
+      }
+    }
+  }
+
+  div.root.responsivegrid
+    > div
+    > div.responsivegrid.aem-GridColumn.aem-GridColumn--default--12
+    > div.aem-Grid
+    > div:nth-child(2) {
+    > div {
+      div.theme-default {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  &-2 {
+    div.root.responsivegrid
+      > div
+      > div.responsivegrid.aem-GridColumn.aem-GridColumn--default--12
+      > div.aem-Grid
+      > div:nth-child(3) {
+      width: 0px;
+      height: 0px;
+      opacity: 0;
+    }
+  }
+
+  div.carousal > div.theme-wrap {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  div.carousal {
+    div.row {
+      flex-wrap: nowrap !important;
+
+      > div:first-child {
+        flex: 0 0 100% !important;
+      }
+
+      > div:last-child {
+        width: 0 !important;
+        max-width: 0 !important;
+      }
+    }
+  }
+
+  div.learn-step-component {
+    > div.component-wrap {
+      margin: 0 auto;
+
+      > div.headline {
+        margin-bottom: 30px;
+      }
+
+      div.icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      > div.learn-steps {
+        max-width: 900px;
+
+        > div.step-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: 30px;
+
+          > div.text-content {
+            margin-left: 30px;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 575px) {
+        padding: 20px;
+      }
+
+      @media only screen and (min-width: 576px) {
+        max-width: 540px;
+        padding: 20px 25px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        max-width: 720px;
+        padding: 20px 25px;
+      }
+
+      @media only screen and (min-width: 992px) {
+        max-width: 960px;
+        padding: 20px 25px;
+      }
+
+      @media only screen and (min-width: 1200px) {
+        max-width: 1140px;
+        padding: 20px 25px;
+      }
+
+      @media only screen and (min-width: 1600px) {
+        max-width: 1440px;
+        padding: 20px 35px;
+      }
+    }
+  }
+}

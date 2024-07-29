@@ -1,0 +1,190 @@
+@import "./common";
+
+.#{$id} {
+  div.main-component {
+    background-color: #4a7d8726;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > div.component-wrap {
+      max-width: 100%;
+      padding: 20px 20px 40px 20px;
+
+      > div.heading {
+        margin-top: 10px;
+
+        > h1 {
+          font-family: "CapitoliumHeadLight", "Lucida Bright", "Palatino",
+            "Palatino Linotype", "Palatino LT STD", "Georgia", serif;
+          font-style: normal;
+          letter-spacing: 0;
+          text-transform: none;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-weight: normal;
+          color: #231f20;
+          font-size: var(--step-4);
+          line-height: 1.24;
+          text-align: center;
+        }
+      }
+
+      > div.category-buttons {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > div.buttons-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+
+          > button {
+            margin: 20px 10px;
+            height: 40px;
+            width: 100px;
+            border: 2.5px solid #231f20;
+            background-color: #ffffff;
+            font-weight: 600;
+            border-radius: 3px;
+            text-transform: capitalize;
+          }
+
+          > button.active {
+            border: 2px solid #4a7d87;
+            background-color: #4a7d87;
+            color: #ffffff;
+          }
+        }
+      }
+
+      > div.description {
+        max-width: 830px;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-family: "Etica", "Arial", "Helvetica Neue", "Helvetica", sans-serif;
+
+        > p {
+          text-align: center;
+        }
+      }
+
+      @media only screen and (min-width: 1200px) {
+        max-width: 1200px;
+      }
+    }
+  }
+
+  div.carousel-component {
+    display: none;
+  }
+
+  div.carousel-component.active {
+    display: block !important;
+  }
+
+  .container-carousel {
+    height: 450px;
+
+    div.carousel-controller {
+      width: max-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+
+      .carousel-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > span.swiper-pagination-bullet-active {
+          background-color: #4a7d87 !important;
+        }
+      }
+
+      div.carousel-prev,
+      div.carousel-next {
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+
+        > div.svg {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .swiper-slide {
+    height: 400px !important;
+    border: 1px solid #d5d6d780;
+
+    cursor: pointer;
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.1), 0 0px 5px 0 rgba(0, 0, 0, 0.2);
+
+    > div.blind-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff;
+
+      > div.card-img {
+        flex: 1;
+
+        > img {
+          width: 100%;
+        }
+      }
+
+      > div.card-content {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: space-around;
+        align-items: flex-start;
+
+        > h2 {
+          color: #000;
+          line-height: 28px;
+          font-family: "Etica", "Arial", "Helvetica Neue", "Helvetica",
+            sans-serif;
+
+          @media only screen and (max-width: 768px) {
+            font-size: 17px;
+          }
+        }
+
+        > p {
+          margin-top: 10px;
+          color: #000;
+          line-height: 24px;
+          font-family: "Etica", "Arial", "Helvetica Neue", "Helvetica",
+            sans-serif;
+
+          @media only screen and (max-width: 768px) {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    @media only screen and (min-width: 1200px) {
+      width: 270px !important;
+    }
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+}

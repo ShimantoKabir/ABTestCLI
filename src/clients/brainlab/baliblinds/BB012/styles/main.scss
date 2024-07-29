@@ -1,0 +1,52 @@
+@import "./common";
+
+.#{$id} {
+  .hide {
+    display: none !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+    section.sticky {
+      position: fixed;
+      top: 0;
+      z-index: 1;
+      padding-top: 25px;
+    }
+
+    button.old-btn-filter {
+      width: 0;
+      height: 0;
+      visibility: hidden;
+    }
+
+    div.mobile-tabs-selector {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      > select {
+        width: max-content;
+      }
+    }
+
+    div.swatch-ordering-links > a:last-child {
+      position: relative;
+
+      > span.swatch-count-badge {
+        position: absolute;
+        top: -25px;
+        right: -10px;
+        color: red;
+        padding: 2px;
+        border-radius: 2px;
+        width: 40px;
+        color: #fff;
+        height: 40px;
+        border: 5px solid #fff;
+        background-color: red;
+        border-radius: 50%;
+      }
+    }
+  }
+}

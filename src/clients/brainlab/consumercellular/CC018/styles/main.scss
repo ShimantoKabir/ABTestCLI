@@ -1,0 +1,31 @@
+@import "./common";
+
+.#{$id} {
+  div.cart-summary-component {
+    border: 0.1rem solid #d1d3d4;
+    border-radius: 0.4rem;
+    box-shadow: 0 0.1em 0.2rem #9b9b9b;
+    color: #001e45;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    padding: 10px 30px;
+    text-align: center;
+
+    > p {
+      margin: 0;
+      font-weight: 600;
+      font-size: 19px;
+
+      > span.highlighted {
+        color: #f26631;
+      }
+    }
+  }
+
+  &-2 {
+    div.cart-summary-component {
+      background-color: #d9f0f6;
+    }
+  }
+}

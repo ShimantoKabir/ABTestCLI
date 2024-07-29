@@ -1,15 +1,14 @@
 @import "./common";
 
 .#{$id} {
-
-  div.modal-backdrop{
+  div.modal-backdrop {
     z-index: 1049 !important;
   }
 
-  div.modal-content{
+  div.modal-content {
     background-color: transparent;
 
-    >div.row{
+    > div.row {
       background-color: #fff;
     }
   }
@@ -19,14 +18,19 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
 
     > a {
-      padding: 0 20px;
-      background-color: #fff;
       text-transform: uppercase;
       font-weight: 700;
+      width: 100%;
+      text-align: center;
+      background-color: #387aa8;
+      color: #fff;
+
+      @media screen and (max-width: 575px) {
+        padding-top: 3px;
+        padding-bottom: 3px;
+      }
     }
   }
 }

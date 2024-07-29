@@ -1,0 +1,18 @@
+@import "./common";
+
+.#{$id} {
+  &-1,
+  &-2 {
+    .combo-plans .plan-selection-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row-reverse;
+      flex-wrap: wrap-reverse;
+
+      @media screen and (max-width: 719px) {
+        display: none;
+      }
+    }
+  }
+}

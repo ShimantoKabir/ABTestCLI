@@ -1,0 +1,140 @@
+@import "./common";
+
+.#{$id} {
+  main#content > div.container-md > div.row > div {
+    flex: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > form {
+      width: 55%;
+      position: absolute;
+      z-index: 1002;
+      background-color: #01426a;
+      padding: 20px 30px 0 30px;
+      border-radius: 15px;
+      top: 0;
+
+      > fieldset {
+        > legend {
+          color: #fff;
+          font-size: 25px;
+          text-align: center;
+          margin-bottom: 15px !important;
+        }
+      }
+
+      p {
+        color: #fff;
+      }
+
+      label {
+        color: #fff;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+      }
+
+      input {
+        border: 2px solid #ffc600;
+      }
+
+      select {
+        border: 2px solid #ffc600;
+      }
+
+      div.form-vertical {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: 100% !important;
+
+        > input {
+          padding: 8px;
+          width: 75%;
+
+          @media only screen and (max-width: 767px) {
+            width: 100% !important;
+          }
+        }
+
+        > select {
+          padding: 8px;
+          width: 75%;
+
+          @media only screen and (max-width: 767px) {
+            width: 100% !important;
+          }
+        }
+
+        > label.sr-only {
+          position: static !important;
+          height: unset !important;
+          overflow: unset !important;
+          margin: 0 !important;
+        }
+
+        > span#EmailError {
+          display: none;
+        }
+
+        > label {
+          @media only screen and (max-width: 767px) {
+            width: 100% !important;
+            text-align: left !important;
+          }
+        }
+
+        @media only screen and (max-width: 767px) {
+          flex-direction: column-reverse;
+        }
+      }
+
+      div#DealerContactBlock {
+        > div.form-vertical {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  body {
+    height: 1000px;
+    width: 100%;
+
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+
+    @media only screen and (max-width: 767px) {
+      background-image: url("https://medianet.com/cro/sunsetter/ss006/mobile.png") !important;
+    }
+
+    @media only screen and (min-width: 768px) {
+      background-image: url("https://medianet.com/cro/sunsetter/ss006/tablet.png") !important;
+    }
+
+    @media only screen and (min-width: 1200px) {
+      background-image: url("https://medianet.com/cro/sunsetter/ss006/desktop.png") !important;
+    }
+  }
+
+  div.site-wrapper {
+    background-color: transparent;
+
+    > header {
+      display: none;
+    }
+    > footer {
+      display: none;
+    }
+
+    > main > div:first-child {
+      display: none;
+    }
+  }
+}

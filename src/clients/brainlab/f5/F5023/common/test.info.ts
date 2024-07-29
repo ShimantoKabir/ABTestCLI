@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'F5023', SITE = 'f5', TITLE = 'BLTEST045.4 TrustRadius Reviews + Secondary Nav', CLIENT = 'brainlab', TARGET = 'https://www.f5.com/solutions/use-cases/bot-management', VARIATION = '1'}

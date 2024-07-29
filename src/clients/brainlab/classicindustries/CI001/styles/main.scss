@@ -1,0 +1,49 @@
+@import "./common";
+
+.#{$id} {
+  div#notification-bar > div.container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    > h2 {
+      font-size: 14px !important;
+
+      > svg {
+        margin-right: 5px;
+      }
+    }
+
+    > p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding-left: 5px;
+      flex-wrap: wrap;
+
+      > strong {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      > a {
+        margin-bottom: 3px;
+      }
+    }
+
+    > a {
+      background-color: #fff;
+      padding: 5px 15px;
+      color: #08c;
+      font-weight: bold;
+      margin-left: 10px;
+      margin-bottom: 3px;
+
+      @media only screen and (max-width: 1246px) {
+        margin-top: 5px;
+      }
+    }
+  }
+}

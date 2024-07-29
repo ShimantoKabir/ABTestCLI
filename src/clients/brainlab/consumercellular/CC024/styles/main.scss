@@ -1,0 +1,43 @@
+@import "./common";
+
+.#{$id} {
+  body.byod {
+    div.grid-container > div:nth-child(2) > div.choose-device {
+      > div.upper-grid-info {
+        > div.product-image {
+          background-color: #fff;
+          border-radius: 15px;
+        }
+        > div.product-info {
+          margin-top: 20%;
+
+          > a.product-title {
+            > div.device-name {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-1 {
+    body.byod {
+      div.grid-container > div:nth-child(2) > div.choose-device {
+        background-color: #001e45;
+      }
+    }
+  }
+
+  &-2 {
+    body.byod {
+      div.grid-container > div:nth-child(2) > div.choose-device {
+        background-color: #f26631;
+
+        a.btn-shop {
+          background-color: #001e45;
+        }
+      }
+    }
+  }
+}

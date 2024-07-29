@@ -1,0 +1,52 @@
+@import "./common";
+
+.#{$id} {
+  .hide {
+    display: none !important;
+  }
+
+  &-1 {
+    div#newForm {
+      > form {
+        > div.mktoFormRow {
+          display: block;
+
+          > div.mktoFieldDescriptor {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    div#newForm h3 {
+      padding: 0 !important;
+    }
+
+    div.sub-headline {
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      > h5 {
+        text-align: center;
+      }
+    }
+
+    div.progress-container {
+      width: 100%;
+      background-color: #dadada;
+      height: 2px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      > div.progress {
+        width: 50%;
+        height: 2px;
+        background-color: #0e6eb9;
+      }
+
+      > div.progress.full {
+        width: 100%;
+      }
+    }
+  }
+}

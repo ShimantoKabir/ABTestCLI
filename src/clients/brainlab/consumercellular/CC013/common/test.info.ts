@@ -4,5 +4,5 @@ export enum TestInfo {
   TITLE = "6.11-Show pricing on a per line basis",
   CLIENT = "brainlab",
   TARGET = "https://www.consumercellular.com/shopping/choose/plan",
-  VARIATION = "control",
+  VARIATION = "1",
 }

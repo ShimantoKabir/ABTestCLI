@@ -1,0 +1,13 @@
+@import "./common";
+
+.#{$id} {
+  div.grid-container.c01__container{
+    color: #fff;
+
+    @media only screen and (max-width: 575px) {
+      p{
+        color: rgb(34, 34, 34);
+      }
+    }
+  }
+}

@@ -3,4 +3,5 @@ export class QuickFilterModel {
   label: string = "";
   parentPosition: number = 0;
   childPosition: number = 0;
+  variation: number = 0;
 }

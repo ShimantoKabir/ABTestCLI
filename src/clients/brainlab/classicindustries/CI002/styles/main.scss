@@ -1,0 +1,47 @@
+@import "./common";
+
+.#{$id} {
+  div.top-notice {
+    display: none !important;
+  }
+
+  header {
+    > div.header-middle {
+      > div.container {
+        > div.col-lg-8 {
+          display: none !important;
+        }
+
+        > div.header-right {
+          display: none !important;
+        }
+      }
+    }
+    > div.sticky-wrapper {
+      display: none !important;
+    }
+  }
+
+  div.promo-code-banner {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #232529;
+
+    > p {
+      text-align: center;
+      color: #ffffff;
+      font-weight: 700;
+      margin: 0 !important;
+
+      > span {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  div.promo-code-banner.payment {
+    > p {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,10 +1,12 @@
 import { mBoxNames, selectors, triggerMetrics } from "../common/asset";
 import { State } from "../common/state";
+import { TestInfo } from "../common/test.info";
 
 export class PlanService {
   state!: State;
   plans!: NodeListOf<HTMLSpanElement>;
   lastCircleIndex: number = 3;
+  variation: string = TestInfo.VARIATION.toString();
 
   constructor(state: State) {
     this.state = state;
@@ -58,8 +60,13 @@ export class PlanService {
 
     setTimeout(() => {
       this.state.activeListener();
-      this.getPlanElements(selectors.mobilePlans);
-      this.changeUnitText(selectors.mobileMonthlyChargeUnits);
+
+      if (this.variation === "1") {
+        this.state.activeListener();
+        this.getPlanElements(selectors.mobilePlans);
+        this.changeUnitText(selectors.mobileMonthlyChargeUnits);
+      }
+
       this.addPlanButtonsListener(selectors.mobilePlanButtons);
     }, 250);
   };
@@ -83,7 +90,9 @@ export class PlanService {
       this.plans &&
       this.plans.length > 0 &&
       this.plans.forEach((plan: HTMLSpanElement) => {
-        plan.lastElementChild && plan.lastElementChild.classList.add("hide");
+        plan.childNodes.length > 1 &&
+          plan.lastElementChild &&
+          plan.lastElementChild.classList.add("hide");
       });
   };
 

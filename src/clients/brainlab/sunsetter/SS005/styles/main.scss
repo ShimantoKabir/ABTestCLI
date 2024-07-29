@@ -1,0 +1,79 @@
+@import "./common";
+
+.#{$id} {
+  img.hide {
+    display: none;
+  }
+
+  div.vanish {
+    height: 0px;
+    width: 0px;
+    visibility: hidden;
+  }
+
+  div.option-component {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    > div.component-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+
+      > div.checkbox {
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 15px;
+        background-color: #ffc60080;
+        color: #01426a80;
+
+        > div.checked-icon {
+          display: none;
+          justify-content: center;
+          align-items: center;
+        }
+
+        > div.unchecked-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        > div.text {
+          margin-left: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      > div.checkbox.checked {
+        background-color: #ffc600;
+        color: #01426a;
+
+        > div.checked-icon {
+          display: flex;
+        }
+
+        > div.unchecked-icon {
+          display: none;
+        }
+
+        > div.text {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  div.dealer-cta-inner {
+    @media only screen and (max-width: 767px) {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+    }
+  }
+}

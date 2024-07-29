@@ -1,0 +1,310 @@
+@import "./common";
+
+.#{$id} {
+  main#main-content > div > div:nth-child(3),
+  main#main-content > div > div:nth-child(4),
+  main#main-content > div > div:nth-child(5) {
+    display: none;
+  }
+
+  .container-carousel {
+    height: 450px;
+    position: relative;
+
+    div.carousel-controller {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      top: 40%;
+
+      div.carousel-prev,
+      div.carousel-next {
+        padding: 10px;
+        background-color: #4a7d87;
+        cursor: pointer;
+        z-index: 1;
+
+        > div.svg {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .swiper-slide {
+    width: 350px !important;
+    height: 350px !important;
+    border: 1px solid #d5d6d780;
+    cursor: pointer;
+
+    > div.blind-card {
+      > div.card-img {
+        > img {
+          width: 100%;
+        }
+      }
+
+      > div.card-content {
+        padding: 15px;
+
+        > h2 {
+          color: #231f2080;
+          line-height: 28px;
+          @media only screen and (max-width: 768px) {
+            font-size: 17px;
+          }
+        }
+
+        > p {
+          margin-top: 10px;
+          color: #231f2080;
+          line-height: 24px;
+          @media only screen and (max-width: 768px) {
+            font-size: 15px;
+          }
+        }
+
+        > a {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .swiper-slide:hover,
+  .swiper-slide.active {
+    height: max-content !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    > div.blind-card {
+      > div.card-content {
+        > h2 {
+          color: #231f20;
+          line-height: 28px;
+        }
+
+        > p {
+          color: #231f20;
+          line-height: 24px;
+        }
+
+        > a {
+          margin-top: 20px;
+          display: block;
+          background-color: #4a7d87;
+          color: #fff;
+          padding: 10px 30px;
+          width: max-content;
+          font-weight: 700;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  div.product-category {
+    width: 100%;
+
+    > div.blind-button-component {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+
+      > div.button-wrap {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        width: 70%;
+        gap: 10px;
+
+        > button {
+          background-color: #4a7d87;
+          color: #fff;
+          font-weight: 700;
+          font-size: 20px;
+          padding: 20px;
+          height: 100px;
+          text-align: center;
+          outline: none;
+
+          @media only screen and (max-width: 700px) {
+            font-size: 15px;
+            padding: 10px;
+            height: 100%;
+          }
+        }
+
+        > button:hover,
+        > button.active {
+          background-color: #4a7d876e;
+        }
+
+        @media only screen and (max-width: 1024px) {
+          grid-template-columns: auto auto;
+        }
+      }
+    }
+
+    > div.container-xl {
+      > div.info-component {
+        width: 100%;
+
+        > div.info-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: row;
+          border: 1px solid #d5d6d7;
+          padding: 15px;
+          margin-bottom: 20px;
+
+          > div.info-img {
+            width: 48%;
+            > img {
+              width: 100%;
+            }
+
+            @media only screen and (max-width: 768px) {
+              width: 100%;
+            }
+          }
+
+          > div.info-gap {
+            width: 4%;
+          }
+
+          > div.info-content {
+            width: 48%;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            > div.heading {
+              @media only screen and (max-width: 768px) {
+                font-size: 17px;
+              }
+            }
+
+            > div.description {
+              margin-top: 20px;
+              margin-bottom: 40px;
+
+              > div.break {
+                margin-top: 10px;
+              }
+
+              @media only screen and (max-width: 768px) {
+                font-size: 15px;
+              }
+            }
+
+            > div.info-link {
+              > a {
+                border: 2px solid #4a7d87;
+                color: #4a7d87;
+                padding: 15px 15px;
+                font-weight: 700;
+                font-size: 20px;
+              }
+            }
+
+            @media only screen and (max-width: 768px) {
+              width: 100%;
+            }
+          }
+
+          @media only screen and (max-width: 768px) {
+            flex-direction: column;
+          }
+        }
+
+        > div.info-item.reverse {
+          flex-direction: row-reverse;
+
+          @media only screen and (max-width: 768px) {
+            flex-direction: column;
+          }
+        }
+      }
+
+      > div.footer-component {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        margin-bottom: 50px;
+
+        > div.footer-item {
+          width: 33%;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          border-right: 1px solid #e5e5e5;
+          padding: 60px;
+
+          > div.footer-img {
+            > img {
+              width: 80px;
+              height: 80px;
+            }
+          }
+
+          > div.footer-content {
+            > div.heading {
+              margin-top: 20px;
+              text-align: center;
+
+              @media only screen and (max-width: 768px) {
+                font-size: 17px;
+              }
+            }
+
+            > div.description {
+              margin-top: 20px;
+              text-align: center;
+
+              @media only screen and (max-width: 768px) {
+                font-size: 15px;
+              }
+            }
+
+            > div.footer-link {
+              margin-top: 20px;
+              text-align: center;
+
+              @media only screen and (max-width: 768px) {
+                font-size: 16px;
+              }
+            }
+          }
+
+          @media only screen and (max-width: 768px) {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid #e5e5e5;
+          }
+        }
+
+        @media only screen and (max-width: 768px) {
+          flex-direction: column;
+        }
+      }
+
+      div.footer-component > div:last-child {
+        border: none;
+      }
+    }
+  }
+}

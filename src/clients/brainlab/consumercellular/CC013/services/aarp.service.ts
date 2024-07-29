@@ -1,4 +1,4 @@
-import { selectors } from "../common/asset";
+import { mBoxNames, triggerMetrics } from "../common/asset";
 import { State } from "../common/state";
 
 export class AarpService {
@@ -18,6 +18,7 @@ export class AarpService {
     }
 
     aarpCheckbox.addEventListener("click", () => {
+      triggerMetrics(mBoxNames.aarpClick);
       this.isAarpChecked = this.getAarpCheckboxValue(aarpCheckbox);
       this.state.needListener && onChange(this.isAarpChecked);
     });

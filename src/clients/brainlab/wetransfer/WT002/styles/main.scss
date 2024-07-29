@@ -1,0 +1,25 @@
+@import "./common";
+
+.#{$id} {
+  @media only screen and (max-width: 1023px) {
+    a.login-link {
+      font-family: Actief Grotesque, Arial, Helvetica, sans-serif;
+      font-size: 2rem;
+      line-height: 3rem;
+      letter-spacing: 0;
+      width: 50px;
+    }
+
+    button.toggle-btn {
+      display: unset !important;
+      position: unset !important;
+      width: max-content !important;
+      height: max-content !important;
+    }
+
+    div.header-wrapper {
+      flex-direction: row-reverse !important;
+      justify-content: space-between !important;
+    }
+  }
+}

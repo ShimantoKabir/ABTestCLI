@@ -39,12 +39,15 @@ export class MainService {
 
   getLinksData = (linkElements: NodeListOf<HTMLAnchorElement>): Link[] => {
     const links: Link[] = [];
-    linkElements.forEach((link: HTMLAnchorElement) => {
+
+    linkElements.forEach((link: HTMLAnchorElement, index: number) => {
       link.classList.add("accordion-link");
-      links.push({
-        href: link.href,
-        text: link.textContent ? link.textContent : "",
-      });
+
+      index !== 0 &&
+        links.push({
+          href: link.href,
+          text: link.textContent ? link.textContent : "",
+        });
     });
 
     return links;

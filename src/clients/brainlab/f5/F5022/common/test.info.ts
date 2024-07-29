@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'F5022', SITE = 'f5', TITLE = 'BLTEST048.2 - "learn from ebook" style', CLIENT = 'brainlab', TARGET = 'https://www.f5.com/go/ebook/alt/waap-buyers-guide', VARIATION = '2'}

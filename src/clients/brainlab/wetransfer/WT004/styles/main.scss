@@ -1,0 +1,79 @@
+@import "./common";
+
+.#{$id} {
+  div.toast-component {
+    background: #5268ff;
+    bottom: 15px;
+    color: #fff;
+    display: block;
+    left: 15px;
+    box-sizing: border-box;
+    position: fixed;
+    transform: translate3d(0, 130%, 0);
+    transition: transform 1s;
+    width: calc(100% - 30px);
+    z-index: 999;
+    border-radius: 15px;
+
+    > div.component-wrap {
+      margin-left: 30%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+
+      > p {
+        padding: 0;
+        margin: 5px;
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      > a {
+        margin: 5px;
+        padding: 5px 20px;
+        border-radius: 100px;
+        width: 130px;
+        text-align: center;
+        font-weight: 400;
+        cursor: pointer;
+        background-color: #fff;
+        color: #460a00;
+        border: 1px solid #fff;
+      }
+
+      > a:hover {
+        background-color: #000;
+        border-color: #000;
+        color: #fff;
+      }
+
+      > div.close-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+
+        @media only screen and (max-width: 1024px) {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 35px;
+          width: 35px;
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        flex-direction: column;
+        margin-left: 0;
+        justify-content: center;
+        position: relative;
+      }
+    }
+  }
+
+  div.toast-component.toast-show {
+    transform: translate3d(0, 0, 0);
+  }
+}

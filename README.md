@@ -16,6 +16,18 @@ npm i
 npm run create
 ```
 
+### Get current Experiment info
+
+```bash
+npm run info
+```
+
+### Target a Experiment
+
+```bash
+npm run target id=${id} site=${site} client=${client} variation=${variation}
+```
+
 ### Development server
 
 ```bash

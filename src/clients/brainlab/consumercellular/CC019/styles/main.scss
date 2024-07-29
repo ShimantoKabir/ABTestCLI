@@ -1,0 +1,41 @@
+@import "./common";
+
+.#{$id} {
+  div.review-component {
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    div.SA__widget
+      > div.SA__header
+      > div.SA__widget_item
+      > div.SA__widget_content {
+      @media only screen and (max-width: 400px) {
+        max-height: 15rem !important;
+        min-height: 15rem !important;
+      }
+    }
+
+    div#SA_wrapper_default {
+      div.SA__reviews {
+        @media only screen and (max-width: 992px) {
+          width: calc(10200%) !important;
+        }
+
+        @media only screen and (min-width: 992px) {
+          width: calc(4000%) !important;
+        }
+
+        @media only screen and (min-width: 1200px) {
+          width: calc(3500%) !important;
+        }
+      }
+
+      div.SA__more_review {
+        @media only screen and (max-width: 400px) {
+          margin-top: 16rem !important;
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+}

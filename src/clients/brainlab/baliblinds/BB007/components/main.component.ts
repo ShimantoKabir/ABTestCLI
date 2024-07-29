@@ -32,9 +32,13 @@ export class MainComponent {
     button &&
       button.addEventListener("click", () => {
         setTimeout(() => {
-          const modal: null | HTMLDivElement = wrapper.querySelector(
-            "div.modal>div.container>div.modal-dialog>div.modal-content"
-          );
+          const placementSelector: string =
+            window.innerWidth < 576
+              ? selectors.modelImage
+              : selectors.modelContent;
+
+          const modal: null | HTMLDivElement =
+            wrapper.querySelector(placementSelector);
 
           this.variation === "1" &&
             link &&

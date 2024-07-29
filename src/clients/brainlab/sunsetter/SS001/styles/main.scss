@@ -1,7 +1,105 @@
-@import './common';
+@import "./common";
 
-.#{$id}{
-    &__hide {
-        display: none !important;
+.#{$id} {
+  div.slideshow-container > div:nth-child(1) > div.content-overlay {
+    width: max-content !important;
+    padding: 10px !important;
+
+    > h1 {
+      display: none;
     }
+
+    > div.d-flex.justify-content-center.mt-4 {
+      display: none !important;
+    }
+
+    > div.hero-overlay-component {
+      > div.heading {
+        > h1 {
+          color: #ffffff;
+          text-align: center;
+          font-size: 30px;
+
+          @media only screen and (max-width: 768px) {
+            font-size: 20px;
+            margin-top: 5px;
+          }
+        }
+      }
+
+      > div.cta-area {
+        display: flex;
+        justify-content: center;
+        align-items: normal;
+        flex-direction: row;
+        margin-top: 5px;
+
+        > div.cta {
+          border: 1px solid #ffffff;
+          margin: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          padding: 10px 15px;
+
+          > h3 {
+            color: #ffffff;
+            text-align: center;
+            max-width: 160px;
+          }
+
+          > a {
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 2px;
+            font-weight: 700;
+          }
+
+          @media only screen and (max-width: 768px) {
+            padding: 7px;
+          }
+        }
+
+        > div.cta.dealer {
+          > a {
+            background-color: #0071b3;
+            color: #fff;
+          }
+
+          > a:hover {
+            background: #005180;
+            color: #fff;
+          }
+        }
+
+        > div.cta.order {
+          > a {
+            background-color: #ffc600;
+            color: #01426a;
+          }
+
+          > a:hover {
+            background: #fd6;
+            color: #01426a;
+          }
+        }
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      width: 100% !important;
+      padding: 0 !important;
+    }
+
+    @media only screen and (min-width: 769px) {
+      left: 65% !important;
+    }
+
+    @media only screen and (min-width: 992px) {
+      left: 72% !important;
+    }
+  }
 }

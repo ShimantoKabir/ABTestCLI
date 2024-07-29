@@ -1,0 +1,46 @@
+@import "./common";
+
+.#{$id} {
+  div.product-link-content-container {
+    justify-content: flex-start !important;
+
+    > h3 {
+      margin-bottom: 5px !important;
+    }
+
+    > P {
+      margin-bottom: 15px !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  div.product-category-content {
+    > a {
+      display: none;
+    }
+
+    > div.shade-cta {
+      a.where-to-buy {
+        background: transparent;
+        border: 0.1rem solid #65686b;
+        color: #65686b;
+        padding: 0.6rem 1.5rem;
+        margin-left: 10px;
+        border-radius: 0;
+        display: inline-block;
+        font-size: 1.6rem;
+        min-height: 3.9rem;
+        text-align: center;
+        text-decoration: none !important;
+      }
+
+      @media only screen and (max-width: 767px) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

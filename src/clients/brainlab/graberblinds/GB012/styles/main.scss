@@ -1,0 +1,183 @@
+@import "./common";
+
+.#{$id} {
+  div.studio-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+    > div.component-wrap {
+      border: 1px solid #d7d2cbbf;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      height: 100%;
+      width: 100%;
+
+      > div.text-content {
+        flex: 6;
+        background-color: #d7d2cb40;
+        margin-right: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+
+        > div.header {
+          > div.title {
+            > h2 {
+              font-family: "CapitoliumHeadLight", "Lucida Bright", "Palatino",
+                "Palatino Linotype", "Palatino LT STD", "Georgia", serif;
+              font-style: normal;
+              letter-spacing: 0;
+              font-weight: normal;
+              font-size: 35px;
+              line-height: 1.24;
+              font-weight: 700;
+            }
+          }
+
+          > div.sub-title {
+            text-align: center;
+
+            > p {
+              border-bottom: 1px solid #d7d2cbbf;
+
+              @media only screen and (max-width: 767px) {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+
+        > div.description {
+          > p {
+          }
+        }
+
+        > div.studio-link {
+          margin-top: 20px;
+
+          > a {
+            border: none;
+            padding: 10px 20px;
+            background-color: #231f20;
+            color: #fff;
+          }
+        }
+
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+          padding: 30px;
+          margin-right: 0;
+        }
+      }
+
+      > div.image-content {
+        flex: 4;
+        height: 100%;
+
+        > img {
+          width: 100%;
+          height: 100%;
+        }
+
+        @media only screen and (max-width: 767px) {
+          margin-top: 5px;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 767px) {
+      height: max-content;
+    }
+  }
+
+  div.studio-component.iteration-2 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  div.find-an-expert-page {
+    > div.opt-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: normal;
+      padding: 20px;
+
+      > div.dealer-contact-form-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+
+        > div.dealer-contact-form {
+          height: 100%;
+
+          > h2.request-consultation-form-heading {
+            text-align: left;
+          }
+
+          > div.request-consultation-form-intro {
+            flex: unset !important;
+          }
+        }
+      }
+
+      > div.form-and-map-divider {
+        width: 0.5px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: #53565a40;
+
+        @media only screen and (max-width: 1200px) {
+          margin-left: 0;
+          margin-right: 0;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          height: 0.5px;
+          width: 100%;
+        }
+      }
+
+      > div.opt-map-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  .opt-wrapper .dealer-contact-form-wrapper::after {
+    display: none;
+  }
+
+  div.Form__Element > label {
+    font-weight: 700;
+  }
+
+  div.fname-element {
+    margin-top: 10px;
+  }
+
+  div.FormMultiChoice__Options > div > label {
+    font-weight: normal !important;
+  }
+
+  button.o-form__submit {
+    background-color: #231f20;
+    border-color: #231f20;
+  }
+
+  form.locator-form > fieldset > div:last-child {
+    height: 0px !important;
+    width: 0px !important;
+    visibility: hidden;
+  }
+
+  div#dealerGrid {
+    margin: 0 !important;
+  }
+}

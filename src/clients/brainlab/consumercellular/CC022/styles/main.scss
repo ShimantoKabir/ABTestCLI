@@ -1,0 +1,23 @@
+@import "./common";
+
+.#{$id} {
+  div.col-border {
+    background-color: #d9f0f6 !important;
+  }
+
+  button.selection-colors {
+    border-radius: 50% !important;
+  }
+
+  div.product-size-picker-component
+    > div.selection-section
+    > div.selection-wrapper
+    > button {
+    border-color: #a2dced !important;
+    background-color: #fff !important;
+  }
+
+  div.product-details > div.trade-in-prompt {
+    background-color: #a2dced !important;
+  }
+}

@@ -1,0 +1,1 @@
+export enum TestInfo {ID = 'CC-ADD-TO-CART', SITE = 'consumercellular', TITLE = 'Add to cart goals for consumer cellular', CLIENT = 'brainlab', TARGET = 'https://www.consumercellular.com/shopping/choose/plan', VARIATION = '1'}
