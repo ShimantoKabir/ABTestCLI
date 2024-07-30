@@ -8,7 +8,7 @@ export class MainComponent {
   overlayComponent: OverlayComponent = new OverlayComponent();
 
   constructor() {
-    Initializer.init(TestInfo, "0.0.1");
+    Initializer.init(TestInfo, "0.0.2");
   }
 
   init = (): void => {
@@ -45,13 +45,6 @@ export class MainComponent {
     if (!freeOrderBtn || !overlayComponentElm) {
       return;
     }
-
-    // @ts-ignore
-    // hbspt.forms.create({
-    //   region: "na1",
-    //   portalId: "521369",
-    //   formId: "dcdaff52-9b18-4baa-b231-1865c29fe3a1",
-    // });
 
     freeOrderBtn.addEventListener("click", (e: MouseEvent) => {
       e.preventDefault();

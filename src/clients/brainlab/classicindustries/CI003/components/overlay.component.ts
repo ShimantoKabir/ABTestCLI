@@ -23,6 +23,9 @@ export class OverlayComponent {
               </div>
             </div>
             <div class="main second-form" >
+              <div class="heading" >
+                <h6>FREE RESTORATION AND PERFORMANCE PARTS CATALOG</h6>
+              </div>
             </div>
             <div class="main no-form show" >
               <div class="heading" >
@@ -98,13 +101,6 @@ export class OverlayComponent {
   render = () => {
     document.body.insertAdjacentHTML("afterbegin", this.getHtml());
 
-    const firstFrom: null | HTMLDivElement = document.querySelector(
-      "div.main.first-form"
-    );
-    const secondFrom: null | HTMLDivElement = document.querySelector(
-      "div.main.second-form"
-    );
-
     setTimeout(() => {
       // @ts-ignore
       hbspt.forms.create({
@@ -120,11 +116,30 @@ export class OverlayComponent {
         formId: "bcf2e44d-2295-44bd-b20c-534c52c47980",
       });
 
-      const hubSpotForms: null | NodeListOf<HTMLDivElement> =
-        document.querySelectorAll("div.hbspt-form");
+      this.findForm();
+    }, 500);
+  };
+
+  findForm = () => {
+    const hubSpotForms: null | NodeListOf<HTMLDivElement> =
+      document.querySelectorAll("div.hbspt-form");
+
+    const firstFrom: null | HTMLDivElement = document.querySelector(
+      "div.main.first-form"
+    );
+    const secondFrom: null | HTMLDivElement = document.querySelector(
+      "div.main.second-form"
+    );
+
+    if (hubSpotForms[0].childElementCount === 0) {
+      setTimeout(() => {
+        this.findForm();
+      }, 500);
+    } else {
+      console.log("Found from...!");
 
       hubSpotForms.forEach((form: HTMLDivElement, index: number) => {
-        if (index === 0) {
+        if (form.firstChild && form.firstChild.nodeName === "FORM") {
           const firstFormClone = form.cloneNode(true) as Element;
           firstFrom &&
             firstFrom.insertAdjacentElement("beforeend", firstFormClone);
@@ -140,7 +155,7 @@ export class OverlayComponent {
       });
 
       firstFrom && secondFrom && this.addListener(firstFrom, secondFrom);
-    }, 500);
+    }
   };
 
   changeFirstFormDisclaimer = () => {
@@ -153,7 +168,7 @@ export class OverlayComponent {
         this.changeFirstFormDisclaimer();
       }, 500);
     } else {
-      console.log("disclaimer found...!");
+      console.log("Disclaimer found...!");
       disclaimer.textContent = "";
       disclaimer.insertAdjacentHTML(
         "afterbegin",
@@ -169,13 +184,13 @@ export class OverlayComponent {
     const firstDownload: null | HTMLButtonElement = document.querySelector(
       "button.first-download"
     );
-    const secondDownload: null | HTMLButtonElement = document.querySelector(
-      "button.second-download"
-    );
+    const secondDownloads: null | NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll("button.second-download");
 
     if (
       !firstDownload ||
-      !secondDownload ||
+      !secondDownloads ||
+      secondDownloads.length === 0 ||
       !mains ||
       mains.length === 0 ||
       !firstFrom ||
@@ -189,40 +204,19 @@ export class OverlayComponent {
       firstFrom.classList.add("show");
     });
 
-    secondDownload.addEventListener("click", () => {
-      this.hideOtherMain(mains);
-      secondFrom.classList.add("show");
+    secondDownloads.forEach((btn: HTMLButtonElement) => {
+      btn.addEventListener("click", () => {
+        this.hideOtherMain(mains);
+        secondFrom.classList.add("show");
+      });
     });
 
     this.changeFirstFormDisclaimer();
-    this.applyCssToSecondForm();
   };
 
   hideOtherMain = (mains: NodeListOf<HTMLDivElement>) => {
     mains.forEach((main: HTMLDivElement) => {
       main.classList.remove("show");
     });
-  };
-
-  applyCssToSecondForm = () => {
-    const iframeForm: null | HTMLIFrameElement = document.querySelector(
-      "iframe.hs-form-iframe"
-    );
-
-    if (!iframeForm) {
-      setTimeout(() => {
-        this.applyCssToSecondForm();
-      }, 500);
-    } else {
-      console.log("Iframe found ....!", iframeForm);
-
-      iframeForm.addEventListener("load", (ev: Event) => {
-        const new_style_element = document.createElement("style");
-        new_style_element.textContent = ".my-class { display: none; }";
-        console.log("event=", ev);
-        // @ts-ignore
-        ev.target.contentDocument.head.appendChild(new_style_element);
-      });
-    }
   };
 }
