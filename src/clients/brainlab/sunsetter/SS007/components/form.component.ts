@@ -1,4 +1,9 @@
-import { cities, skipForNowLink, triggerEvent } from "../common/asset";
+import {
+  afterFormSubmissionRedirectLink,
+  cities,
+  skipForNowLink,
+  triggerEvent,
+} from "../common/asset";
 
 export class FormComponent {
   formComponent: HTMLDivElement | null = null;
@@ -40,7 +45,23 @@ export class FormComponent {
                 placeholder="Address 2" 
                 type="text" 
                 value=""
-              required>
+              >
+            </div>
+          </div>
+          <div class="input-area" >
+            <div class="name" >
+              <label>Zip Code</label>
+            </div>
+            <div class="input" >
+              <input 
+                autocomplete="on" 
+                id="ZipCode" 
+                maxlength="20" 
+                name="ZipCode" 
+                placeholder="Zip Code" 
+                type="text" 
+                value=""
+              >
             </div>
           </div>
           <div class="input-area" >
@@ -56,12 +77,12 @@ export class FormComponent {
                 placeholder="City" 
                 type="text" 
                 value=""
-              required>
+              >
             </div>
           </div>
           <div class="input-area" >
             <div class="input" >
-              <select id="State" name="State" required>
+              <select id="State" name="State">
                 <option selected="selected" value="">Select State</option>
                 ${cities
                   .map(
@@ -132,7 +153,7 @@ export class FormComponent {
           </div>
           <div class="input-area" >
             <div class="name" >
-              <label>Email</label>
+              <label>Email*</label>
             </div>
             <div class="input" >
               <input
@@ -142,7 +163,7 @@ export class FormComponent {
                 name="Email" 
                 placeholder="Email" 
                 type="email" value=""
-              >
+              required>
             </div>
           </div>
           <div class="input-area" >
@@ -180,7 +201,7 @@ export class FormComponent {
           </div>
           <div class="input-area" >
             <div class="name" >
-              <label>Phone*</label>
+              <label>Phone</label>
             </div>
             <div class="input" >
               <input 
@@ -191,7 +212,7 @@ export class FormComponent {
                 placeholder="Phone" 
                 type="text" 
                 value=""
-              required>
+              >
             </div>
           </div>
           <div class="submit-area" >
@@ -401,6 +422,8 @@ export class FormComponent {
         step === 2 && triggerEvent("step-two-form-submitted");
 
         console.log("success=", response);
+
+        step === 2 && this.redirectAfterFromSubmission();
       } else {
         console.log("error=", response);
         this.hideAndShowErrorMsg();
@@ -416,5 +439,9 @@ export class FormComponent {
     setTimeout(() => {
       this.errorMsg && this.errorMsg.classList.remove("show");
     }, 5000);
+  };
+
+  redirectAfterFromSubmission = () => {
+    window.location.href = afterFormSubmissionRedirectLink;
   };
 }
