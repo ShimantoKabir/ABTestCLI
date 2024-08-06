@@ -60,6 +60,7 @@ export const formSteps = [
   },
 ];
 
+// export const capImageUrl: string = "http://localhost:3030/cap-form-img.jpg";
 export const capImageUrl: string =
   "https://brainlabs.digital/cro/f5/f5024/cap-form-img.jpg";
 
