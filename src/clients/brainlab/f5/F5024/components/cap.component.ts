@@ -16,11 +16,13 @@ export class CapComponent {
           <div class="wrap-container" >
             <div class="cap-left" >
               <div class="poster" >
-                <div class="title" >
-                  <h3>Discover Essential API Security Strategies</h3>
-                </div>
-                <div class="description" >
-                  <p>Learn how to protect your APIs from evolving threats with our comprehensive guide.</p>
+                <div class="content" >
+                  <div class="title" >
+                    <h3>Discover Essential API Security Strategies</h3>
+                  </div>
+                  <div class="description" >
+                    <p>Learn how to protect your APIs from evolving threats with our comprehensive guide.</p>
+                  </div>
                 </div>
                 <div class="image" >
                   <img src="${capImageUrl}" >

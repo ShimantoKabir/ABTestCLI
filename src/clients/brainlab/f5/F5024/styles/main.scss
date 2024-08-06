@@ -40,6 +40,8 @@
   }
 
   div.hero-form-component {
+    max-width: 450px;
+
     @media only screen and (max-width: 992px) {
       margin-top: 50px !important;
     }
@@ -54,7 +56,6 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-    max-width: 450px;
     margin: 20px;
 
     > div.component-wrap {
@@ -345,6 +346,10 @@
               font-style: italic;
               font-size: 15px;
             }
+
+            @media only screen and (max-width: 992px) {
+              margin-top: 0px;
+            }
           }
 
           > div.from-actions {
@@ -389,6 +394,10 @@
                 display: none;
               }
             }
+
+            @media only screen and (max-width: 992px) {
+              margin-top: 5px;
+            }
           }
 
           > div.from-actions.next {
@@ -420,6 +429,13 @@
       > div.form-container {
         display: none;
       }
+    }
+  }
+
+  div.cap-form-component {
+    @media only screen and (max-width: 992px) {
+      margin: 5px;
+      padding: 5px;
     }
   }
 
@@ -460,19 +476,29 @@
           padding: 25px;
 
           > div.poster {
-            > div.title {
-              > h3 {
-                font-size: 25px;
-                color: #fff;
+            > div.content {
+              > div.title {
+                > h3 {
+                  font-size: 25px;
+                  color: #fff;
+
+                  @media only screen and (max-width: 992px) {
+                    font-size: 18px;
+                  }
+                }
               }
-            }
 
-            > div.description {
-              margin-top: 15px;
+              > div.description {
+                margin-top: 15px;
 
-              > p {
-                color: #fff;
-                font-size: 15px;
+                > p {
+                  color: #fff;
+                  font-size: 15px;
+                }
+              }
+
+              @media only screen and (max-width: 992px) {
+                margin-right: 10px;
               }
             }
 
@@ -482,11 +508,28 @@
               display: flex;
               justify-content: center;
               align-items: center;
+
+              > img {
+                @media only screen and (max-width: 992px) {
+                  width: 100px;
+                }
+              }
+
+              @media only screen and (max-width: 992px) {
+                margin: 0;
+              }
+            }
+
+            @media only screen and (max-width: 992px) {
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
           }
 
           @media only screen and (max-width: 992px) {
             width: 100%;
+            padding: 15px;
           }
         }
 
@@ -507,17 +550,7 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-
-        @media only screen and (max-width: 992px) {
-          top: 10px;
-          right: 10px;
-        }
       }
-    }
-
-    @media only screen and (max-width: 992px) {
-      height: 100%;
-      overflow-y: scroll;
     }
   }
 
@@ -639,6 +672,16 @@
           border-radius: 5px;
         }
       }
+    }
+  }
+
+  div.form-container > form.cap.mktoForm > div:nth-child(7) {
+    display: none;
+  }
+
+  input#Company {
+    @media only screen and (max-width: 992px) {
+      height: auto;
     }
   }
 }
